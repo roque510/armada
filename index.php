@@ -12,12 +12,14 @@
 
     <body>
      <?php 
-      require_once('funciones.php');
+      require_once 'funciones.php';
+      
 
       modulo('chome');
       //modulo('login');
-      //modulo('cliente2');
-      modulo('analista');
+      modulo('cliente2');
+      //modulo('analista');
+
 
     ?>
 

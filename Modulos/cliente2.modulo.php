@@ -1,22 +1,40 @@
+<?php 
+require_once 'funciones.php';
+require_once 'medoo.php';
+require_once 'config.php';
+      
+        $database = new medoo([
+          'database_type' => 'mysql',
+          'database_name' => $DB,
+          'server' => $SVR,
+          'username' => $USR,
+          'password' => $PW,
+          'charset' => 'utf8'
+        ]);
+
+
+
+
+ ?>
   <div class="row">
     <form class="col s12">
       <div class="row">
-        <div class="input-field col s3">
+        <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
-        <div class="input-field col s3">
+        <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
@@ -26,13 +44,16 @@
       <div class="input-field col s6">
     <select>
       <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Cedula</option>
-      <option value="2">Pasaporte</option>
-      <option value="3">Licencia de conducir</option>
-      <option value="3">Carnet de Trabajo</option>
-      <option value="3">Carnet de Seguro Social</option>
-      <option value="3">RTN</option>
-      <option value="3">Otro</option>
+      <?php 
+        
+        $datas = $database->select("identificaciones_tipos", ["identificacion_tipo_descripcion","identificacion_tipo_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["identificacion_tipo_id"].'">'.$data["identificacion_tipo_descripcion"].'</option>';
+          }
+       ?>
+      
 
     </select>
     <label>Tipo de Identificacion</label>
@@ -51,14 +72,15 @@
    <div class="input-field col s6">
     <select>
       <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Honduras</option>
-      <option value="2">Guatemala</option>
-      <option value="3">El Salvador</option>
-      <option value="3">Nicaragua</option>
-      <option value="3">Costa Rica</option>
-      <option value="3">Panama</option>
-      <option value="3">Norteamerica</option>
-      <option value="3">Suramerica</option>
+      <?php 
+        
+        $datas = $database->select("pais", ["pais_nombre","pais_id"], ["pais_id[>]" => 0]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["pais_id"].'">'.$data["pais_nombre"].'</option>';
+          }
+       ?>
 
     </select>
     <label>Nacionalidad</label>
@@ -66,9 +88,15 @@
   <div class="input-field col s6">
     <select>
       <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Nuevo</option>
-      <option value="2">Activo</option>
-      <option value="2">Inactivo</option>
+      <?php 
+        
+        $datas = $database->select("entidades_tipos", ["entidad_tipo_descripcion","entidad_tipo_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["entidad_tipo_id"].'">'.$data["entidad_tipo_descripcion"].'</option>';
+          }
+       ?>
 
     </select>
     <label>Tipo Cliente</label>
@@ -76,10 +104,15 @@
 <div class="input-field col s6">
     <select>
       <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Piso de Venta</option>
-      <option value="2">Tele-Venta</option>
-      <option value="2">Extra piso</option>
-      <option value="2">Ferias</option>
+      <?php 
+        
+        $datas = $database->select("solicitudes_canales", ["solicitud_canal_descripcion","solicitud_canal_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["solicitud_canal_id"].'">'.$data["solicitud_canal_descripcion"].'</option>';
+          }
+       ?>
 
     </select>
     <label>Canal de Venta</label>
@@ -89,7 +122,7 @@
       <option value="" disabled selected>Elija una opcion</option>
       <option value="1">Monto Solicitado</option>
       <option value="2">Cuota Solicitada</option>
-      <option value="2">Plazo en Meses</option>
+      <option value="3">Plazo en Meses</option>
 
     </select>
     <label>Datos de Credito</label>
@@ -154,9 +187,19 @@
   
 
   </div>
-
-    </form>
-
-
-
+    
+  <div class="row">
+    <div class="col m12">
+      <p class="right-align">
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Login</button>
+      </p>
+    </div>
   </div>
+
+</form>
+
+
+
+  </div>  
+
+

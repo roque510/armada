@@ -1,8 +1,10 @@
+
 <?php
 GLOBAL $SVR,$USR,$PW,$DB;
-$DB= "emisoras";
+$DB= "db_credistar";
 $SVR = "localhost";
 $PW = "";
 $USR = "root";
+
 
 ?>
