@@ -17,32 +17,32 @@ require_once 'config.php';
 
  ?>
   <div class="row">
-    <form class="col s12">
+    <form class="col s12" action="clientf.php" method="post">
       <div class="row">
         <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" type="text" name="pnombre" class="validate">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
         <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" name="snombre" type="text" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
         <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" name="papellido" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
         <div class="input-field col m3 s12">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" class="validate">
+          <input id="icon_prefix" name="sapellido" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
         </div>
         
       </div>
       <div class="input-field col s6">
-    <select>
+    <select name="tipo_identificacion">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
@@ -60,7 +60,7 @@ require_once 'config.php';
   </div>
 
  <div class="input-field col s6">
-    <select>
+    <select name="genero">
       <option value="" disabled selected>Elija una opcion</option>
       <option value="1">Femenino</option>
       <option value="2">Masculino</option>
@@ -70,7 +70,7 @@ require_once 'config.php';
   </div>
 
    <div class="input-field col s6">
-    <select>
+    <select name="nacionalidad">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
@@ -86,7 +86,7 @@ require_once 'config.php';
     <label>Nacionalidad</label>
   </div>
   <div class="input-field col s6">
-    <select>
+    <select name="tipo_cliente">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
@@ -102,7 +102,7 @@ require_once 'config.php';
     <label>Tipo Cliente</label>
   </div>
 <div class="input-field col s6">
-    <select>
+    <select name="canal_venta">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
@@ -118,7 +118,7 @@ require_once 'config.php';
     <label>Canal de Venta</label>
   </div>
   <div class="input-field col s6">
-    <select>
+    <select name="datos_credito">
       <option value="" disabled selected>Elija una opcion</option>
       <option value="1">Monto Solicitado</option>
       <option value="2">Cuota Solicitada</option>
