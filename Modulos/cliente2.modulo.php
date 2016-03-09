@@ -16,25 +16,27 @@ require_once 'config.php';
 
 
  ?>
-  <div class="row">
+ <br>
+ <br>
+  <div class="row container">
     <form class="col s12" action="clientf.php" method="post">
       <div class="row">
-        <div class="input-field col m3 s12">
+        <div class="input-field col  s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" name="pnombre" class="validate">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
-        <div class="input-field col m3 s12">
+        <div class="input-field col  s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="snombre" type="text" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
-        <div class="input-field col m3 s12">
+        <div class="input-field col  s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="papellido" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
-        <div class="input-field col m3 s12">
+        <div class="input-field col  s12">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="sapellido" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
@@ -62,8 +64,8 @@ require_once 'config.php';
  <div class="input-field col s6">
     <select name="genero">
       <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Femenino</option>
-      <option value="2">Masculino</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Masculino">Masculino</option>
 
     </select>
     <label>Genero</label>
@@ -130,7 +132,7 @@ require_once 'config.php';
 
   <div class="row" style="margin-top:300px !important;">
     
-  <h3>Documentacion Grafica</h3>
+  <!--h3>Documentacion Grafica</h3>
   <label>Identificacion Personal. (cedula,licencia,pasaporte, o Carnet de seguro)</label>
     <div class="file-field input-field">
       <div class="btn">
@@ -186,12 +188,12 @@ require_once 'config.php';
     </div>
   
 
-  </div>
+  </div-->
     
   <div class="row">
     <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Login</button>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Ingresar Cliente</button>
       </p>
     </div>
   </div>
