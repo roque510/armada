@@ -1,5 +1,6 @@
 <?php 
 require_once 'medoo.php';
+require_once 'funciones.php';
       require_once 'config.php';
       
         $database = new medoo([
@@ -15,12 +16,12 @@ require_once 'medoo.php';
         echo $_POST['snombre'];
         echo $_POST['papellido'];
         echo $_POST['sapellido'];
-        echo $_POST['tipo_identificacion'];
+        echo $_POST['tipo_id'];
         echo $_POST['nacionalidad'];
         echo $_POST['canal_venta'];
         echo $_POST['genero'];
         echo $_POST['tipo_cliente'];
-        echo $_POST['datos_credito'];
+        
 
 $path = "clientes/";
 $id = "2";
@@ -48,33 +49,45 @@ $last_user_id = $database->insert("entidades", [
 
 $database->insert("entidades_identificaciones", [
   "entidad_id" => $last_user_id,
-  "identificacion_id" => $_POST['tipo_identificacion'],
-  "identificacion_principal" => $_POST['tipo_identificacion']
-]);
-
-$database->insert("entidades_identificaciones", [
-  "entidad_id" => $last_user_id,
-  "identificacion_id" => $_POST['tipo_identificacion'],
-  "identificacion_principal" => $_POST['tipo_identificacion']
+  "identificacion_id" => $_POST['tipo_id'],
+  "identificacion_principal" => $_POST['tipo_id']
 ]);
 
 $database->insert("identificaciones", [
   "entidad_id" => $last_user_id,
-  "identificacion_tipo_id" => $_POST['tipo_identificacion']
+  "identificacion_tipo_id" => $_POST['tipo_id']
+]);
+
+//HAY QUE AGREGAR INFORMACION SOBRA LE FECHA Y LA PERSONA QUE AGREGO A ESTE CLIENTE!
+$database->insert("clientes", [
+  "entidad_id" => $last_user_id,
+  "cliente_limite_credito" => $_POST['monto'],
+  "cliente_cuota" => $_POST['cuota'], 
+  "cliente_plazo" => $_POST['plazo']
 ]);
 
 
-if ($database->has("entidades", ["user_name" => "foo"]))
+/*if ($database->has("entidades", ["user_name" => "foo"]))
 {
 	echo "Password is correct.";
 }
 else
 {
 	echo "Password error.";
-}
+}*/
 
         if (!file_exists($path.$last_user_id)) {
     mkdir($path.$last_user_id, 0777, true);
 }
+
+$target_dir = "clientes/".$last_user_id."/";
+upload($_FILES["fileToUpload"],$target_dir,"Identificacion");
+upload($_FILES["docla"],$target_dir,"Documentacion_Laboral");
+upload($_FILES["docpro"],$target_dir,"Documentacion_Propia");
+upload($_FILES["recicom"],$target_dir,"Recibo_Comprobante");
+upload($_FILES["solifi"],$target_dir,"Solicitud_fisica");
+
+
+
 
  ?>

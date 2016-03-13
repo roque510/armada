@@ -19,7 +19,7 @@ require_once 'config.php';
  <br>
  <br>
   <div class="row container">
-    <form class="col s12" action="clientf.php" method="post">
+    <form id="leform" class="col s12" method="post" action="clientf.php" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col  s12">
           <i class="material-icons prefix">account_circle</i>
@@ -43,8 +43,14 @@ require_once 'config.php';
         </div>
         
       </div>
+<br>
+<div class="progress">
+      <div class="determinate" style="width: 100%"></div>
+  </div>
+  
+      
       <div class="input-field col s6">
-    <select name="tipo_identificacion">
+    <select name="tipo_id">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
@@ -103,7 +109,7 @@ require_once 'config.php';
     </select>
     <label>Tipo Cliente</label>
   </div>
-<div class="input-field col s6">
+<div class="input-field col s12" style="margin-bottom: 50px;">
     <select name="canal_venta">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -119,25 +125,41 @@ require_once 'config.php';
     </select>
     <label>Canal de Venta</label>
   </div>
-  <div class="input-field col s6">
-    <select name="datos_credito">
-      <option value="" disabled selected>Elija una opcion</option>
-      <option value="1">Monto Solicitado</option>
-      <option value="2">Cuota Solicitada</option>
-      <option value="3">Plazo en Meses</option>
 
-    </select>
-    <label>Datos de Credito</label>
+
+<div class="progress" >
+      <div class="determinate" style="width: 100%"></div>
   </div>
+ 
 
-  <div class="row" style="margin-top:300px !important;">
+  <div class="row">
+        <div class="input-field col s4">
+          <input type="number" name="monto" class="validate">
+          <label for="first_name">Monto Solicitado</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="last_name" name="cuota" type="number" class="validate">
+          <label for="last_name">Cuota Solicitada</label>
+        </div>
+        <div class="input-field col s4">
+          <input id="last_name" name="plazo" type="number" class="validate">
+          <label for="last_name">Plazo en Meses</label>
+        </div>
+      </div>
+
+      <div class="progress" >
+      <div class="determinate" style="width: 100%"></div>
+  </div>
+  
+
+  <div class="row" style="margin-top:50px !important;">
     
-  <!--h3>Documentacion Grafica</h3>
+  <h3>Documentacion Grafica</h3>
   <label>Identificacion Personal. (cedula,licencia,pasaporte, o Carnet de seguro)</label>
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input type="file">
+        <input name="fileToUpload" id="fileToUpload" type="file">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -148,7 +170,7 @@ require_once 'config.php';
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input type="file">
+        <input  name="docla" id="docla" type="file">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -159,7 +181,7 @@ require_once 'config.php';
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input type="file">
+        <input  name="docpro" id="docpro" type="file">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -170,7 +192,7 @@ require_once 'config.php';
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input type="file">
+        <input  name="recicom" id="recicom" type="file">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -180,7 +202,7 @@ require_once 'config.php';
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input type="file">
+        <input  name="solifi" id="solifi" type="file">
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -188,7 +210,7 @@ require_once 'config.php';
     </div>
   
 
-  </div-->
+  </div>
     
   <div class="row">
     <div class="col m12">
