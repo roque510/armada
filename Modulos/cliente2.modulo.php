@@ -66,6 +66,11 @@ require_once 'config.php';
     </select>
     <label>Tipo de Identificacion</label>
   </div>
+  <div class="input-field col  s6">
+          <i class="material-icons prefix">fingerprint</i>
+          <input id="icon_prefix" name="id" type="text" class="validate">
+          <label for="icon_prefix">Numero de Identificacion</label>
+        </div>
 
  <div class="input-field col s6">
     <select name="genero">
@@ -109,7 +114,7 @@ require_once 'config.php';
     </select>
     <label>Tipo Cliente</label>
   </div>
-<div class="input-field col s12" style="margin-bottom: 50px;">
+<div class="input-field col s6" style="margin-bottom: 50px;">
     <select name="canal_venta">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 

@@ -47,23 +47,28 @@ $last_user_id = $database->insert("entidades", [
   "estatus_id" => ""
 ]);
 
+
+
+$ultimoID = $database->insert("identificaciones", [
+  "entidad_id" => $last_user_id,
+  "identificacion_tipo_id" => $_POST['tipo_id'],
+  "identificacion_numero" => $_POST['id']
+]);
+
 $database->insert("entidades_identificaciones", [
   "entidad_id" => $last_user_id,
-  "identificacion_id" => $_POST['tipo_id'],
+  "identificacion_id" => $ultimoID,
   "identificacion_principal" => $_POST['tipo_id']
 ]);
 
-$database->insert("identificaciones", [
-  "entidad_id" => $last_user_id,
-  "identificacion_tipo_id" => $_POST['tipo_id']
-]);
-
 //HAY QUE AGREGAR INFORMACION SOBRA LE FECHA Y LA PERSONA QUE AGREGO A ESTE CLIENTE!
-$database->insert("clientes", [
+$database->insert("solicitudes", [
   "entidad_id" => $last_user_id,
-  "cliente_limite_credito" => $_POST['monto'],
-  "cliente_cuota" => $_POST['cuota'], 
-  "cliente_plazo" => $_POST['plazo']
+  "solicitud_monto" => $_POST['monto'],
+  "solicitud_cuota" => $_POST['cuota'], 
+  "estatus_id" => 1,
+  "solicitud_fecha_inicio" => date("Y-m-d H:i:s"),
+  "solicitud_plazo" => $_POST['plazo']
 ]);
 
 
