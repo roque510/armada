@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-03-2016 a las 06:59:28
+-- Tiempo de generación: 16-03-2016 a las 06:19:24
 -- Versión del servidor: 5.6.17
 -- Versión de PHP: 5.5.12
 
@@ -101,21 +101,30 @@ CREATE TABLE IF NOT EXISTS `cias` (
 --
 
 CREATE TABLE IF NOT EXISTS `clientes` (
-  `entidad_id` bigint(20) NOT NULL,
+  `cliente_id` bigint(20) NOT NULL,
   `nivel_edu_id` bigint(20) DEFAULT NULL,
   `profesion_id` bigint(20) DEFAULT NULL,
   `cliente_score` int(11) DEFAULT NULL,
   `cliente_limite_credito` decimal(10,2) DEFAULT NULL,
-  `clliente_cuota` decimal(10,2) DEFAULT NULL,
+  `cliente_cuota` decimal(10,2) DEFAULT NULL,
   `cliente_usuario_creacion` varchar(25) DEFAULT NULL,
   `cliente_fecha_creacion` datetime DEFAULT NULL,
   `cliente_usuario_modificacion` varchar(25) DEFAULT NULL,
   `cliente_fecha_modificacion` datetime DEFAULT NULL,
   `estatus_id` varchar(2) DEFAULT NULL,
-  PRIMARY KEY (`entidad_id`),
+  `entidad_id` bigint(20) NOT NULL,
+  `cliente_plazo` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`cliente_id`),
   KEY `FK_clientes_nivel_edu_id_idx` (`nivel_edu_id`),
   KEY `FK_clientes_profesion_id_idx` (`profesion_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabla en donde se guardaran las entidades que sean clasificadas como tipo clientes en el sistema CrediStar';
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`cliente_id`, `nivel_edu_id`, `profesion_id`, `cliente_score`, `cliente_limite_credito`, `cliente_cuota`, `cliente_usuario_creacion`, `cliente_fecha_creacion`, `cliente_usuario_modificacion`, `cliente_fecha_modificacion`, `estatus_id`, `entidad_id`, `cliente_plazo`) VALUES
+(0, NULL, NULL, NULL, '20000.00', '1000.00', NULL, NULL, NULL, NULL, NULL, 27, '20.00');
 
 -- --------------------------------------------------------
 
@@ -334,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `entidades` (
   KEY `FK_entidades_estado_civil_id_idx` (`estado_civil_id`),
   KEY `FK_entidades_direccion_id_idx` (`direccion_id`),
   KEY `FK_entidades_entidad_tipo_id_idx` (`entidad_tipo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabla general en donde se almacenaran las entidades tanto de: clientes de segundo nivel, referencias personales, jefes de empleos, etc. la idea es que esta tabla almacene cualquier dato que se pueda reutilizar luego.' AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabla general en donde se almacenaran las entidades tanto de: clientes de segundo nivel, referencias personales, jefes de empleos, etc. la idea es que esta tabla almacene cualquier dato que se pueda reutilizar luego.' AUTO_INCREMENT=75 ;
 
 --
 -- Volcado de datos para la tabla `entidades`
@@ -343,7 +352,75 @@ CREATE TABLE IF NOT EXISTS `entidades` (
 INSERT INTO `entidades` (`entidad_id`, `entidad_primer_nombre`, `entidad_segundo_nombre`, `entidad_primer_apellido`, `entidad_segund_apellido`, `entidad_genero`, `estado_civil_id`, `entidad_correo`, `entidad_fecha_nacimiento`, `entidad_identidad_principal`, `entidad_rtn`, `entidad_imagen`, `direccion_id`, `entidad_tipo_id`, `entidad_generado`, `entidad_usuario_creacion`, `entidad_fecha_creacion`, `estatus_id`) VALUES
 (1, 'INIT', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (5, 'sdfsdf', 'sdfsdf', 'sdfsdf', 'sdfsdf', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
-(6, 'Armando', '', 'Roque', 'Barahona', '2', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', '');
+(6, 'Armando', '', 'Roque', 'Barahona', '2', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(7, 'Damian', 'Alberto', 'Nu?ez', 'Guzman', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(8, 'Damian', 'Alberto', 'Nu?ez', 'Guzman', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(9, 'sddfgsdfg', 'sdfgsdfg', 'sdfgsdfg', '', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(10, 'sddfgsdfg', 'sdfgsdfg', 'sdfgsdfg', '', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(11, 'LOL', 'lalala', 'lalalal', 'lalalal', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(12, 'dd', 'dd', 'dd', 'dd', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(13, 'okok', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(14, 'asdasd', 'kokokok', 'okokok', 'okokok', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(15, 'dotot', 'wot', 'say', 'wat', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(16, 'ihusadklhjasdhkjlasd', 'iouhhiuhiu', 'ihuhui', 'ihuhiu', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(17, 'Damian', 'Alberto', 'Gay', 'Lord', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(18, 'probando', 'a ver', 'jo', 'pedo', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(19, 'asdfasdfasdf', 'asdfasdf', 'asdfasdf', 'asdfasdf', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(20, 'prueba', 'ultima', 'a ', 'ver', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(21, 'prueba', 'ultima', 'a ', 'ver', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(22, 'prueba', 'ultima', 'a ', 'ver', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(23, 'prueba', 'ultima', 'a ', 'ver', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(24, 'werfwefwefwwefr', 'wefwef', 'wefrwef', 'wefwef', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(25, 'werfwefwefwwefr', 'wefwef', 'wefrwef', 'wefwef', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(26, 'no', 'no', 'no', 'no', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(27, 'Javier', 'Armando', 'Roque', 'Barahona', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(28, 'aa', 'aa', 'aa', 'aa', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(29, 'aa', 'aa', 'aa', 'aa', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(30, 'aa', 'aa', 'aa', 'aa', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(31, 'e4rsd', 'sdf', 'sdf', 'sdddd', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(32, 'e4rsd', 'sdf', 'sdf', 'sdddd', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(33, 'e4rsd', 'sdf', 'sdf', 'sdddd', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(34, 'wee', 'w', 'w', 'q', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(35, 'wee', 'w', 'w', 'q', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(36, 'sdfsdf', 'sdfsd', 'sdfs', 'sdfsd', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(37, 'sddfsdf', 'asdfasdf', 'asdf', 'asdfasdf', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(38, 'sddfsdf', 'asdfasdf', 'asdf', 'asdfasdf', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(39, 'hey', 'we', 'got', 'em', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(40, 'hey', 'we', 'got', 'em', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(41, 'dss', 'sss', 'ss', 'fsdf', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(42, 'xc', 'xcv', 'vcx', 'vcx', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(43, 'xc', 'xcv', 'vcx', 'vcx', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(44, 'hhhhoooe', 'sdfg', 'dd', 'dd', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(45, 'probando', 'a ver', 'que ', 'me', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(46, 'probando', 'a ver', 'que ', 'me', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(47, 'probando', 'a ver', 'que ', 'me', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(48, '44', 'sdf', '22', '33', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(49, '44', 'sdf', '22', '33', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(50, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(51, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(52, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(53, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(54, 'ff', 'ffg', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(55, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(56, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(57, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(58, 'sdfg', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(59, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(60, 'Wilmer', 'Mario', 'Dubon', 'Caceres', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(61, 'Wilmer', 'Mario', 'Dubon', 'Caceres', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(62, 'asdddfasdaasda', 'asdasd', 'asdasd', 'asdasd', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(63, 'asdddfasdaasda', 'asdasd', 'asdasd', 'asdasd', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(64, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(65, 'sdfg', 'sdfg', 'sdfg', 'sdfg', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(66, 'sdfsdfsdfs', 'bbbbbbbb', 'bbbbbbbbbbbb', 'bbbbbbbbbbbbbbbbbbbbbbbbb', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(67, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(68, '', '', '', '', NULL, NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(69, 'Bau', 'wow', 'Uoh', 'YEh', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(70, 'dsfgsdfdgdfgdfg', 'dsfgdfg', 'dfgdfg', 'wottaa', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(71, 'Mirna', '', 'Barahona', 'Barahona', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(72, 'asfdg', 'asfdg', 'asdfg', 'asdg', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(73, 'Mago', 'Martinez', 'Roque', 'Perez', 'Masculino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', ''),
+(74, 'Yohana', 'Lorena', 'Rosales', 'Barahona', 'Femenino', NULL, '', '0000-00-00', 0, '', '', NULL, NULL, '', '', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -377,7 +454,49 @@ CREATE TABLE IF NOT EXISTS `entidades_identificaciones` (
 --
 
 INSERT INTO `entidades_identificaciones` (`entidad_id`, `identificacion_id`, `identificacion_principal`) VALUES
-(6, 1, 1);
+(6, 1, 1),
+(7, 1, 1),
+(8, 1, 1),
+(11, 1, 1),
+(12, 1, 1),
+(14, 2, 2),
+(16, 2, 2),
+(17, 1, 1),
+(18, 2, 2),
+(19, 2, 2),
+(21, 2, 2),
+(22, 2, 2),
+(23, 2, 2),
+(24, 2, 2),
+(25, 2, 2),
+(26, 2, 2),
+(27, 1, 1),
+(28, 1, 1),
+(29, 1, 1),
+(30, 1, 1),
+(31, 2, 2),
+(32, 2, 2),
+(33, 2, 2),
+(34, 2, 2),
+(35, 2, 2),
+(37, 2, 2),
+(38, 2, 2),
+(41, 1, 1),
+(45, 6, 6),
+(46, 6, 6),
+(47, 6, 6),
+(48, 2, 2),
+(49, 2, 2),
+(60, 1, 1),
+(61, 1, 1),
+(62, 3, 3),
+(63, 3, 3),
+(69, 1, 1),
+(70, 3, 3),
+(71, 1, 1),
+(72, 2, 2),
+(73, 1, 1),
+(74, 70, NULL);
 
 -- --------------------------------------------------------
 
@@ -443,6 +562,15 @@ CREATE TABLE IF NOT EXISTS `estatus` (
   `estatus_comentario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`estatus_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabla la cual contendra los valores de todos los tipos de estados a ser usado a lo largo de las transacciones y mantenimientos del sistema CrediStar.';
+
+--
+-- Volcado de datos para la tabla `estatus`
+--
+
+INSERT INTO `estatus` (`estatus_id`, `estatus_desripcion`, `estatus_comentario`) VALUES
+('1', 'Pendiente', NULL),
+('2', 'Aprobada', NULL),
+('3', 'Denegada', NULL);
 
 -- --------------------------------------------------------
 
@@ -511,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `identificaciones` (
   `entidad_id` int(11) NOT NULL,
   PRIMARY KEY (`identificacion_id`),
   KEY `FK_identificaciones_identificacion_tipo_id_idx` (`identificacion_tipo_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabla la cual almacenara todas las diferentes identificaciones que una sola entidad puede llegar a manejar.' AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabla la cual almacenara todas las diferentes identificaciones que una sola entidad puede llegar a manejar.' AUTO_INCREMENT=71 ;
 
 --
 -- Volcado de datos para la tabla `identificaciones`
@@ -519,7 +647,75 @@ CREATE TABLE IF NOT EXISTS `identificaciones` (
 
 INSERT INTO `identificaciones` (`identificacion_id`, `identificacion_tipo_id`, `identificacion_numero`, `identificacion_registro`, `identificacion_dato1`, `identificacion_dato2`, `identificacion_dato3`, `identificacion_comentario`, `entidad_id`) VALUES
 (1, 2, '', NULL, NULL, NULL, NULL, NULL, 0),
-(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, 6);
+(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, 6),
+(3, 1, NULL, NULL, NULL, NULL, NULL, NULL, 7),
+(4, 1, NULL, NULL, NULL, NULL, NULL, NULL, 8),
+(5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 9),
+(6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 10),
+(7, 1, NULL, NULL, NULL, NULL, NULL, NULL, 11),
+(8, 1, NULL, NULL, NULL, NULL, NULL, NULL, 12),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 13),
+(10, 2, NULL, NULL, NULL, NULL, NULL, NULL, 14),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 15),
+(12, 2, NULL, NULL, NULL, NULL, NULL, NULL, 16),
+(13, 1, NULL, NULL, NULL, NULL, NULL, NULL, 17),
+(14, 2, NULL, NULL, NULL, NULL, NULL, NULL, 18),
+(15, 2, NULL, NULL, NULL, NULL, NULL, NULL, 19),
+(16, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 20),
+(17, 2, NULL, NULL, NULL, NULL, NULL, NULL, 21),
+(18, 2, NULL, NULL, NULL, NULL, NULL, NULL, 22),
+(19, 2, NULL, NULL, NULL, NULL, NULL, NULL, 23),
+(20, 2, NULL, NULL, NULL, NULL, NULL, NULL, 24),
+(21, 2, NULL, NULL, NULL, NULL, NULL, NULL, 25),
+(22, 2, NULL, NULL, NULL, NULL, NULL, NULL, 26),
+(23, 1, NULL, NULL, NULL, NULL, NULL, NULL, 27),
+(24, 1, NULL, NULL, NULL, NULL, NULL, NULL, 28),
+(25, 1, NULL, NULL, NULL, NULL, NULL, NULL, 29),
+(26, 1, NULL, NULL, NULL, NULL, NULL, NULL, 30),
+(27, 2, NULL, NULL, NULL, NULL, NULL, NULL, 31),
+(28, 2, NULL, NULL, NULL, NULL, NULL, NULL, 32),
+(29, 2, NULL, NULL, NULL, NULL, NULL, NULL, 33),
+(30, 2, NULL, NULL, NULL, NULL, NULL, NULL, 34),
+(31, 2, NULL, NULL, NULL, NULL, NULL, NULL, 35),
+(32, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 36),
+(33, 2, NULL, NULL, NULL, NULL, NULL, NULL, 37),
+(34, 2, NULL, NULL, NULL, NULL, NULL, NULL, 38),
+(35, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 39),
+(36, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 40),
+(37, 1, NULL, NULL, NULL, NULL, NULL, NULL, 41),
+(38, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 42),
+(39, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 43),
+(40, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 44),
+(41, 6, NULL, NULL, NULL, NULL, NULL, NULL, 45),
+(42, 6, NULL, NULL, NULL, NULL, NULL, NULL, 46),
+(43, 6, NULL, NULL, NULL, NULL, NULL, NULL, 47),
+(44, 2, NULL, NULL, NULL, NULL, NULL, NULL, 48),
+(45, 2, NULL, NULL, NULL, NULL, NULL, NULL, 49),
+(46, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 50),
+(47, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 51),
+(48, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 52),
+(49, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 53),
+(50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 54),
+(51, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 55),
+(52, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 56),
+(53, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 57),
+(54, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 58),
+(55, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 59),
+(56, 1, NULL, NULL, NULL, NULL, NULL, NULL, 60),
+(57, 1, NULL, NULL, NULL, NULL, NULL, NULL, 61),
+(58, 3, NULL, NULL, NULL, NULL, NULL, NULL, 62),
+(59, 3, NULL, NULL, NULL, NULL, NULL, NULL, 63),
+(60, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 64),
+(61, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 65),
+(62, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 66),
+(63, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 67),
+(64, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 68),
+(65, 1, NULL, NULL, NULL, NULL, NULL, NULL, 69),
+(66, 3, NULL, NULL, NULL, NULL, NULL, NULL, 70),
+(67, 1, NULL, NULL, NULL, NULL, NULL, NULL, 71),
+(68, 2, NULL, NULL, NULL, NULL, NULL, NULL, 72),
+(69, 1, NULL, NULL, NULL, NULL, NULL, NULL, 73),
+(70, NULL, '0501199109215', NULL, NULL, NULL, NULL, NULL, 74);
 
 -- --------------------------------------------------------
 
@@ -775,11 +971,22 @@ CREATE TABLE IF NOT EXISTS `solicitudes` (
   `soliciutd_forzada` int(11) DEFAULT '0',
   `estatus_id` varchar(2) DEFAULT NULL,
   `subestatus_id` varchar(2) DEFAULT NULL,
+  `entidad_id` bigint(20) NOT NULL,
   PRIMARY KEY (`solicitud_id`),
   KEY `FK_solicitudes_cia_id_idx` (`cia_id`),
   KEY `FK_solicitudes_solicitud_tipo_id_idx` (`solicitud_tipo_id`),
   KEY `FK_solicitudes_solicitud_canal_id_idx` (`solicitud_canal_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabla de transacciones, en esta tabla se guardara el registro que sera el que inicie la afetacion de un credtio para un cliente en especifico.' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Tabla de transacciones, en esta tabla se guardara el registro que sera el que inicie la afetacion de un credtio para un cliente en especifico.' AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `solicitudes`
+--
+
+INSERT INTO `solicitudes` (`solicitud_id`, `cia_id`, `solicitud_fecha_inicio`, `solicitud_fecha_cierre`, `solicitud_prioridad`, `solicitud_tipo_id`, `solicitud_canal_id`, `solicitud_monto`, `solicitud_cuota`, `solicitud_plazo`, `soliciutd_comentario`, `soliciutd_score`, `soliciutd_forzada`, `estatus_id`, `subestatus_id`, `entidad_id`) VALUES
+(1, NULL, NULL, NULL, NULL, NULL, NULL, '25000.00', '6000.00', '25.00', NULL, NULL, 0, '1', NULL, 71),
+(2, NULL, NULL, NULL, NULL, NULL, NULL, '23452345.00', '2345.00', '4.00', NULL, NULL, 0, '3', NULL, 72),
+(3, NULL, '2016-03-15 22:54:10', NULL, NULL, NULL, NULL, '300000.00', '3000.00', '25.00', NULL, NULL, 0, '2', NULL, 73),
+(4, NULL, '2016-03-16 02:10:09', NULL, NULL, NULL, NULL, '250000.00', '25000.00', '2.00', NULL, NULL, 0, '1', NULL, 74);
 
 -- --------------------------------------------------------
 
@@ -1066,7 +1273,7 @@ ALTER TABLE `clientes`
 -- Filtros para la tabla `clientes_empleos`
 --
 ALTER TABLE `clientes_empleos`
-  ADD CONSTRAINT `FK_clientes_empleados_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`entidad_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_clientes_empleados_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_clientes_empleados_empleo_id` FOREIGN KEY (`empleo_id`) REFERENCES `empleos` (`empleo_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1085,7 +1292,7 @@ ALTER TABLE `departamentos`
 -- Filtros para la tabla `dependientes`
 --
 ALTER TABLE `dependientes`
-  ADD CONSTRAINT `FK_dependientes_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`entidad_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_dependientes_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_dependientes_entidad_id` FOREIGN KEY (`entidad_id`) REFERENCES `entidades` (`entidad_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1227,7 +1434,7 @@ ALTER TABLE `solicitudes_docs`
 --
 ALTER TABLE `solicitudes_limites_creditos`
   ADD CONSTRAINT `FK_solicitudes_limites_creditos_cia_id` FOREIGN KEY (`cia_id`) REFERENCES `cias` (`cia_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_solicitudes_limites_creditos_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`entidad_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_solicitudes_limites_creditos_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_solicitudes_limites_creditos_solicitud_id` FOREIGN KEY (`solicitud_id`) REFERENCES `solicitudes` (`solicitud_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -1235,7 +1442,7 @@ ALTER TABLE `solicitudes_limites_creditos`
 --
 ALTER TABLE `solicitudes_scores`
   ADD CONSTRAINT `FK_solicitudes_scores_cia_id` FOREIGN KEY (`cia_id`) REFERENCES `cias` (`cia_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `FK_solicitudes_scores_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`entidad_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_solicitudes_scores_cliente_id` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`cliente_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_solicitudes_scores_score_id` FOREIGN KEY (`score_id`) REFERENCES `scores` (`score_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_solicitudes_scores_solicitud_id` FOREIGN KEY (`solicitud_id`) REFERENCES `solicitudes` (`solicitud_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
