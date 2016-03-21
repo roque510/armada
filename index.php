@@ -8,16 +8,33 @@
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <script>
+     
+      </script>
+
+      <script src="js/sweetalert-master/dist/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="js/sweetalert-master/dist/sweetalert.css">
     </head>
 
     <body style ="background-color:whitesmoke;">
      <?php 
+      require_once ('medoo.php');
       require_once('funciones.php');
+      require_once('config.php');
 
-      modulo('chome');
+      if (!isset($_GET["mod"])){
+        $mod = 'mant_seguridad';
+        echo'modulo no definido, redirigiendo...';
+        header('Location: ?mod=' . $mod);
+      }else{
+        modulo($_GET["mod"]);
+      }
+      // modulo('chome');
       //modulo('login');
       //modulo('cliente2');
-      modulo('seguridad');
+      //modulo('seguridad');
+      // modulo('mant_seguridad');
+      //modulo('listboxs.js');
 
     ?>
 

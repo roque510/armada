@@ -1,8 +1,18 @@
 <?php
 GLOBAL $SVR,$USR,$PW,$DB;
-$DB= "emisoras";
+
+$DB= "db_credistar";
 $SVR = "localhost";
-$PW = "";
+$PW = "golden sun";
 $USR = "root";
+
+$database = new medoo([
+  'database_type' => 'mysql',
+  'database_name' => $DB,
+  'server' => $SVR,
+  'username' => $USR,
+  'password' => $PW,
+  'charset' => 'utf8'
+]);
 
 ?>
