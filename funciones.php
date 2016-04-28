@@ -12,6 +12,11 @@
             echo '<option value="'.$data["pais_id"].'">'.$data["pais_nombre"].'</option>';
           }
  */
+function redirect($url, $statusCode = 303)
+{
+   header('Location: ' . $url, true, $statusCode);
+   die();
+}
 
 function upload($FILE,$target_dir,$nombre){
   $target_file = $target_dir . basename($FILE["name"]);
@@ -31,10 +36,7 @@ if(isset($_POST["submit"])) {
     }
 }
 // Check if file already exists
-if (file_exists($target_file)) {
-    echo "Sorry, file already exists.";
-    $uploadOk = 0;
-}
+
 // Check file size
 if ($FILE["size"] > 500000) {
     echo "Sorry, your file is too large.";
@@ -42,6 +44,7 @@ if ($FILE["size"] > 500000) {
 }
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
+//echo "<script>alert('".$target_dir."');</script>";
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
     echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
     $uploadOk = 0;
