@@ -46,7 +46,9 @@
 		            		$estatus="BLOQUEADO";
 		            	}
 		            	echo '<td id="edit_'.$data["usuario_alias"].'"> <a href="#"><i class="material-icons small center" style="color:gray;">edit</i></a></td>';
-		            	echo '<td id="delete_'.$data["usuario_alias"].'"> <a href="#"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';
+		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="?mod=delete_seguridad&usuarioid='	.$data["usuario_alias"].'"><i id="btn_delete" class="material-icons small center" style="color:gray;">delete</i></a></td>';
+		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a  onClick="return sweet_alert();" href="?mod=delete_seguridad&usuarioid='.$data["usuario_alias"].'"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';		            	
+		            	echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="javascript: sweet_alert(\''.$data["usuario_alias"].'\')"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';
 		            	echo '
 		            		  <td>'.$data["usuario_alias"].'</td>
 		            		  <td>'.$data["usuario_nombre"].' '.$data["usuario_apellido"].'</td>		            		  
@@ -110,8 +112,36 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-	$("#btn_new_user").click(function(){
-		alert("nuevo");		
+	
+	 function sweet_alert(alias){
+	 	//alert(alias);
+      //e.preventDefault();
+      swal({
+		  title: "¿Esta seguro que desea eliminar el usuario?",
+		  text: "Se eliminara el usuario seleccionado y todas sus dependencias",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "Eliminar!",
+		  closeOnConfirm: false
+		},
+		function(){ 
+		  swal({
+          title: "Completado",
+          text: "El usuario y sus dependencias se han eliminado correctamente",
+          type: "success",
+          confirmButtonColor: "#b3dfdb",
+          confirmButtonText: "Ok"}, function(){redriect(alias)});		 
+	} );
+  }
 
-	});
+  function redriect(usr){
+  		//alert(usr);
+  		//setTimeout("?mod=delete_seguridad&usuarioid=algo", 3000);
+  		//setTimeout("?mod=delete_seguridad&usuarioid=algo");
+
+  		window.location.href = "?mod=delete_seguridad&usuarioid="+usr;
+  		//window.location.href = "www.google.com"
+  }
+
 </script>

@@ -22,6 +22,8 @@
       require_once('funciones.php');
       require_once('config.php');
 
+      modulo('chome');
+
       if (!isset($_GET["mod"])){
         $mod = 'mant_seguridad';
         echo'modulo no definido, redirigiendo...';
@@ -29,7 +31,7 @@
       }else{
         modulo($_GET["mod"]);
       }
-      // modulo('chome');
+  
       //modulo('login');
       //modulo('cliente2');
       //modulo('seguridad');

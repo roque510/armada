@@ -102,10 +102,10 @@
         <select multiple name="usuario_cia_id[]">
           <option value="" disabled selected>Compañias</option>
           <?php
-            $datas = $database->select("cias",["cias.cia_descripcion","cias.cia_id"]);
+            $datas = $database->select("cias","cias.cia_descripcion");
             $i=0;
             foreach($datas as $data){                
-                echo '<option class="cias_id_values" value="'.$data["cia_id"].'">'.$data["cia_descripcion"].'</option>:' ;
+                echo '<option class="cias_id_values" value="'.$i.'">'.$datas[$i].'</option>:' ;
                 $i++;
               }            
           ?>
@@ -190,41 +190,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
-
-
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
-
-        function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.id);
-        }
-
-        function dropAsignado(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            //ev.target.appendChild(document.getElementById(data));            
-            document.getElementById("asigned_groups").appendChild(document.getElementById(data));
-            var new_id = document.getElementById(data).id.replace("disponibles","asignados");
-            document.getElementById(data).id = new_id;
-            //alert(document.getElementById(new_id).getElementsByTagName("INPUT")[0].name.replace("disponibles","asignados"));
-            var new_input = document.getElementById(new_id).getElementsByTagName("INPUT")[0].name.replace("disponibles","asignados")            
-            //alert(new_input);
-            document.getElementById(new_id).getElementsByTagName("INPUT")[0].name = new_input;
-        }
-        function dropDisponibles(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("text");
-            //ev.target.appendChild(document.getElementById(data));
-            document.getElementById("available_groups").appendChild(document.getElementById(data));            
-            var new_id = document.getElementById(data).id.replace("asignados","disponibles");
-            document.getElementById(data).id = new_id;
-            // document.getElementById("input_grupos_disponibles").name = "grupo_id_disponibles[]";
-            var new_input = document.getElementById(new_id).getElementsByTagName("INPUT")[0].name.replace("asignados","disponibles")            
-            //alert(new_input);
-            document.getElementById(new_id).getElementsByTagName("INPUT")[0].name = new_input;
-        }   
-
 $(document).ready(function() {
 
     $('#error_nombres').hide();
@@ -258,6 +223,34 @@ $(document).ready(function() {
     $("#usuario_cell").focusout(function(){
       check_cell();
     });
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function dropAsignado(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            //ev.target.appendChild(document.getElementById(data));            
+            document.getElementById("asigned_groups").appendChild(document.getElementById(data));
+            var new_id = document.getElementById(data).id.replace("disponibles","asignados");
+            document.getElementById(data).id = new_id;
+            //alert(document.getElementById(new_id).getElementsByTagName("INPUT")[0].name.replace("disponibles","asignados"));
+            var new_input = document.getElementById(new_id).getElementsByTagName("INPUT")[0].name.replace("disponibles","asignados")            
+            //alert(new_input);
+            document.getElementById(new_id).getElementsByTagName("INPUT")[0].name = new_input;
+        }
+        function dropDisponibles(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            //ev.target.appendChild(document.getElementById(data));
+            document.getElementById("available_groups").appendChild(document.getElementById(data));            
+           // document.getElementById("input_grupos_disponibles").name = "grupo_id_disponibles[]";
+        }   
 
     function check_nombres(){
       var nombres_length = $("#usuario_nombres").val().length;
@@ -351,14 +344,7 @@ $(document).ready(function() {
         });
         return true;        
       }else{
-        //sweetAlert("Faltan campos", "Favor ingresar los campos restantes (*)!", "error","#b3dfdb");
-        swal({
-          title: "Faltan Campos",
-          text: "Favor ingresar los campos restantes (*)!",
-          type: "error",
-          confirmButtonColor: "#b3dfdb",
-          confirmButtonText: "Cancelar"
-        });
+        sweetAlert("Faltan campos", "Favor ingresar los campos restantes (*)!", "error");
         return false;
       }
 
