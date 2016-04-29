@@ -1,6 +1,6 @@
 <?php 
 require_once 'funciones.php';
-require_once 'medoo.php';
+require 'config.php';
 require_once 'config.php';
       
         $database = new medoo([
