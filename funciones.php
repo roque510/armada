@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Created by PhpStorm.
@@ -12,6 +13,15 @@
             echo '<option value="'.$data["pais_id"].'">'.$data["pais_nombre"].'</option>';
           }
  */
+
+          function test_query() {
+    $mysqli = new mysqli($SVR, $USR, $PW, $DB);
+    $query = "SELECT COUNT(`cia_id`) FROM `cias`";
+    $result = $mysqli->query($query);
+    $row = $result->fetch_array(0);
+    return $row;
+}
+
 function redirect($url, $statusCode = 303)
 {
    header('Location: ' . $url, true, $statusCode);
@@ -97,6 +107,7 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
 
 
 ?>

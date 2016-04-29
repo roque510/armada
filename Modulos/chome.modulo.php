@@ -1,4 +1,5 @@
 
+
 <nav>
     <div class="nav-wrapper teal lighten-2">
       <a href="?pg=home" class="brand-logo">Credistar</a>
@@ -16,5 +17,6 @@
         <li><a href="mobile.html">Mobile</a></li>
       </ul>
     </div>
+
 
   </nav>

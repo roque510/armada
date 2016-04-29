@@ -9,6 +9,7 @@ $_SESSION["usr"] = "Armando";
   <!DOCTYPE html>
   <html>
     <head>
+    <meta charset="UTF-8">
       <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
@@ -16,13 +17,23 @@ $_SESSION["usr"] = "Armando";
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<<<<<<< HEAD
       <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
       
+=======
+      <script>
+     
+      </script>
+
+      <script src="js/sweetalert-master/dist/sweetalert.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="js/sweetalert-master/dist/sweetalert.css">
+>>>>>>> branch_damian
     </head>
 
-    <body>
+    <body style ="background-color:whitesmoke;">
      <?php 
+<<<<<<< HEAD
       require_once 'funciones.php';
       $admin = true;
       if(isset($_SESSION['usr']))
@@ -50,6 +61,27 @@ $_SESSION["usr"] = "Armando";
       
       //modulo('analista');
 
+=======
+      require_once ('medoo.php');
+      require_once('funciones.php');
+      require_once('config.php');
+
+      modulo('chome');
+
+      if (!isset($_GET["mod"])){
+        $mod = 'mant_seguridad';
+        echo'modulo no definido, redirigiendo...';
+        header('Location: ?mod=' . $mod);
+      }else{
+        modulo($_GET["mod"]);
+      }
+  
+      //modulo('login');
+      //modulo('cliente2');
+      //modulo('seguridad');
+      // modulo('mant_seguridad');
+      //modulo('listboxs.js');
+>>>>>>> branch_damian
 
     ?>
 
