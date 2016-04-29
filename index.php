@@ -3,8 +3,8 @@ session_start();
 
 $_SESSION["usr"] = "Armando";
 
-session_unset();
-session_destroy();
+//session_unset();
+//session_destroy();
   ?>
   <!DOCTYPE html>
   <html>
@@ -33,7 +33,7 @@ session_destroy();
 
       if(isset($_SESSION['usr'])){
       modulo('chomea');
-      
+
       if (!isset($_GET["mod"])){
         modulo('mant_seguridad');
       }else{

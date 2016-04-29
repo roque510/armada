@@ -1,6 +1,6 @@
   <?php
 require_once('medoo.php');
-require_once('config.php');
+require ('config.php');
 require_once('funciones.php');
 
 if (!isset($_SESSION['usr'])) {
