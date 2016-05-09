@@ -6,6 +6,13 @@
  * Made By MaterializeCSS.com
  */
 
+ .bk{
+  background-image: url('../tile.jpg');
+  outline: #000 solid thick;
+  padding:10px 50px 10px 50px;
+
+ }
+
 .orderbyselect{
   margin-top: 30px !important;
   

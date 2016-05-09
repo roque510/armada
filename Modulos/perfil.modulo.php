@@ -3,6 +3,9 @@ require_once('medoo.php');
 require ('config.php');
 require_once('funciones.php');
 
+$color = "orange";
+$icon = "help_outline";
+
 if (!isset($_SESSION['usr'])) {
   redirect('?pg=error');
 }
@@ -30,6 +33,37 @@ $entidad = $database->select("entidades", [
 ],[
   "entidad_id" => $cliente
 ]);
+
+$datas = $database->get("solicitudes", [
+  "entidad_id",
+  "estatus_id",
+  "solicitud_fecha_inicio"
+], [
+  "entidad_id" => $cliente
+  
+]);
+
+$estatus = $database->get("estatus", [
+  "estatus_desripcion"
+], [
+  "estatus_id" => $datas['estatus_id']
+]);
+
+
+switch ($datas['estatus_id']) {
+  case '2':
+    $color = "green";
+    $icon = "done_all";
+    break;
+    case '3':
+    $color = "red";
+    $icon = "highlight_off";
+    break;
+  default:
+    $color = "orange";
+    $icon = "help_outline";
+    break;
+}
 
 
 ?>
@@ -107,8 +141,9 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     </div-->
    <div class="input-field col s12">
           <input disabled  id="text" type="text" class="validate">
-          <label for="text">Estado de Solicitud</label>
+          <label for="text">Estado de Solicitud </label><?php echo '<p style="color:'.$color.';"> '.$estatus["estatus_desripcion"].'</p>' ?>
     </div>
+    
 
 </div>
 
@@ -142,16 +177,25 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Solicitud fisica<i class="material-icons right">close</i></span>
       <form id="wot" action="imgForm.php" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
+    Select imagen para subir:
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    
     <?php 
 echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
 
 ?>
 <input type="hidden" name="tipo" value="Solicitud_fisica">
-    <input type="submit" value="Upload Image" name="submit">
+    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
 </form>
 
 
@@ -182,12 +226,29 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     ?>
     </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">collections</i></span>
-      <p><a href="#">This is a link</a></p>
+      <span class="card-title activator grey-text text-darken-4">Documentacion Laboral<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      <form id="dl" action="imgForm.php" method="post" enctype="multipart/form-data">
+    Select imagen para subir:
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    
+    <?php 
+echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
+
+?>
+<input type="hidden" name="tipo" value="Documentacion_Laboral">
+    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+</form>
     </div>
   </div>
 
@@ -216,12 +277,29 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     
     </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">collections</i></span>
-      <p><a href="#">This is a link</a></p>
+      <span class="card-title activator grey-text text-darken-4">Documentacion Propia<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      <form id="dp" action="imgForm.php" method="post" enctype="multipart/form-data">
+    Select imagen para subir:
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    
+    <?php 
+echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
+
+?>
+<input type="hidden" name="tipo" value="Documentacion_Propia">
+    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+</form>
     </div>
   </div>
 
@@ -245,12 +323,29 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     ?>
     </div>
     <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">collections</i></span>
-      <p><a href="#">This is a link</a></p>
+      <span class="card-title activator grey-text text-darken-4">Recibo Comprobante<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
+      <form id="rc" action="imgForm.php" method="post" enctype="multipart/form-data">
+    Select imagen para subir:
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>File</span>
+        <input type="file" name="fileToUpload" id="fileToUpload">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+    
+    <?php 
+echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
+
+?>
+<input type="hidden" name="tipo" value="Recibo_Comprobante">
+    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+</form>
     </div>
   </div>
 

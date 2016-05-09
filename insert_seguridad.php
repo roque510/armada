@@ -38,6 +38,7 @@ global $database;
 												  "usuarios.usuario_apellido" => strtoupper($usuario_apellidos),
 												  "usuarios.usuario_cel" => strtoupper($usuario_cell),
 												  "usuarios.usuario_telefono" => strtoupper($usuario_telefono),
+												  "usuarios.usuario_pass" => strtolower($usuario_password),
 												  "usuarios.estatus_id" => strtoupper($usuario_estatus),
 												  "usuarios.usuario_isadmin" => strtoupper($usuario_isadmin)]);
 	/*

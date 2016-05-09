@@ -1,10 +1,16 @@
   <?php 
 session_start();
 
-$_SESSION["usr"] = "Armando";
+/*
+$_SESSION['usr'] = 'Armando';
+$_SESSION['anl'] = 'Armando';
+session_unset();
+session_destroy();*/
 
-//session_unset();
-//session_destroy();
+
+
+
+
   ?>
   <!DOCTYPE html>
   <html>
@@ -31,7 +37,13 @@ $_SESSION["usr"] = "Armando";
       require_once('funciones.php');
       require_once('config.php');
 
-      if(isset($_SESSION['usr'])){
+      if(!isset($_SESSION['usr'])){
+        modulo('login');
+      }
+      else {
+
+
+      if(isset($_SESSION['anl'])){
       modulo('chomea');
 
       if (!isset($_GET["mod"])){
@@ -60,7 +72,7 @@ $_SESSION["usr"] = "Armando";
 
       
 
-    
+    }
   
       //modulo('login');
       //modulo('cliente2');
@@ -79,6 +91,26 @@ $_SESSION["usr"] = "Armando";
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script type="text/javascript">
         $( document ).ready(function(){
+var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+    //Zero the idle timer on mouse movement.
+    $(this).mousemove(function (e) {
+        idleTime = 0;
+    });
+    $(this).keypress(function (e) {
+        idleTime = 0;
+    });
+
+    function timerIncrement() {
+    idleTime = idleTime + 1;
+    
+    if (idleTime > 9) { // 10 minutes
+        window.location.assign("cerrar.php");
+    }
+}
+
+
+
             $(".button-collapse").sideNav();
              $('select').material_select();
              $('.datepicker').pickadate({
@@ -92,6 +124,124 @@ $_SESSION["usr"] = "Armando";
       $(function () {
 
 
+
+
+function firstToUpperCase( str ) {
+    return str.substr(0, 1).toUpperCase() + str.substr(1);
+}
+
+$('#login').on('submit', function (e) {
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'usrp.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){               
+                
+
+                swal({   title: "Exito!",   text: 'Bienvenido, ' + firstToUpperCase(data.user.toLowerCase()) ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+              }
+              else {
+                swal("Cancelled", data.comment, "error");
+              }
+
+
+              
+
+
+            }
+          });
+
+        });
+
+$('#dl').on('submit', function (e) {
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'imgForm.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            success: function (response) {
+              
+
+
+              swal({   title: "Exito!",   text: "Documento ingresado exitosamente!",   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   location.reload();
+                    } 
+                    });
+
+
+            }
+          });
+
+        });
+
+$('#dp').on('submit', function (e) {
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'imgForm.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            success: function (response) {
+              
+
+
+              swal({   title: "Exito!",   text: "Documento ingresado exitosamente!",   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   location.reload();
+                    } 
+                    });
+
+
+            }
+          });
+
+        });
+
+$('#rc').on('submit', function (e) {
+
+          e.preventDefault();
+
+          $.ajax({
+            type: 'post',
+            url: 'imgForm.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            success: function (response) {
+              
+
+
+              swal({   title: "Exito!",   text: "Documento ingresado exitosamente!",   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   location.reload();
+                    } 
+                    });
+
+
+            }
+          });
+
+        });
 
 
         $('#wot').on('submit', function (e) {
