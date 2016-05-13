@@ -1,5 +1,5 @@
 <nav>
-    <div class="nav-wrapper red accent-4">
+    <div class="nav-wrapper light-blue darken-4">
       <a href="?pg=home" class="brand-logo">Credistar</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">

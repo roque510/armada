@@ -46,9 +46,7 @@ session_destroy();*/
       if(isset($_SESSION['anl'])){
       modulo('chomea');
 
-      if (!isset($_GET["mod"])){
-        modulo('mant_seguridad');
-      }else{
+      if (isset($_GET["mod"])){      
         modulo($_GET["mod"]);
       }
         
@@ -129,6 +127,84 @@ var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 function firstToUpperCase( str ) {
     return str.substr(0, 1).toUpperCase() + str.substr(1);
 }
+
+$('#atsoli').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'atsoli.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){               
+                
+
+                swal({   title: "Exito!",   text: "El estado de esta persona a sido modificado exitosamente" ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+              }
+              else {
+                swal("Error", data.comment, "error");
+              }
+
+
+              
+
+
+            }
+          });
+
+        });
+
+$('#estado').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'estado.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){               
+                
+
+                swal({   title: "Exito!",   text: "El estado de esta persona a sido modificado exitosamente" ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+              }
+              else {
+                swal("Error", data.comment, "error");
+              }
+
+
+              
+
+
+            }
+          });
+
+        });
+
+
+function notify() {
+  location.href = "?pg=veridoc";
+}
+$( ".hover" ).on( "click", notify );
 
 $('#login').on('submit', function (e) {
 

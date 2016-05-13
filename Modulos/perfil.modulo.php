@@ -118,9 +118,86 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     </form>
     </div>
   </div>
-	<div class="col m8"><h3></h3></div>
+  <?php if(isset($_SESSION['anl'])){ ?>
+	<div class="col m8" style="margin-top: 25px;">
+
+<form id="atsoli" action="atsoli.php" method="post">
+<input type="hidden" value="<?php echo $cliente?>" name="idcliente"></input>
+  <button type="submit" class="waves-effect waves-light btn-large teal z-depth-1">Atender Solicitud<i class="material-icons right ">cloud</i></button>
+  </form>
+   
+    <ul class="collection z-depth-1">
+    
+    <li class="collection-item avatar">
+      <i class="material-icons circle teal">stars</i>
+      <span class="title"><h5><b>Score</b></h5></span>      
+         0
+      </p>
+      
+    </li>
+    <li class="collection-item avatar hover">
+      <i class="material-icons circle teal">assignment</i>
+      <span class="title"><h5><b>Verificar Documentos</b></h5></span>      
+         Click aqui para verificar documentos
+      
+      
+    </li>
+
+    <li class="collection-item avatar">
+      <i class="material-icons circle <?php echo $color ?>">insert_chart</i>
+
+<?php 
+
+$checkeda = "";
+$checkedp = "";
+$checkedd = "";
+
+switch ($estatus["estatus_desripcion"]) {
+  case 'Pendiente':
+    $checkedp = "checked";
+    break;
+    case 'Aprobada':
+    $checkeda = "checked";
+    break;
+    case 'Denegada':
+    $checkedd = "checked";
+    break;
+  
+  default:
+    # code...
+    break;
+}
+
+?>
+
+      <form id="estado" action="estado.php" method="post" >
+      <input type="hidden" name="id" value="<?php echo $cliente ?>"></input>
+    <p>
+      <input class="with-gap " <?php echo $checkeda ?> name="radio" value="2"  type="radio" id="test1" />
+      <label for="test1">Aprobada </label>
+    </p>
+    <p>
+      <input class="with-gap" <?php echo $checkedp ?> name="radio" value="1"  type="radio" id="test2" />
+      <label for="test2">Pendiente</label>
+    </p>
+    <p>
+      <input class="with-gap" <?php echo $checkedd ?> name="radio" value="3"  type="radio" id="test3"  />
+      <label for="test3">Denegada</label>
+    </p>
+      
+      <button class="secondary-content btn waves-effect waves-light " type="submit" name="action">Submit
+    <i class="material-icons right ">send</i>
+  </button>
+  </form>
+      
+      
+    </li>
+  </ul>
+
+  </div>
 
 </div>
+<?php } ?>
 <!--div class="row container">
 	<div class="input-field col s12">
           <input id="email" type="email" class="validate">

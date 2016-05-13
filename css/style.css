@@ -5,6 +5,9 @@
  *
  * Made By MaterializeCSS.com
  */
+.hover:hover{
+  cursor:pointer;
+}
 
  .bk{
   background-image: url('../tile.jpg');

@@ -2,7 +2,7 @@
 $page = null;
 $admin = true;
 
-if($admin){
+if(isset($_SESSION['anl'])){
   $page = 'page3';
 }
 if(isset($_POST['page'])){
