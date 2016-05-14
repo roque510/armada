@@ -4,33 +4,43 @@ require_once ('medoo.php');
 require_once('config.php');
 session_start();
 
-$estado = "1";
-$id = "";
-$pasa = "ni paso";
+$usuario = "";
+$entidad = "";
+$estatus = "";
+$solicitud = "";
 
-if (isset($_POST['radio'])) {
-	$estado = $_POST['radio'];
-	$pasa = "pasa";
+if (isset($_POST['usuario_id'])) {
+	$usuario = $_POST['usuario_id'];
+
+}
+
+if (isset($_POST['estatus_id'])) {
+	$estatus = $_POST['estatus_id'];
+
+}
+
+if (isset($_POST['entidad_id'])) {
+	$entidad = $_POST['entidad_id'];
+
+}
+
+if (isset($_POST['solicitud_id'])) {
+	$solicitud = $_POST['solicitud_id'];
+
 }
 
 
 
 
-if (isset($_POST['id'])) {
-	$id = $_POST['id'];
-}
-
-if ($estado == 0) {
-	$estado++;
-}
-
-$database->update("solicitudes", [
-	"estatus_id" => $estado
-], [
-	"entidad_id" => $id
+$database->insert("usuarios_solicitudes", [
+	"usuario_id" => $usuario,
+	"estatus_id" => $estatus,
+	"entidad_id" => $entidad,
+	"solicitud_id" => $solicitud,
+	"#fecha_solicitud_tomada" => "CURDATE()"
 ]);
 
-$arr = array ('response'=>'correcto','estado'=> $estado ,'pasa'=> $pasa);
+$arr = array ('response'=>'correcto');
 	echo json_encode($arr);
 
 

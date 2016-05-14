@@ -2,7 +2,7 @@
 require_once('medoo.php');
 require ('config.php');
 require_once('funciones.php');
-
+$uid = -1;
 $color = "orange";
 $icon = "help_outline";
 
@@ -36,6 +36,7 @@ $entidad = $database->select("entidades", [
 
 $datas = $database->get("solicitudes", [
   "entidad_id",
+  "solicitud_id",
   "estatus_id",
   "solicitud_fecha_inicio"
 ], [
@@ -119,12 +120,49 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     </div>
   </div>
   <?php if(isset($_SESSION['anl'])){ ?>
-	<div class="col m8" style="margin-top: 25px;">
+	<div class="col m8" style="margin-top: 10px;">
 
+<?php
+
+if ($database->has("usuarios_solicitudes", [
+  
+    "solicitud_id" => $datas['solicitud_id']
+  
+]))
+{
+  $uid = $database->get("usuarios_solicitudes", "usuario_id", [
+  "solicitud_id" => $datas['solicitud_id']
+]);
+
+$usu = $database->select("usuarios", [
+  "usuario_nombre",
+  "usuario_apellido",
+  "usuario_alias"
+],[
+  "usuario_id" => $uid
+]);
+
+
+  echo "<blockquote  style='border-left: 5px solid #009688;'>Esta solicitud esta siendo atendida por : ".$usu[0]['usuario_nombre']. " " .$usu[0]['usuario_apellido'].", Alias: ".$usu[0]['usuario_alias'] ."</blockquote>" ;
+}
+else
+{
+  ?>
 <form id="atsoli" action="atsoli.php" method="post">
-<input type="hidden" value="<?php echo $cliente?>" name="idcliente"></input>
+<input type="hidden" value="<?php echo $cliente?>" name="entidad_id"></input>
+<input type="hidden" value="<?php echo $_SESSION['uid']?>" name="usuario_id"></input>
+<input type="hidden" value="<?php echo $datas['estatus_id']?>" name="estatus_id"></input>
+<input type="hidden" value="<?php echo $datas['solicitud_id']?>" name="solicitud_id"></input>
   <button type="submit" class="waves-effect waves-light btn-large teal z-depth-1">Atender Solicitud<i class="material-icons right ">cloud</i></button>
   </form>
+  <?php 
+
+}
+
+?>
+
+
+
    
     <ul class="collection z-depth-1">
     
@@ -135,7 +173,11 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       </p>
       
     </li>
-    <li class="collection-item avatar hover">
+  
+    <?php if ($uid == $_SESSION['uid']){ ?>
+
+
+  <li class="collection-item avatar hover">
       <i class="material-icons circle teal">assignment</i>
       <span class="title"><h5><b>Verificar Documentos</b></h5></span>      
          Click aqui para verificar documentos
@@ -192,6 +234,11 @@ switch ($estatus["estatus_desripcion"]) {
       
       
     </li>
+
+      
+    <?php } ?>
+
+    
   </ul>
 
   </div>
