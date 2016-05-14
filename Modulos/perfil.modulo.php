@@ -353,7 +353,7 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       <span class="card-title activator grey-text text-darken-4">Documentacion Laboral<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Documentacion Laboral<i class="material-icons right">close</i></span>
       <form id="dl" action="imgForm.php" method="post" enctype="multipart/form-data">
     Select imagen para subir:
     <div class="file-field input-field">
@@ -404,7 +404,7 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       <span class="card-title activator grey-text text-darken-4">Documentacion Propia<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Documentacion Propia<i class="material-icons right">close</i></span>
       <form id="dp" action="imgForm.php" method="post" enctype="multipart/form-data">
     Select imagen para subir:
     <div class="file-field input-field">
@@ -450,7 +450,7 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       <span class="card-title activator grey-text text-darken-4">Recibo Comprobante<i class="material-icons right">collections</i></span>      
     </div>
     <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+      <span class="card-title grey-text text-darken-4">Recibo Comprobante<i class="material-icons right">close</i></span>
       <form id="rc" action="imgForm.php" method="post" enctype="multipart/form-data">
     Select imagen para subir:
     <div class="file-field input-field">
