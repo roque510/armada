@@ -1,6 +1,11 @@
 <?php
   global $database;  
 ?>
+<?php 
+          if (!isset($_SESSION['anl'])) {
+           header("Location: index.php?pg=home");
+          }
+        ?>
 <div class="row" style="margin-bottom: 0px;">
   <div class="col s12">    
     <i class="material-icons large left" style="color:#b2dfdb; text-shadow:0.01em 0.01em 0.1em #b2dfdb"> lock</i>
