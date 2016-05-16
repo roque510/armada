@@ -24,21 +24,16 @@ session_destroy();*/
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+
       <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
       
 
     </head>
-    <?php
-      if ((!isset($_GET["mod"])) and (!isset($_SESSION['usr']))){      
-        echo '<body class="bd_clr" style ="background-color:teal;">';
-      }else
-      {
-        echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
-      }
-    ?>
-    
+
+    <body style ="background-color:whitesmoke;">
      <?php 
+
 
       require_once ('medoo.php');
       require_once('funciones.php');
