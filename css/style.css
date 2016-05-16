@@ -5,7 +5,23 @@
  *
  * Made By MaterializeCSS.com
  */
+.hover:hover{
+  cursor:pointer;
+}
 
+ .bk{
+  background-image: url('../tile.jpg');
+  outline: #000 solid thick;
+  padding:10px 50px 10px 50px;
+
+ }
+
+.orderbyselect{
+  margin-top: 30px !important;
+  
+}
+
+/*
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -54,4 +70,4 @@ p {
 
 footer.page-footer {
   margin: 0;
-}
+}*/
