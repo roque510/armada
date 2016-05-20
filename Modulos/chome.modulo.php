@@ -2,7 +2,7 @@
 
 <nav>
     <div class="nav-wrapper teal lighten-2">
-      <a href="?pg=home" class="brand-logo">Credistar</a>
+      <a href="?pg=home" class="brand-logo">Credistart</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="?pg=cliente2">Cliente Nuevo</a></li>

@@ -1,6 +1,6 @@
 <nav>
-    <div class="nav-wrapper light-blue darken-4">
-      <a href="?pg=home" class="brand-logo">Credistar</a>
+    <div class="nav-wrapper deep-orange darken-4">
+      <a href="?pg=home" class="brand-logo">Credistart</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="?pg=home">home</a></li>
