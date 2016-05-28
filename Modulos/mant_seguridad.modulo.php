@@ -49,8 +49,8 @@
 		            		$estatus="INACTIVO";
 		            	}elseif ($data["estatus_id"]==3) {
 		            		$estatus="BLOQUEADO";
-		            	}
-		            	echo '<td id="edit_'.$data["usuario_alias"].'"> <a href="#"><i class="material-icons small center" style="color:gray;">edit</i></a></td>';
+		            	}	
+		            	echo '<td id="edit_'.$data["usuario_alias"].'"> <a href="?pg=edit_seguridad&usr='.$data["usuario_alias"].'"><i class="material-icons small center" style="color:gray;">edit</i></a></td>';
 		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="?mod=delete_seguridad&usuarioid='	.$data["usuario_alias"].'"><i id="btn_delete" class="material-icons small center" style="color:gray;">delete</i></a></td>';
 		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a  onClick="return sweet_alert();" href="?mod=delete_seguridad&usuarioid='.$data["usuario_alias"].'"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';		            	
 		            	echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="javascript: sweet_alert(\''.$data["usuario_alias"].'\')"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';
