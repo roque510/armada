@@ -122,7 +122,7 @@ var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
              $('select').material_select();
              $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 0 // Creates a dropdown of 15 years to control year
+    selectYears: 90 // Creates a dropdown of 15 years to control year
   });
 
         });

@@ -21,28 +21,50 @@ require_once 'config.php';
   <div class="row container">
     <form id="leform" class="col s12" method="post" action="clientf.php" enctype="multipart/form-data">
       <div class="row">
-        <div class="input-field col  s12">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" name="pnombre" class="validate">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
-        <div class="input-field col  s12">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="snombre" type="text" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
-        <div class="input-field col  s12">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="papellido" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
-        <div class="input-field col  s12">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="sapellido" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
         </div>
         
       </div>
+      
+      <div class="input-field col  s6">
+          <i class="material-icons prefix">cake</i>
+          <input id="icon_prefix2" type="date" class="datepicker">
+          <label for="icon_prefix2">Fecha Nacimiento</label>
+        </div>
+        <div class="input-field col  s6">
+          <i class="material-icons prefix">mail_outline</i>
+          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <label for="icon_prefix">Correo</label>
+        </div>
+        <div class="input-field col  s6">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <label for="icon_prefix">Telefono 1</label>
+        </div>
+        <div class="input-field col  s6" style="margin-bottom: 50px;">
+          <i class="material-icons prefix">phone</i>
+          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <label for="icon_prefix">Telefono 2</label>
+        </div>
+
 <br>
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>
@@ -114,7 +136,7 @@ require_once 'config.php';
     </select>
     <label>Tipo Cliente</label>
   </div>
-<div class="input-field col s6" style="margin-bottom: 50px;">
+<div class="input-field col s6" >
     <select name="canal_venta">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -129,6 +151,39 @@ require_once 'config.php';
 
     </select>
     <label>Canal de Venta</label>
+  </div>
+  <div class="input-field col s6">
+    <select name="tipo_cliente">
+      <option value="" disabled selected>Elija una opcion</option>
+      <?php 
+        
+        $datas = $database->select("entidades_tipos", ["entidad_tipo_descripcion","entidad_tipo_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["entidad_tipo_id"].'">'.$data["entidad_tipo_descripcion"].'</option>';
+          }
+       ?>
+
+    </select>
+    <label>Estado Civil</label>
+  </div>
+ 
+  <div class="input-field col s6" style="margin-bottom: 50px;">
+    <select name="tipo_cliente">
+      <option value="" disabled selected>Elija una opcion</option>
+      <?php 
+        
+        $datas = $database->select("entidades_tipos", ["entidad_tipo_descripcion","entidad_tipo_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["entidad_tipo_id"].'">'.$data["entidad_tipo_descripcion"].'</option>';
+          }
+       ?>
+
+    </select>
+    <label>Nivel educativo</label>
   </div>
 
 
