@@ -3,6 +3,7 @@
   
   $var_usuario_alias = $_GET["usr"];
   $datas = $database->select("usuarios", [
+  "usuario_id",
   "usuario_alias",
   "usuario_nombre",
   "usuario_apellido",
@@ -16,6 +17,7 @@
 
   foreach($datas as $data)
   {
+    $usr_id = $data["usuario_id"];
     $usr_alias = $data["usuario_alias"];
     $usr_nombre = $data["usuario_nombre"];
     $usr_apellido = $data["usuario_apellido"];
@@ -24,18 +26,18 @@
     $usr_isadmin = $data["usuario_isadmin"];
     $usr_estatus_id = $data["estatus_id"];
   }
-  echo $usr_alias . '<br>' . $usr_nombre. '<br>'. $usr_apellido. '<br>'. $usr_cel. '<br>'. $usr_telefono. '<br>'. $usr_isadmin. '<br>'. $usr_estatus_id. '<br>';
+  //echo $usr_id.'<br>'.$usr_alias . '<br>' . $usr_nombre. '<br>'. $usr_apellido. '<br>'. $usr_cel. '<br>'. $usr_telefono. '<br>'. $usr_isadmin. '<br>'. $usr_estatus_id. '<br>';
 ?> 
 
 
 <div class="row">
-  <div class="col s12">    
-    <i class="material-icons large left" style="color:#b2dfdb; text-shadow:0.01em 0.01em 0.1em #b2dfdb"> person_add</i>
-    <h1 class="left" style="font-size:2.5rem; color:teal;">Registro de Usuarios</h1>            
+  <div class="col s12">     
+    <i class="material-icons large left" style="color:#ffccbc; text-shadow:0.01em 0.01em 0.1em #ffccbc"> border_color</i>
+    <h1 class="left" style="font-size:2.5rem; color:#ff7043;">Actualización de Usuarios</h1>            
   </div>
 </div>
 
-<form id="add_user_form" action="insert_seguridad.php" method="POST">  
+<form id="add_user_form" action="Modulos/update_seguridad.php" method="POST">  
   <div cl-ass="row user_info">
 
     <!-- Codigos de Colores TEAL
@@ -69,7 +71,7 @@
         <div class="col s12" >
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">account_circle</i>
-            <input disabled id="usuario_alias" name="usuario_alias" type="text" class="validate" style='text-align:center' value="<?php echo $usr_alias;  ?>">
+            <input readonly id="usuario_alias" name="usuario_alias" type="text" class="validate" style='text-align:center' value="<?php echo $usr_alias;  ?>">
             <label class="active" for="icon_prefix">Alias</label>
             <div id="error_alias" style="text-align:center; margin-top:-10px; color:lightcoral; font-size:12px;">              
             </div>
@@ -128,9 +130,9 @@
         <div class="col s12 m6" style="text-align:center; margin-top:21px;">
           <?php
             if ($usr_isadmin == 1) {
-              echo '<input type="checkbox" name="usuario_isAdmin" class="filled-in" id="filled-in-box" checked="check"  />';
+              echo '<input type="checkbox" name="usuario_isAdmin" class="filled-in deep-orange" id="filled-in-box" checked="check"  />';
             }else{
-              echo '<input type="checkbox" name="usuario_isAdmin" class="filled-in" id="filled-in-box"  />';    
+              echo '<input type="checkbox" name="usuario_isAdmin" class="filled-in deep-orange" id="filled-in-box"  />';    
             }
           ?>
           <label for="filled-in-box">Administrador Global</label>
@@ -195,8 +197,9 @@
         <div style="text-align:center">Grupos</div>
         <div class="divider" style="margin-bottom:10px;"></div>        
           <div id="available_groups" ondrop="dropDisponibles(event)" ondragover="allowDrop(event)" style="min-height:150px">
-          <?php
-            $datas = $database->select("grupos",["grupos.grupo_nombre", "grupos.grupo_id"]);
+          <?php            
+            $datas = $database->query("SELECT * FROM grupos WHERE grupos.grupo_id NOT IN (SELECT usuarios_grupos.grupo_id FROM usuarios_grupos WHERE usuarios_grupos.usuario_id=".$usr_id.")")->fetchAll();
+            //$datas = $database->select("grupos",["grupos.grupo_nombre", "grupos.grupo_id"]);
             $i=0;
             foreach($datas as $data){                
               echo '<div id="grupos_disponibles_'.$data["grupo_id"].'" name="usuario_grupo_id_'.$data["grupo_id"].'" class="row container" draggable="true" ondragstart="drag(event)" style="margin-bottom:0; margin-left:1px;"> 
@@ -216,6 +219,20 @@
         <div class="divider" style="margin-bottom:10px;"></div>
         <div id="asigned_groups" ondrop="dropAsignado(event)" ondragover="allowDrop(event)" style="min-height:150px">
           <!--Cuando se crea un registro nuevo no debe tener grupos asignados-->
+          <?php            
+            $datas = $database->query("SELECT usuarios_grupos.usuario_id, usuarios_grupos.grupo_id, grupos.grupo_nombre FROM usuarios_grupos INNER JOIN grupos ON usuarios_grupos.grupo_id = grupos.grupo_id WHERE usuarios_grupos.usuario_id=".$usr_id)->fetchAll();
+            //$datas = $database->select("grupos",["grupos.grupo_nombre", "grupos.grupo_id"]);
+            $i=0;
+            foreach($datas as $data){                
+              echo '<div id="grupos_asignados_'.$data["grupo_id"].'" name="usuario_grupo_id_'.$data["grupo_id"].'" class="row container" draggable="true" ondragstart="drag(event)" style="margin-bottom:0; margin-left:1px;"> 
+                      <div class="chip">
+                        '.$data["grupo_nombre"].' ►                        
+                      </div>                              
+                      <input class="input_grupos_asignados" type="hidden" name="grupo_id_asignados[]" value="'.$data["grupo_id"].'">
+                    </div>' ;
+              $i++;
+            }       
+          ?>
         </div>
         <div style="margin-bottom:10px"></div>      
       </div>
@@ -228,7 +245,7 @@
       <a id="btn_cancelar" href="?mod=mant_seguridad" class="waves-effect waves-light btn col s12 m4">Cancelar</a>    
       <a class="waves-effect waves-light btn col s12 m2 push-m1">Limpiar</a>    
       <!--<a class="waves-effect waves-light btn col s12 m4 push-m2" type="submit">Guardar</a>-->
-      <button id="btn_submit" class="btn waves-effect waves-light col s12 m4 push-m2" type="submit">Submit
+      <button id="btn_submit" class="btn waves-effect waves-light col s12 m4 push-m2" type="submit">Actualizar
         <i class="material-icons right">send</i>
       </button>
     </div>    
