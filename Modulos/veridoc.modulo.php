@@ -1,4 +1,14 @@
-<h5>Datos del Cliente</h5>
+
+  <ul class="pagination">
+    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    <li class="active teal"><a href="#!">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="#!">Trabajo</a></li>
+    <li class="waves-effect"><a href="#!">Propiedades</a></li>
+    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
+    <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+  </ul>
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>
 </div>

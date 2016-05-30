@@ -46,22 +46,22 @@ require_once 'config.php';
       
       <div class="input-field col  s6">
           <i class="material-icons prefix">cake</i>
-          <input id="icon_prefix2" type="date" class="datepicker">
+          <input id="icon_prefix2" type="date" name="fechanac" class="datepicker">
           <label for="icon_prefix2">Fecha Nacimiento</label>
         </div>
         <div class="input-field col  s6">
           <i class="material-icons prefix">mail_outline</i>
-          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <input id="icon_prefix" type="text" name="correo" class="validate">
           <label for="icon_prefix">Correo</label>
         </div>
         <div class="input-field col  s6">
           <i class="material-icons prefix">phone</i>
-          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <input id="icon_prefix" type="text" name="tel1" class="validate">
           <label for="icon_prefix">Telefono 1</label>
         </div>
         <div class="input-field col  s6" style="margin-bottom: 50px;">
           <i class="material-icons prefix">phone</i>
-          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <input id="icon_prefix" type="text" name="tel2" class="validate">
           <label for="icon_prefix">Telefono 2</label>
         </div>
 
@@ -153,15 +153,15 @@ require_once 'config.php';
     <label>Canal de Venta</label>
   </div>
   <div class="input-field col s6">
-    <select name="tipo_cliente">
+    <select name="estado_civil">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
-        $datas = $database->select("entidades_tipos", ["entidad_tipo_descripcion","entidad_tipo_id"]);
+        $datas = $database->select("estados_civiles", ["estado_civil_descripcion","estado_civil_id"]);
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["entidad_tipo_id"].'">'.$data["entidad_tipo_descripcion"].'</option>';
+            echo '<option value="'.$data["estado_civil_id"].'">'.$data["estado_civil_descripcion"].'</option>';
           }
        ?>
 
@@ -170,15 +170,15 @@ require_once 'config.php';
   </div>
  
   <div class="input-field col s6" style="margin-bottom: 50px;">
-    <select name="tipo_cliente">
+    <select name="nivel_educativo">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
         
-        $datas = $database->select("entidades_tipos", ["entidad_tipo_descripcion","entidad_tipo_id"]);
+        $datas = $database->select("nivel_educativo", ["nivel_edu_descrip","nivel_edu_id"]);
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["entidad_tipo_id"].'">'.$data["entidad_tipo_descripcion"].'</option>';
+            echo '<option value="'.$data["nivel_edu_id"].'">'.$data["nivel_edu_descrip"].'</option>';
           }
        ?>
 
