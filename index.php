@@ -26,6 +26,7 @@ session_destroy();*/
 
 
       <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+      <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert2.css">-->
       <link rel="stylesheet" type="text/css" href="css/style.css">
       
 
@@ -423,6 +424,7 @@ window.location.href = url;
 
       });
     </script>
-    <script src="dist/sweetalert.min.js"></script>
+    <script src="dist/sweetalert.min.js"></script>   
+    <!--<script src="dist/sweetalert2.min.js"></script>-->
     </body>
   </html>

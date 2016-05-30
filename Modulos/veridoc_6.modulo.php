@@ -1,13 +1,13 @@
 
   <ul class="pagination">
     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-    <li class="active teal"><a href="#!">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc">Datos del Cliente</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_1">Datos del Domicilio</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_2">Trabajo</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_3">Propiedades</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_4">Referencias Personales</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_5">Datos de Venta</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_6"><i class="material-icons">chevron_right</i></a></li>
+    <li class="active teal"><a href="?pg=veridoc_6"><i class="material-icons">chevron_right</i></a></li>
   </ul>
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>
@@ -36,22 +36,22 @@ require_once 'config.php';
   <div class="row container">
     <form id="leform" class="col s12" method="post" action="clientf.php" enctype="multipart/form-data">
       <div class="row">
-        <div class="input-field col s12 m6">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" name="pnombre" class="validate">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
-        <div class="input-field col s12 m6">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="snombre" type="text" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
-        <div class="input-field col s12 m6">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="papellido" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
-        <div class="input-field col s12 m6">
+        <div class="input-field col  s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="sapellido" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
@@ -64,7 +64,7 @@ require_once 'config.php';
   </div>
   
       
-      <div class="input-field col s12 m6">
+      <div class="input-field col s6">
     <select name="tipo_id">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -81,13 +81,13 @@ require_once 'config.php';
     </select>
     <label>Tipo de Identificacion</label>
   </div>
-  <div class="input-field col s12 m6">
+  <div class="input-field col  s6">
           <i class="material-icons prefix">fingerprint</i>
           <input id="icon_prefix" name="id" type="text" class="validate">
           <label for="icon_prefix">Numero de Identificacion</label>
         </div>
 
- <div class="input-field col s12 m6">
+ <div class="input-field col s6">
     <select name="genero">
       <option value="" disabled selected>Elija una opcion</option>
       <option value="Femenino">Femenino</option>
@@ -97,7 +97,7 @@ require_once 'config.php';
     <label>Genero</label>
   </div>
 
-   <div class="input-field col s12 m6">
+   <div class="input-field col s6">
     <select name="nacionalidad">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -113,7 +113,7 @@ require_once 'config.php';
     </select>
     <label>Nacionalidad</label>
   </div>
-  <div class="input-field col s12 m6">
+  <div class="input-field col s6">
     <select name="tipo_cliente">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -129,7 +129,7 @@ require_once 'config.php';
     </select>
     <label>Tipo Cliente</label>
   </div>
-<div class="input-field col s12 m6" style="margin-bottom: 50px;">
+<div class="input-field col s6" style="margin-bottom: 50px;">
     <select name="canal_venta">
       <option value="" disabled selected>Elija una opcion</option>
       <?php 
@@ -149,4 +149,4 @@ require_once 'config.php';
 
 <div class="progress" >
       <div class="determinate" style="width: 100%"></div>
-  </div>  
+  </div>
