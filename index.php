@@ -26,6 +26,7 @@ session_destroy();*/
 
 
       <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+      <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert2.css">-->
       <link rel="stylesheet" type="text/css" href="css/style.css">
       
 
@@ -122,7 +123,7 @@ var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
              $('select').material_select();
              $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 0 // Creates a dropdown of 15 years to control year
+    selectYears: 90 // Creates a dropdown of 15 years to control year
   });
 
         });
@@ -423,6 +424,7 @@ window.location.href = url;
 
       });
     </script>
-    <script src="dist/sweetalert.min.js"></script>
+    <script src="dist/sweetalert.min.js"></script>   
+    <!--<script src="dist/sweetalert2.min.js"></script>-->
     </body>
   </html>
