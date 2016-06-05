@@ -1,4 +1,4 @@
-  <?php 
+<?php
 session_start();
 
 /*
@@ -24,14 +24,23 @@ session_destroy();*/
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+
       <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
       <link rel="stylesheet" type="text/css" href="css/style.css">
       
 
     </head>
-
-    <body style ="background-color:whitesmoke;">
+    <?php
+      if ((!isset($_GET["mod"])) and (!isset($_SESSION['usr']))){      
+        echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
+      }else
+      {
+        echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
+      }
+    ?>
+    
      <?php 
+
 
       require_once ('medoo.php');
       require_once('funciones.php');
@@ -113,7 +122,7 @@ var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
              $('select').material_select();
              $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 0 // Creates a dropdown of 15 years to control year
+    selectYears: 90 // Creates a dropdown of 15 years to control year
   });
 
         });
@@ -200,9 +209,16 @@ $('#estado').on('submit', function (e) {
 
         });
 
+var parts = window.location.search.substr(1).split("&");
+var $_GET = {};
+for (var i = 0; i < parts.length; i++) {
+    var temp = parts[i].split("=");
+    $_GET[decodeURIComponent(temp[0])] = decodeURIComponent(temp[1]);
+}
 
 function notify() {
-  location.href = "?pg=veridoc";
+
+  location.href = "?pg=veridoc&usr="+$_GET.usr;
 }
 $( ".hover" ).on( "click", notify );
 

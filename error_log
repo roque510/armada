@@ -1,0 +1,114 @@
+[30-May-2016 19:55:29 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:00:02 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:00:16 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:02:52 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:03:37 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:04:11 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:04:15 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:05:42 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:07:42 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:26:57 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:48:31 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:51:54 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 20:56:59 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:07 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:19 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:21 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:22 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:23 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150
+[30-May-2016 21:00:23 UTC] PHP Fatal error:  Uncaught exception 'Exception' with message 'SQLSTATE[HY000] [1045] Access denied for user 'armada'@'ip-107-180-26-160.ip.secureserver.net' (using password: YES)' in /home/aroque/public_html/medoo.php:150
+Stack trace:
+#0 /home/aroque/public_html/config.php(16): medoo->__construct(Array)
+#1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
+#2 {main}
+  thrown in /home/aroque/public_html/medoo.php on line 150

@@ -74,17 +74,17 @@ switch ($datas['estatus_id']) {
     <div class="card-image waves-effect waves-block waves-light" style=" background-size: cover ;">
      <?php 
     	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
-        if (file_exists(''.$path.$_GET['usr'].'/identificacion.png')) 
+        if (file_exists(''.$path.$_GET['usr'].'/Identificacion.png')) 
         {
-    		$image = $path.$_GET['usr'].'/identificacion.png';
+    		$image = $path.$_GET['usr'].'/Identificacion.png';
     	}
-    	if (file_exists(''.$path.$_GET['usr'].'/identificacion.jpg')) 
+    	if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpg')) 
         {
-    		$image = $path.$_GET['usr'].'/identificacion.jpg';
+    		$image = $path.$_GET['usr'].'/Identificacion.jpg';
     	}
-    	if (file_exists(''.$path.$_GET['usr'].'/identificacion.jpeg')) 
+    	if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpeg')) 
         {
-    		$image = $path.$_GET['usr'].'/identificacion.jpeg';
+    		$image = $path.$_GET['usr'].'/Identificacion.jpeg';
     	}
 
   echo '<img class="activator" src="'.$image.'">';
