@@ -1,3 +1,4 @@
+  <div class="bgd" > <img id="imga" src="img/CrediStart.png">
   <?php
 require_once('medoo.php');
 require ('config.php');
@@ -166,29 +167,35 @@ else
    
     <ul class="collection z-depth-1">
     
-    <li class="collection-item avatar">
+    <!-- li class="collection-item avatar">
       <i class="material-icons circle teal">stars</i>
       <span class="title"><h5><b>Score</b></h5></span>      
          0
-      </p>
       
-    </li>
+      
+    </li -->
   
     <?php if ($uid == $_SESSION['uid']){ ?>
 
-
-  <li class="collection-item avatar hover">
+<li class="collection-item avatar hover">
+      <i class="material-icons circle teal">assignment</i>
+      <span class="title"><h5><b>Iniciar Captura de Datos</b></h5></span>      
+         Click aqui para verificar documentos
+      
+      
+    </li>
+  <!-- li class="collection-item avatar hover">
       <i class="material-icons circle teal">assignment</i>
       <span class="title"><h5><b>Verificar Documentos</b></h5></span>      
          Click aqui para verificar documentos
       
       
-    </li>
+    </li -->
 
-    <li class="collection-item avatar">
-      <i class="material-icons circle <?php echo $color ?>">insert_chart</i>
+    <!-- li class="collection-item avatar">
+      <i class="material-icons circle <?php // echo $color ?>">insert_chart</i>
 
-<?php 
+<?php /*
 
 $checkeda = "";
 $checkedp = "";
@@ -209,21 +216,21 @@ switch ($estatus["estatus_desripcion"]) {
     # code...
     break;
 }
-
+*/
 ?>
 
       <form id="estado" action="estado.php" method="post" >
-      <input type="hidden" name="id" value="<?php echo $cliente ?>"></input>
+      <input type="hidden" name="id" value="<?php //echo $cliente ?>"></input>
     <p>
-      <input class="with-gap " <?php echo $checkeda ?> name="radio" value="2"  type="radio" id="test1" />
+      <input class="with-gap " <?php //echo $checkeda ?> name="radio" value="2"  type="radio" id="test1" />
       <label for="test1">Aprobada </label>
     </p>
     <p>
-      <input class="with-gap" <?php echo $checkedp ?> name="radio" value="1"  type="radio" id="test2" />
+      <input class="with-gap" <?php //echo $checkedp ?> name="radio" value="1"  type="radio" id="test2" />
       <label for="test2">Pendiente</label>
     </p>
     <p>
-      <input class="with-gap" <?php echo $checkedd ?> name="radio" value="3"  type="radio" id="test3"  />
+      <input class="with-gap" <?php //echo $checkedd ?> name="radio" value="3"  type="radio" id="test3"  />
       <label for="test3">Denegada</label>
     </p>
       
@@ -233,7 +240,7 @@ switch ($estatus["estatus_desripcion"]) {
   </form>
       
       
-    </li>
+    </li -->
 
       
     <?php } ?>
@@ -476,3 +483,4 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
   
 
 </div>
+</div bgd> 

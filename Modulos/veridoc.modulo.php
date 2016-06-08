@@ -31,7 +31,10 @@ require_once 'config.php';
           'charset' => 'utf8'
         ]);
 
-
+        $num = $_GET['usr'];
+        
+        $entidad = $database->select("entidades", "*",["entidad_id" => $num]);
+       
 
 
  ?>
@@ -42,22 +45,22 @@ require_once 'config.php';
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <input id="icon_prefix" type="text" name="pnombre" class="validate" value='<?php echo $entidad[0]['entidad_primer_nombre']; ?>'>
           <label for="icon_prefix">Primer Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="snombre" type="text" class="validate">
+          <input id="icon_prefix" name="snombre" type="text" class="validate" value='<?php echo $entidad[0]['entidad_segundo_nombre']; ?>' >
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="papellido" type="text" class="validate">
+          <input id="icon_prefix" name="papellido" type="text" class="validate" value='<?php echo $entidad[0]['entidad_primer_apellido']; ?>' >
           <label for="icon_prefix">Primer Apellido</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="sapellido" type="text" class="validate">
+          <input id="icon_prefix" name="sapellido" type="text" class="validate" value='<?php echo $entidad[0]['entidad_segund_apellido']; ?>' >
           <label for="icon_prefix">Segundo Apellido</label>
         </div>
         

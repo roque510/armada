@@ -4,7 +4,7 @@
         <div class=" col m6 center" style ="margin-top: 0%;">
             <!--<img src="CrediStart.png" alt="Sistema CrediStart" height="100%" width="130%">-->
             <div id="id_logo" class="col m12">
-                <img src="CrediStart.png" alt="Sistema CrediStart" height="100%" width="62%" style="border:0px;margin-left:16%; margin-bottom:20px;float:left;">
+                <img src="img/CrediStart.png" alt="Sistema CrediStart" height="100%" width="62%" style="border:0px;margin-left:16%; margin-bottom:20px;float:left;">
             </div>
             <!--<h2>CrediStart</h2>-->
             <!--<img src="logo.png" height="100%" width="100%">-->

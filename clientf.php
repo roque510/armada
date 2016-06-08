@@ -38,13 +38,14 @@ $last_user_id = $database->insert("entidades", [
   "entidad_segundo_nombre" => $_POST['snombre'],
   "entidad_primer_apellido" => $_POST['papellido'], 
   "entidad_segund_apellido" => $_POST['sapellido'],
-  "estado_civil_id" => $_POST['estado_civil'],
-  "entidad_genero" => $_POST['genero'],  
+  //"estado_civil_id" => $_POST['estado_civil'],
+  //"entidad_genero" => $_POST['genero'],  
   "entidad_correo" => "",
   "entidad_fecha_nacimiento" => "",
   "entidad_identidad_principal" => "",
   "entidad_rtn" => "",
   "entidad_imagen" => "",
+  "entidad_tipo_id" => $_POST['tipo_id'],
   "entidad_generado" => "",
   "entidad_usuario_creacion" => "",
   "entidad_fecha_creacion" => "",
@@ -66,7 +67,7 @@ $database->insert("entidades_identificaciones", [
 ]);
 
 $database->insert("clientes", [
-  "nivel_edu_id" => $_POST['nivel_educativo'],
+  //"nivel_edu_id" => $_POST['nivel_educativo'],
   "cliente_limite_credito" => $_POST['monto'],
   "cliente_cuota" => $_POST['cuota'], 
   "cliente_usuario_creacion" => $_SESSION['usr'],
