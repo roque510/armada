@@ -5,6 +5,22 @@
  *
  * Made By MaterializeCSS.com
  */
+.bgd {
+  background-repeat: no-repeat;
+  position: relative;
+
+}
+
+#imga {
+/* the actual 'watermark' */
+position: absolute;
+display : block;
+top: 100px; /* or whatever */
+right: 100px; /* or whatever, position according to taste */
+opacity: 0.5; /* Firefox, Chrome, Safari, Opera, IE >= 9 (preview) */
+filter:alpha(opacity=50); /* for <= IE 8 */
+}
+
 .hover:hover{
   cursor:pointer;
 }

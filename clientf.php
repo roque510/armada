@@ -2,6 +2,7 @@
 require_once 'medoo.php';
 require_once 'funciones.php';
       require_once 'config.php';
+      session_start();
       
         $database = new medoo([
           'database_type' => 'mysql',
@@ -21,6 +22,8 @@ require_once 'funciones.php';
         echo $_POST['canal_venta'];
         echo $_POST['genero'];
         echo $_POST['tipo_cliente'];
+        echo $_POST['nivel_educativo'];
+        echo $_POST['estado_civil'];
         
 
 $path = "clientes/";
@@ -34,16 +37,18 @@ $last_user_id = $database->insert("entidades", [
   "entidad_primer_nombre" => $_POST['pnombre'],
   "entidad_segundo_nombre" => $_POST['snombre'],
   "entidad_primer_apellido" => $_POST['papellido'], 
-  "entidad_segund_apellido" => $_POST['sapellido'], 
-  "entidad_genero" => $_POST['genero'],  
+  "entidad_segund_apellido" => $_POST['sapellido'],
+  //"estado_civil_id" => $_POST['estado_civil'],
+  //"entidad_genero" => $_POST['genero'],  
   "entidad_correo" => "",
   "entidad_fecha_nacimiento" => "",
   "entidad_identidad_principal" => "",
   "entidad_rtn" => "",
   "entidad_imagen" => "",
+  "entidad_tipo_id" => $_POST['tipo_id'],
   "entidad_generado" => "",
   "entidad_usuario_creacion" => "",
-  "entidad_fecha_creacion" => "",
+  "#entidad_fecha_creacion" => "CURDATE()",
   "estatus_id" => ""
 ]);
 
@@ -61,9 +66,20 @@ $database->insert("entidades_identificaciones", [
   "identificacion_principal" => $_POST['tipo_id']
 ]);
 
+$database->insert("clientes", [
+  //"nivel_edu_id" => $_POST['nivel_educativo'],
+  "cliente_limite_credito" => $_POST['monto'],
+  "cliente_cuota" => $_POST['cuota'], 
+  "cliente_usuario_creacion" => $_SESSION['usr'],
+  "cliente_fecha_creacion" => date("Y-m-d H:i:s"),
+  "cliente_plazo" => $_POST['plazo'],
+  "entidad_id" => $last_user_id
+]);
+
 //HAY QUE AGREGAR INFORMACION SOBRA LE FECHA Y LA PERSONA QUE AGREGO A ESTE CLIENTE!
 $database->insert("solicitudes", [
   "entidad_id" => $last_user_id,
+  "solicitud_canal_id" => $_POST['canal_venta'],
   "solicitud_monto" => $_POST['monto'],
   "solicitud_cuota" => $_POST['cuota'], 
   "estatus_id" => 1,

@@ -1,4 +1,5 @@
 <?php
+require_once('medoo.php');
 GLOBAL $SVR,$USR,$PW,$DB;
 
 $DB= "db_credistar";
