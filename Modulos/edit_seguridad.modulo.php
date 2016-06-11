@@ -169,6 +169,38 @@
       </div>
       -->
     </div>
+
+    <?php
+        $count = $database->count("usuarios_cias", ["usuario_id" => $usr_id]);
+        //echo $count;  
+        if ($count <> 0) {
+            $datas = $database->query("SELECT usuarios_cias.usuario_id, usuarios_cias.cia_id, cias.cia_descripcion, cias.cia_direccion ,cias.cia_telefono, cias.cia_contacto FROM usuarios_cias INNER JOIN cias ON usuarios_cias.cia_id = cias.cia_id WHERE usuarios_cias.usuario_id = ".$usr_id.";");
+
+                echo '<div id="cias_asignadas" class="row container">
+                        <ul id="ul_cias_asignadas" class="collection">';
+                            foreach($datas as $data){                
+                                  $direccion = (is_null($data["cia_direccion"])) ? "DIRECCION: " : $data["cia_descripcion"];
+                                  $telefono = (is_null($data["cia_telefono"])) ? "TELEFONO: " : $data["cia_telefono"];
+                                  $contacto = (is_null($data["cia_contacto"])) ? "CONTACTO: " : $data["cia_contacto"];
+                              echo ' <li id=cia_'.$data["cia_id"].' value="test" class="collection-item avatar" style="min-height:63px">
+                                      <input type="hidden" name="usuario_cia_id_asignadas[]" value='.$data["cia_id"].'>
+                                      <i class="material-icons circle">business</i>
+                                      <span class="title">'.$data["cia_descripcion"].'</span>
+                                      <p style="font-size: 11px;">'.$direccion.' | '.$telefono.' | '.$contacto.'</p>
+                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="secondary-content"><i class="material-icons">delete</i></a> 
+                                    </li>';//Cambiar el HREF para que elimine las comapñias
+                              $i++;
+                            }      
+                echo '  </ul>
+                      </div>';            
+
+
+        /*    foreach($datas as $data){                
+                    echo '<option class="cias_id_values" value="'.$data["cia_id"].'">'.$data["cia_descripcion"].'</option>:' ;
+                    $i++;
+                  }    */
+        }
+    ?>
     <!--
     <div id="cias_asignadas" class="row container">
       <ul id="ul_cias_asignadas" class="collection">
@@ -428,6 +460,8 @@ $(document).ready(function() {
 
     });
 
+    
+
     $("#btn_cancelar").click(function(){
           alert("cancelar");   
 
@@ -457,5 +491,11 @@ $(document).ready(function() {
     });
 
 });
+
+  function delete_cia_asignada(cia){
+      alert("delete"+' '+cia);
+      var li = document.getElementById( 'cia_'+cia );
+      li.parentNode.removeChild( li );
+    }
 
 </script>
