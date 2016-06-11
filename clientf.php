@@ -48,7 +48,7 @@ $last_user_id = $database->insert("entidades", [
   "entidad_tipo_id" => $_POST['tipo_id'],
   "entidad_generado" => "",
   "entidad_usuario_creacion" => "",
-  "entidad_fecha_creacion" => "",
+  "#entidad_fecha_creacion" => "CURDATE()",
   "estatus_id" => ""
 ]);
 
@@ -79,6 +79,7 @@ $database->insert("clientes", [
 //HAY QUE AGREGAR INFORMACION SOBRA LE FECHA Y LA PERSONA QUE AGREGO A ESTE CLIENTE!
 $database->insert("solicitudes", [
   "entidad_id" => $last_user_id,
+  "solicitud_canal_id" => $_POST['canal_venta'],
   "solicitud_monto" => $_POST['monto'],
   "solicitud_cuota" => $_POST['cuota'], 
   "estatus_id" => 1,
