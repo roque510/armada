@@ -11,15 +11,19 @@ global $database;
 	{
 		$id = $data["usuario_id"];
 	}	
+
 	if ($_POST["usuario_password"]<>"**********") {
 		$usuario_password = md5($_POST["usuario_password"]);	
 	}	
+
 	$usuario_cell = $_POST["usuario_cell"];
+
 	if (isset($_POST["usuario_telefono"])){
 		$usuario_telefono = $_POST["usuario_telefono"];	
 	}else{
 		$usuario_telefono = "0";
 	}
+
 	$usuario_estatus = $_POST["usuario_estatus"];
 	if (isset($_POST["usuario_isAdmin"])){
 		$usuario_isadmin = 1;	
@@ -50,15 +54,13 @@ global $database;
 		foreach ($_POST["usuario_cia_id"] as $key => $value) {			
 			$last_user_id = $database->insert("usuarios_cias",["usuarios_cias.usuario_id" => $id,
 								  "usuarios_cias.cia_id" => $value]);
-	} 	
-	}else{		
+		} 	
 	}	
 	$compañias = 0;
 	if (isset($_POST["usuario_cia_id_asignadas"])){
 		foreach ($_POST["usuario_cia_id_asignadas"] as $key => $value) {	
 			$compañias ++;
 		} 
-	}else{		
 	}	
 	$database->delete("usuarios_grupos", ["usuario_id" => $id ]);
 	$grupos=0;
@@ -69,5 +71,15 @@ global $database;
 												  "usuarios_grupos.grupo_id" => $value]);		} 
 	}else{		
 	}
+	if (isset($_POST["usuario_cia_id_asignadas"])){
+		//$database->delete("usuarios_cias", ["usuario_id" => $id ]);	
+		foreach ($_POST["usuario_cia_id_asignadas"] as $key => $value) {	
+				echo $value .'<br>';
+				echo 'test';	
+				$last_user_id = $database->insert("usuarios_cias",["usuarios_cias.usuario_id" => $id,
+								  "usuarios_cias.cia_id" => $value]);
+		}
+	} 
+	echo 'test';	
 @header('Location:../?pg=mant_seguridad');
 ?>
