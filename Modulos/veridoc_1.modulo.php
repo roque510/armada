@@ -4,14 +4,14 @@ if(isset($_GET['usr']))
   $usr = $_GET['usr'];
 ?>
   <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    
     <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
     <li class="active teal"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_6&usr=<?php echo $usr ?>"><i class="material-icons">chevron_right</i></a></li>
+    
   </ul>
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>
@@ -21,41 +21,73 @@ if(isset($_GET['usr']))
 require_once 'funciones.php';
 require 'config.php';
 require_once 'config.php';
+
+$database = new medoo([
+          'database_type' => 'mysql',
+          'database_name' => $DB,
+          'server' => $SVR,
+          'username' => $USR,
+          'password' => $PW,
+          'charset' => 'utf8'
+        ]);
+
+        $num = $_GET['usr'];
+        
+        $entidad = $database->select("entidades", "*",["entidad_id" => $num]);
+        $cliente = $database->select("clientes", "*",["entidad_id" => $num]);
+        $solicitud = $database->select("solicitudes", "*",["entidad_id" => $num]);
+        $id = $database->select("identificaciones", "*",["entidad_id" => $num]);
       
 
  ?>
  <br>
  <br>
   <div class="row container">
-    <form id="leform" class="col s12" method="post" action="clientf.php" enctype="multipart/form-data">
+    <form id="veridocform1" class="col s12" method="post" action="veridocform1.php" enctype="multipart/form-data">
       <div class="row">
         <div class="col s12 m4">
           <label>Estado Dirección</label>
             <select >
-              <option value="" disabled selected>Elija el estatus</option>
-              <option value= "1">Actual</option>
-              <option value="2">Anterior</option>
-              <option value="3">Provicional</option>
+              <option value="" disabled selected="">Elija el estatus</option>
+              <?php 
+        
+        $datas = $database->select("estatus", ["estatus_id","estatus_desripcion"],["estatus_comentario" => "direccion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["estatus_id"].'" '; if($data["estatus_id"] == 1/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["estatus_desripcion"].'</option>';
+          }
+       ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Tipo de Dirección</label>
             <select >
               <option value="" disabled selected>Elija el Tipo</option>
-              <option value= "1">Principal</option>
-              <option value="2">Secundario</option>
-              <option value="3">Otra</option>
+              <?php 
+        
+        $datas = $database->select("direcciones_tipos", ["direccion_tipo_id","direccion_tipo_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["direccion_tipo_id"].'" '; if($data["direccion_tipo_id"] == 4/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["direccion_tipo_descripcion"].'</option>';
+          }
+       ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Tipo de Propiedad</label>
             <select >
               <option value="" disabled selected>Elija la Propiedad</option>
-              <option value= "1">Padres o Familia</option>
-              <option value="2">Alquila</option>
-              <option value="3">Hipoteca</option>
-              <option value="4">Propia</option>
-              <option value="5">Otra</option>
+              <?php 
+        
+        $datas = $database->select("propiedades_tipos", ["propiedad_tipo_id","propiedad_tipo_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["propiedad_tipo_id"].'" '; if($data["propiedad_tipo_id"] == 9/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["propiedad_tipo_descripcion"].'</option>';
+          }
+       ?>
             </select>
         </div >
       </div>
@@ -80,8 +112,15 @@ require_once 'config.php';
               <label>Tipo Telefono</label>
                 <select >
                   <option value="" disabled selected>Elija Tipo Telefono</option>
-                  <option value= "1">Fijo</option>
-                  <option value="2">Celular</option>
+                  <?php 
+        
+        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
+          }
+       ?>
                 </select>
             </div >
             <div class="input-field col s12 m5">
@@ -105,49 +144,46 @@ require_once 'config.php';
           <label>Pais</label>
             <select >
               <option value="" disabled selected>Elija el Pais</option>
-              <option value="1" data-icon="img/flag_hnd.png" class="circle">Honduras</option>
-              <option value="2" data-icon="img/flag_sal.png" class="circle">El Salvador</option>
-              <option value="3" data-icon="img/flag_nic.png" class="circle">Nicaragua</option>
-              <option value="4" data-icon="img/flag_gtm.png" class="circle">Guatemala</option>
-              <option value="5" data-icon="img/flag_crc.png" class="circle">Costa Rica</option>
-              <option value="5" data-icon="img/flag_pan.png" class="circle">Panama</option>
+
+<?php 
+        
+        $datas = $database->select("pais", ["pais_id","pais_nombre","flag"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option data-icon="img/'.$data["flag"].'.png" value="'.$data["pais_id"].'" '; if($data["pais_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["pais_nombre"].'</option>';
+          }
+       ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Tipo de Dirección</label>
             <select >
               <option value="" disabled selected>Elija el Departamento</option>
-              <option value="1">Atlántida</option>
-              <option value="2">Colón</option>
-              <option value="3">Comayagua</option>
-              <option value="4">Copán</option>
-              <option value="5">Cortes</option>
-              <option value="6">Choluteca</option>
-              <option value="7">El Paraíso</option>
-              <option value="8">Francisco Morazán</option>
-              <option value="9">Gracias a Dios</option>
-              <option value="10">Intibucá</option>
-              <option value="11">Islas de la Bahía</option>
-              <option value="12">La Paz</option>
-              <option value="13">Lempira</option>
-              <option value="14">Ocotepeque</option>
-              <option value="15">Olancho</option>
-              <option value="16">Santa Bárbara</option>
-              <option value="17">Valle</option>
-              <option value="18">Yoro</option>
+               <?php 
+        
+        $datas = $database->select("departamentos", ["depto_id","depto_nombre"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["depto_id"].'" '; if($data["depto_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["depto_nombre"].'</option>';
+          }
+       ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Municipio</label>
             <select >
               <option value="" disabled selected>Elija El Municipio</option>
-              <option value= "1">San Pedro Sula</option>
-              <option value="2">Tegucigalpa</option>
-              <option value="3">Comayagua</option>
-              <option value="4">La Ceiba</option>
-              <option value="5">Trujillo</option>
-              <option value="6">La Esperanza</option>
-              <option value="7">La Paz</option>
+              <?php 
+        
+        $datas = $database->select("municipios", ["municipio_id","municipio_nombre"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["municipio_id"].'" '; if($data["municipio_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["municipio_nombre"].'</option>';
+          }
+       ?>
             </select>
         </div >
       </div>  
@@ -175,7 +211,7 @@ require_once 'config.php';
           </div>
       </div>
 
-
+</form>
 <div class="progress" >
       <div class="determinate" style="width: 100%"></div>
   </div>

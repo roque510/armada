@@ -4,14 +4,14 @@ if(isset($_GET['usr']))
   $usr = $_GET['usr'];
 ?>
   <ul class="pagination">
-    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+    
     <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
     <li class="active teal"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_6&usr=<?php echo $usr ?>"><i class="material-icons">chevron_right</i></a></li>
+    
   </ul>     
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>
