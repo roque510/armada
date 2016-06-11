@@ -32,7 +32,9 @@ session_destroy();*/
     </head>
     <?php
       if ((!isset($_GET["mod"])) and (!isset($_SESSION['usr']))){      
+
         echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
+
       }else
       {
         echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
