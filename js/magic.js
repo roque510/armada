@@ -21,11 +21,13 @@ var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
             $(".button-collapse").sideNav();
              $('select').material_select();
+
              $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 300, // Creates a dropdown of 15 years to control year
     format: 'yyyy-mm-dd'
   });
+
 
         });
 $(function () {
@@ -72,6 +74,56 @@ $('#atsoli').on('submit', function (e) {
           });
 
         });
+
+$('#submitDatos').click(function(){
+    
+  $.ajax({
+            type: 'post',
+            url: 'datosL.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData($('#datosL')),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){               
+                
+
+                swal({   title: "Exito!",   text: data.comment ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+              }
+              else {
+                swal("Error", data.comment, "error");
+              }
+
+
+              
+
+
+            }
+          });
+
+});
+$('#ingreso_declarado').change(function(){
+    $resp = parseInt($('#ingreso_declarado').val(),10) + parseInt($('#comision').val(),10) - parseInt($('#impuesto').val(),10); 
+    updateInput($resp);
+});
+
+$('#cuota_max').change(function(){
+    $resp = parseInt($('#cuota_max').val(),10) * parseInt(100,10) / parseInt($('#ingreso_neto').val(),10); 
+    updateInputAfec($resp);
+});
+
+function updateInput(ish){
+    document.getElementById("ingreso_neto").value = ish;
+}
+
+function updateInputAfec(ish){
+    document.getElementById("porafec").value = Math.trunc(ish) + ' %';
+}
 
 $('#estado').on('submit', function (e) {
 
@@ -313,6 +365,142 @@ $('#rc').on('submit', function (e) {
           });
 
         });
+
+        $('#veridocform1').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'veridocform1.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                   location.href = "?pg=veridoc_2&usr="+data.user;
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+        $('#veridocform2').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'veridocform2.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                   location.href = "?pg=veridoc_3&usr="+data.user;
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+        $('#veridocform3').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'veridocform3.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                   location.href = "?pg=veridoc_4&usr="+data.user;
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+        $('#veridocform4').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'veridocform4.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                   location.href = "?pg=veridoc_5&usr="+data.user;
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+         $('#reporte').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'reporte.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(){
+                   setTimeout(function(){
+                        
+                        location.href = "?pg=resumen_score&usr="+data.user;   
+                 }, 2000); });
+                   
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+   
 
         $('#leform').on('submit', function (e) {
 

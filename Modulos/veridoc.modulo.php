@@ -144,7 +144,7 @@ require_once 'config.php';
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["entidad_tipo_id"].'" '; if($data["entidad_tipo_id"] == 1) { echo "selected";} echo ' >'.$data["entidad_tipo_descripcion"].'</option>';
+            echo '<option value="'.$data["entidad_tipo_id"].'" '; if($data["entidad_tipo_id"] == $cliente[0]['cliente_tipo']) { echo "selected";} echo ' >'.$data["entidad_tipo_descripcion"].'</option>';
           }
        ?>
 

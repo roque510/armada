@@ -12,6 +12,21 @@ $database = new medoo([
         ]);
 
 
+$usr = ""; //done
+$pnombre = ""; //done
+$snombre = ""; //done
+$papellido = ""; //done
+$sapellido = ""; //done
+$fechanac = ""; //done
+$correo = ""; //done
+$tipo_id = ""; //done
+$genero = ""; //done
+$estado_civil = ""; //done
+$id = ""; //done
+$nivel_educativo = ""; //done
+$canal_venta = ""; //done
+$tipo_cliente = ""; //done
+$nacionalidad = ""; //done
 
 $usr = $_POST['usr']; //done
 $pnombre = $_POST['pnombre']; //done
@@ -19,15 +34,22 @@ $snombre = $_POST['snombre']; //done
 $papellido = $_POST['papellido']; //done
 $sapellido = $_POST['sapellido']; //done
 $fechanac = $_POST['fechanac']; //done
+if (isset($_POST['correo']))
 $correo = $_POST['correo']; //done
 $tipo_id = $_POST['tipo_id']; //done
-$genero = $_POST['genero']; //done
+if (isset($_POST['genero']))
+  $genero = $_POST['genero']; //done
+
+if (isset($_POST['estado_civil']))
 $estado_civil = $_POST['estado_civil']; //done
 $id = $_POST['id'];//done
+
+if (isset($_POST['nivel_educativo']))
 $nivel_educativo = $_POST['nivel_educativo'];//done
 $canal_venta = $_POST['canal_venta'];//done
 $tipo_cliente = $_POST['tipo_cliente'];//done
 
+if (isset($_POST['nacionalidad']))
 $nacionalidad = $_POST['nacionalidad'];//done
 
 $database->update("entidades", [
@@ -46,6 +68,7 @@ $database->update("entidades", [
 ]);
 
 $database->update("clientes", [
+  "cliente_tipo" => $tipo_cliente,
   "nivel_edu_id" => $nivel_educativo
 ], [
 	"entidad_id" => $usr

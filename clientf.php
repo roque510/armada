@@ -88,6 +88,64 @@ $database->insert("solicitudes", [
 ]);
 
 
+$last_dir = $database->insert("direcciones", [ 
+]);
+
+$database->insert("entidades_direcciones", [
+  "entidad_id" => $last_user_id,
+  "direccion_id" => $last_dir
+  
+]);
+
+$propiedades = $database->insert("propiedades", [  
+  "direccion_id" => $last_dir
+  
+]);
+
+$ultimoTel = $database->insert("telefonos", [
+  
+]);
+
+$ultimoTelEmp = $database->insert("telefonos", [
+  
+]);
+
+$database->insert("entidades_telefonos", [
+  "entidad_id" => $last_user_id,
+  "telefono_id" => $ultimoTel
+  
+]);
+
+$last_dir_emp = $database->insert("direcciones", [ 
+]);
+
+$last_empleo = $database->insert("empleos", [
+  "entidad_id" => $last_user_id ,
+  "telefono_id" => $ultimoTelEmp ,
+  "direccion_id" => $last_dir_emp  
+  
+]);
+
+$last_dir_pro = $database->insert("direcciones", [ 
+]);
+
+$last_empleo = $database->insert("propiedades", [
+  "entidad_id" => $last_user_id ,  
+  "direccion_id" => $last_dir_pro  
+  
+]);
+
+$database->insert("referencias_personales", [
+  "entidad_id" => $last_user_id 
+]);
+
+$database->insert("referencias_personales", [
+  "entidad_id" => $last_user_id 
+]);
+
+
+
+
 /*if ($database->has("entidades", ["user_name" => "foo"]))
 {
 	echo "Password is correct.";

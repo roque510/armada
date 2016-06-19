@@ -34,10 +34,18 @@ $database = new medoo([
         $num = $_GET['usr'];
         
         $entidad = $database->select("entidades", "*",["entidad_id" => $num]);
-        $cliente = $database->select("clientes", "*",["entidad_id" => $num]);
-        $solicitud = $database->select("solicitudes", "*",["entidad_id" => $num]);
-        $id = $database->select("identificaciones", "*",["entidad_id" => $num]);
+        $did = $database->select("entidades_direcciones", "*",["entidad_id" => $num]);
+        $direcciones  = $database->select("direcciones", "*",["direccion_id" => $did[0]['direccion_id']]);
+        $propiedades  = $database->select("propiedades", "*",["direccion_id" => $did[0]['direccion_id']]);
+        $tid = $database->select("entidades_telefonos", "*",["entidad_id" => $num]);
+        $telefonos  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id']]);
       
+      /*var_dump($entidad);
+      var_dump($did);
+      var_dump($direcciones);
+      var_dump($propiedades);
+      var_dump($tid);
+      var_dump($telefonos);*/
 
  ?>
  <br>
@@ -47,7 +55,7 @@ $database = new medoo([
       <div class="row">
         <div class="col s12 m4">
           <label>Estado Dirección</label>
-            <select >
+            <select name="estado_direccion">
               <option value="" disabled selected="">Elija el estatus</option>
               <?php 
         
@@ -55,14 +63,14 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["estatus_id"].'" '; if($data["estatus_id"] == 1/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["estatus_desripcion"].'</option>';
+            echo '<option value="'.$data["estatus_id"].'" '; if($data["estatus_id"] == $direcciones[0]['estatus_id']) { echo "selected";} echo ' >'.$data["estatus_desripcion"].'</option>';
           }
        ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Tipo de Dirección</label>
-            <select >
+            <select name="tipo_direccion">
               <option value="" disabled selected>Elija el Tipo</option>
               <?php 
         
@@ -70,47 +78,47 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["direccion_tipo_id"].'" '; if($data["direccion_tipo_id"] == 4/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["direccion_tipo_descripcion"].'</option>';
+            echo '<option value="'.$data["direccion_tipo_id"].'" '; if($data["direccion_tipo_id"] == $direcciones[0]['direccion_tipo_id']) { echo "selected";} echo ' >'.$data["direccion_tipo_descripcion"].'</option>';
           }
        ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Tipo de Propiedad</label>
-            <select >
+            <select name="tipo_propiedad">
               <option value="" disabled selected>Elija la Propiedad</option>
               <?php 
         
-        $datas = $database->select("propiedades_tipos", ["propiedad_tipo_id","propiedad_tipo_descripcion"]);
+        $datas = $database->select("propiedades_tipos", ["propiedad_tipo_id","propiedad_tipo_descripcion"],["propiedad_descripcion" => 'domicilio']);
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["propiedad_tipo_id"].'" '; if($data["propiedad_tipo_id"] == 9/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["propiedad_tipo_descripcion"].'</option>';
+            echo '<option value="'.$data["propiedad_tipo_id"].'" '; if($data["propiedad_tipo_id"] == $propiedades[0]['propiedad_tipo_id']) { echo "selected";} echo ' >'.$data["propiedad_tipo_descripcion"].'</option>';
           }
        ?>
             </select>
         </div >
       </div>
         <div class="row">
-            <div class="input-field col s12 m6">
+            <div class="input-field col s12 m12">
               <i class="material-icons prefix">date_range</i>
-              <input id="icon_prefix2" type="date" name="fechanac" class="datepicker">
+              <input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker" value='<?php echo $direcciones[0]['direccion_antiguedad']; ?>'>
               <label for="icon_prefix2">Antiguedad de la propiedad</label>
             </div>
-            <div class="input-field col s12 m3">
+            <!--div class="input-field col s12 m3">
               <i class="material-icons prefix">history</i>
               <input id="icon_prefix" name="snombre" type="text" class="validate">
-              <label for="icon_prefix">Años</slabel>
+              <label for="icon_prefix">Años</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="snombre" type="text" class="validate">
               <label for="icon_prefix">Meses</label>
-            </div>
+            </div -->
         </div>
         <div class="row">
              <div class="col s12 m4">
               <label>Tipo Telefono</label>
-                <select >
+                <select name="tipo_telefono">
                   <option value="" disabled selected>Elija Tipo Telefono</option>
                   <?php 
         
@@ -118,18 +126,18 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
+            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == $telefonos[0]['telefono_tipo_id']) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
           }
        ?>
                 </select>
             </div >
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
-              <input id="icon_prefix" name="snombre" type="text" class="validate">
+              <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
               <label for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">
-              <input id="icon_prefix" name="snombre" type="text" class="validate">
+              <input id="icon_prefix" name="extension" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_extesnion'] ?>">
               <label for="icon_prefix">Extension</label>
             </div>
         </div>             
@@ -142,7 +150,7 @@ $database = new medoo([
       <div class="row">
         <div class="col s12 m4">
           <label>Pais</label>
-            <select >
+            <select name="pais">
               <option value="" disabled selected>Elija el Pais</option>
 
 <?php 
@@ -151,14 +159,14 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option data-icon="img/'.$data["flag"].'.png" value="'.$data["pais_id"].'" '; if($data["pais_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["pais_nombre"].'</option>';
+            echo '<option data-icon="img/'.$data["flag"].'.png" value="'.$data["pais_id"].'" '; if($data["pais_id"] == $direcciones[0]['pais_id']) { echo "selected";} echo ' >'.$data["pais_nombre"].'</option>';
           }
        ?>
             </select>
         </div >
         <div class="col s12 m4">
-          <label>Tipo de Dirección</label>
-            <select >
+          <label>Departamento</label>
+            <select name="departamento">
               <option value="" disabled selected>Elija el Departamento</option>
                <?php 
         
@@ -166,14 +174,14 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["depto_id"].'" '; if($data["depto_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["depto_nombre"].'</option>';
+            echo '<option value="'.$data["depto_id"].'" '; if($data["depto_id"] == $direcciones[0]['depto_id']) { echo "selected";} echo ' >'.$data["depto_nombre"].'</option>';
           }
        ?>
             </select>
         </div >
         <div class="col s12 m4">
           <label>Municipio</label>
-            <select >
+            <select name="municipio">
               <option value="" disabled selected>Elija El Municipio</option>
               <?php 
         
@@ -181,7 +189,7 @@ $database = new medoo([
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["municipio_id"].'" '; if($data["municipio_id"] == 65/*$cliente[0]['nivel_edu_id']*/) { echo "selected";} echo ' >'.$data["municipio_nombre"].'</option>';
+            echo '<option value="'.$data["municipio_id"].'" '; if($data["municipio_id"] == $direcciones[0]['municipio_id']) { echo "selected";} echo ' >'.$data["municipio_nombre"].'</option>';
           }
        ?>
             </select>
@@ -191,27 +199,38 @@ $database = new medoo([
       <div class="row">
           <div class="input-field col  s12">
             <i class="material-icons prefix">edit_location</i>
-            <input id="icon_prefix" name="id" type="text" class="validate">
+            <input id="icon_prefix" name="direccion" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_descripcion']; ?>">
             <label for="icon_prefix">Dirección</label>
           </div>
       </div>
       <div class="row">
           <div class="input-field col s12 m3">
-            <input id="icon_prefix" name="id" type="text" class="validate">
+            <input id="icon_prefix" name="cp" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_codigo_postal']; ?>">
             <label for="icon_prefix">Código Postal</label>
           </div>
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">my_location</i>
-            <input id="icon_prefix" name="id" type="text" class="validate">
+            <input id="icon_prefix" name="pr" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_punto_referencia']; ?>">
             <label for="icon_prefix">Punto de Referencia</label>
           </div>
           <div class="input-field col s12 m3">
-            <input id="icon_prefix" name="id" type="text" class="validate">
+            <input id="icon_prefix" name="nc" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_numero_casa']; ?>">
             <label for="icon_prefix">Numero Casa</label>
           </div>
       </div>
 
-</form>
 <div class="progress" >
       <div class="determinate" style="width: 100%"></div>
   </div>
+
+      <input type="hidden" name="usr" value="<?php echo $_GET['usr']; ?>">
+
+      <div class="row">
+    <div class="col m12">
+      <p class="right-align">
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Continuar</button>
+      </p>
+    </div>
+  </div>
+
+</form>
