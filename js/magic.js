@@ -76,32 +76,27 @@ $('#atsoli').on('submit', function (e) {
         });
 
 $('#submitDatos').click(function(){
+$( "#datosL" ).submit();
+
+});
     
+$('#datosL').on('submit', function (e) {
+
+          e.preventDefault();    
   $.ajax({
             type: 'post',
             url: 'datosL.php',
             cache: false,
             contentType: false,
             processData: false,
-            data: new FormData($('#datosL')),
+            data: new FormData(this),
             dataType: "json",
             success: function (data) {
-              if(data.response == "correcto"){               
-                
-
-                swal({   title: "Exito!",   text: data.comment ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    
                    location.reload();
                     } 
                     });
-              }
-              else {
-                swal("Error", data.comment, "error");
-              }
-
-
-              
-
 
             }
           });

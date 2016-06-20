@@ -24,6 +24,8 @@ ALTER TABLE `referencias_personales` CHANGE `referencias_personales_antiguedad` 
 ALTER TABLE `referencias_personales` ADD `referencia_pnombre` VARCHAR(50) NOT NULL , ADD `referencia_snombre` VARCHAR(50) NOT NULL , ADD `referencia_papellido` VARCHAR(50) NOT NULL , ADD `referencia_sapellido` VARCHAR(50) NOT NULL , ADD `referencia_tipo_tel` INT NOT NULL , ADD `referencia_telefono` INT NOT NULL , ADD `referencia_extension` INT NOT NULL , ADD `referencia_hora_contacto` INT NOT NULL , ADD `referencia_generico1` INT NOT NULL ;
 ALTER TABLE `referencias_personales` ADD `referencia_nid` INT NOT NULL , ADD `referencia_fechanac` DATE NOT NULL ;
 ALTER TABLE `clientes` ADD `cliente_tipo` INT NOT NULL AFTER `cliente_id`;
+ALTER TABLE `solicitudes` CHANGE `soliciutd_comentario` `soliciutd_comentario` VARCHAR(2000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+ALTER TABLE `clientes` ADD `cliente_cuota_sugerida` BIGINT NOT NULL AFTER `cliente_cuota`, ADD `cliente_limite_sugerido` BIGINT NOT NULL AFTER `cliente_cuota_sugerida`;
 
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud

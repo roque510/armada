@@ -132,7 +132,7 @@ $database = new medoo([
             <label for="icon_prefix2" style="color:black;">Cuota Maxima</label>
           </div>
           <div class="input-field col s12 m2">     
-            <input id="cuota_max" type="text" name="fechanac" class="validate" value="" style="border-color:#bf360c; color: gray;">
+            <input id="cuota_max" type="text" name="cuota_sugerida" class="validate" value="" style="border-color:#bf360c; color: gray;">
           </div>
           
           <div class="input-field col s12 m2">
@@ -156,7 +156,7 @@ $database = new medoo([
             <label for="icon_prefix2" style="color:black;">Cuota Solicitada</label>
           </div>
           <div class="input-field col s12 m2">
-            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $cliente[0]["cliente_cuota"]; ?>" style="border-color:#bf360c; color: gray;">
+            <input readonly id="icon_prefix2" type="text" name="cuota_sugeridas" class="validate" value="<?php echo $cliente[0]["cliente_cuota"]; ?>" style="border-color:#bf360c; color: gray;">
           </div>
           <div class="input-field col s12 m2">
             <i class="material-icons prefix" style="color:#bf360c;">iso</i>
@@ -167,6 +167,8 @@ $database = new medoo([
           </div>
       </div>
     </div>    
+    
+    <input type="hidden" name="usuario" value="<?php echo $_GET['usr']; ?>">
 
     
 
