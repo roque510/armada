@@ -4,7 +4,7 @@ GLOBAL $SVR,$USR,$PW,$DB;
 
 $DB= "db_credistar";
 $SVR = "localhost";
-$PW = "";
+$PW = "golden sun";
 $USR = "root";
 
 $database = new medoo([
