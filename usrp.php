@@ -34,6 +34,23 @@ $uid = $database->get("usuarios", "usuario_id", [
 	"usuario_alias" => $alias
 ]);
 
+if ($database->has("usuarios_grupos", [	
+		"usuario_id" => $uid
+	]
+))
+{
+	$grupo_id = $database->get("usuarios_grupos", "grupo_id", [
+	"usuario_id" => $uid
+]);
+	
+}
+else
+{
+	$grupo_id = 0;
+}
+
+
+
 if ($database->has("usuarios", [
 	"AND" => [
 		"OR" => [
@@ -49,6 +66,7 @@ if ($database->has("usuarios", [
 		$_SESSION['anl'] = $alias;
 	}
 	
+	$_SESSION['grpid'] = $grupo_id;
 	$_SESSION['usr'] = $alias;
 	$_SESSION['uid'] = $uid;
 	$arr = array ('response'=>'correcto','user'=> $alias, 'comment'=>$admin);

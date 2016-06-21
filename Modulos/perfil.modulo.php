@@ -26,6 +26,8 @@ if (isset($_GET['usr'])) {
 	# code...
 }
 
+
+
 $entidad = $database->select("entidades", [
   "entidad_primer_nombre",
   "entidad_segundo_nombre",
@@ -40,6 +42,7 @@ $datas = $database->get("solicitudes", [
   "solicitud_id",
   "soliciutd_comentario",
   "estatus_id",
+  "subestatus_id",
   "solicitud_fecha_inicio"
 ], [
   "entidad_id" => $cliente
@@ -121,7 +124,7 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     </form>
     </div>
   </div>
-  <?php if(isset($_SESSION['anl'])){ ?>
+  <?php if(isset($_SESSION['anl']) || $_SESSION['grpid'] == 2){ ?>
 	<div class="col m8" style="margin-top: 10px;">
 
 <?php
@@ -135,6 +138,21 @@ if ($database->has("usuarios_solicitudes", [
   $uid = $database->get("usuarios_solicitudes", "usuario_id", [
   "solicitud_id" => $datas['solicitud_id']
 ]);
+
+  if ($database->has("usuarios_grupos", [ 
+    "usuario_id" => $uid
+  ]
+))
+{
+  $grupo_id = $database->get("usuarios_grupos", "grupo_id", [
+  "usuario_id" => $uid
+]);
+  
+}
+else
+{
+  $grupo_id = 0;
+}
 
 $usu = $database->select("usuarios", [
   "usuario_nombre",
@@ -179,7 +197,10 @@ else
       
     </li -->
   
-    <?php if ($uid == $_SESSION['uid']){ ?>
+    <?php if ($uid == $_SESSION['uid'] or isset($_SESSION['anl'])){ 
+        if ($datas['subestatus_id'] == NULL or isset($_SESSION['anl'])) {         
+          
+      ?>
 
 <li class="collection-item avatar hover">
       <i class="material-icons circle teal">assignment</i>
@@ -247,7 +268,7 @@ switch ($estatus["estatus_desripcion"]) {
     </li -->
 
       
-    <?php }
+    <?php }}
     else {
       echo '
       ';

@@ -129,7 +129,7 @@ $('#datosL').on('submit', function (e) {
             success: function (data) {
                 swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    
-                   location.reload();
+                   location.href = "?pg=estado";
                     } 
                     });
 

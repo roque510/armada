@@ -2,6 +2,8 @@
 $usr = "";
 if(isset($_GET['usr']))
   $usr = $_GET['usr'];
+
+
 ?>
   <ul class="pagination center">
     
@@ -34,6 +36,24 @@ require_once 'config.php';
           'password' => $PW,
           'charset' => 'utf8'
         ]);
+
+
+$subsid = $database->get("solicitudes", "subestatus_id",["entidad_id" => $usr]);
+$string = 'Location: ?pg=error&msg=usuario_no_definido';
+$string1 = 'Location: ?pg=error';
+$string2 = 'Location: ?pg=error&msg=solicitud_terminada';
+if (!isset($_GET['usr'])) {
+  header($string);
+}
+if(!isset($_SESSION['anl']) && $_SESSION['grpid'] != 2){  
+  header($string1);
+}
+if ($subsid == 1) {
+  if (!isset($_SESSION['anl'])) {
+    header($string2);
+  }
+  
+}
 
         $num = $_GET['usr'];
         

@@ -11,7 +11,7 @@ $database = new medoo([
           'charset' => 'utf8'
         ]);
 
- $usr = 85;
+ $usr = $_POST['usuario'];
         $queryA = "SELECT concat(`entidad_primer_nombre`,' ', `entidad_segundo_nombre`,' ',`entidad_primer_apellido`,' ',`entidad_segund_apellido`) FROM `entidades` where `entidad_id` = ".$usr;
         $queryB = "SELECT TIMESTAMPDIFF(MONTH, `empleo_antiguedad`, CURDATE()) AS age from `empleos` where `entidad_id` = ".$usr;
 
@@ -94,7 +94,7 @@ $database->update("clientes", [
   "cliente_fecha_modificacion" => date("Y-m-d H:i:s")
 ],["entidad_id" => $usu]);
 
-$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje],["entidad_id" => $usu]);
+$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje,"subestatus_id" => 1],["entidad_id" => $usu]);
      
 
 

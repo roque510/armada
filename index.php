@@ -53,6 +53,15 @@ session_destroy();*/
       }
       else {
 
+        if(isset($_SESSION['grpid'])){
+          if ($_SESSION['grpid'] == 2) {
+             modulo('chomea');
+             if (isset($_GET["mod"])){
+                modulo($_GET["mod"]);
+              }
+          }        
+        }
+
 
       if(isset($_SESSION['anl'])){
       modulo('chomea');
@@ -64,7 +73,10 @@ session_destroy();*/
       }
       
     else
-      modulo('chome');
+      if ($_SESSION['grpid'] != 2) {
+        modulo('chome');
+      }
+      
 
       $page = "home";
       if (isset($_GET['pg'])) {
