@@ -38,6 +38,7 @@ $entidad = $database->select("entidades", [
 $datas = $database->get("solicitudes", [
   "entidad_id",
   "solicitud_id",
+  "soliciutd_comentario",
   "estatus_id",
   "solicitud_fecha_inicio"
 ], [
@@ -166,6 +167,9 @@ else
 
    
     <ul class="collection z-depth-1">
+
+    
+
     
     <!-- li class="collection-item avatar">
       <i class="material-icons circle teal">stars</i>
@@ -243,7 +247,11 @@ switch ($estatus["estatus_desripcion"]) {
     </li -->
 
       
-    <?php } ?>
+    <?php }
+    else {
+      echo '
+      ';
+    } ?>
 
     
   </ul>
@@ -265,6 +273,22 @@ switch ($estatus["estatus_desripcion"]) {
 
 
 </div-->
+<?php if ($estatus["estatus_desripcion"] != "pendiente") {
+  echo '
+  <div class="col m8" style="margin-top: 10px;">
+      <ul class="collection z-depth-1">
+      <li class="collection-item avatar">
+      <i class="material-icons circle teal">assignment</i>
+      <span class="title"><h5><b>Estado de Solicitud</b></h5></span>      
+        '.$datas["soliciutd_comentario"].'  
+      
+    </li>
+    </ul>
+    </div>
+  ';
+} ?>
+
+
 <div class="row container">
 	<!--div class="input-field col s6">
           <input id="text" type="text" class="validate">
@@ -272,7 +296,7 @@ switch ($estatus["estatus_desripcion"]) {
     </div-->
    <div class="input-field col s12">
           <input disabled  id="text" type="text" class="validate">
-          <label for="text">Estado de Solicitud </label><?php echo '<p style="color:'.$color.';"> '.$estatus["estatus_desripcion"].'</p>' ?>
+          <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</b></p>' ?>
     </div>
     
 

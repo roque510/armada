@@ -52,6 +52,10 @@ switch ($data['estatus_id']) {
     $color = "red";
     $icon = "highlight_off";
     break;
+    case '8':
+    $color = "grey";
+    $icon = "watch";
+    break;
   default:
     $color = "orange";
     $icon = "help_outline";

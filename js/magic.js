@@ -79,6 +79,41 @@ $('#submitDatos').click(function(){
 $( "#datosL" ).submit();
 
 });
+$('#dvfrmbtn').click(function(){
+
+swal({   title: "Atencion!",   text: "Porfavor Escriba el motivo:",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Escriba su razon" }
+  , function(inputValue){
+     if (inputValue === false) return false;
+     if (inputValue === "") {
+         swal.showInputError("Debes escribir algo!");
+         return false
+      }
+       $.ajax({
+            
+            url: 'dvfrm.php',
+            type: 'post', // performing a POST request
+  data : {
+    name : inputValue, // will be accessible in $_POST['data1']
+    usr: $('#userVal').val()
+  },
+  dataType: 'json',                   
+  success: function(data)         
+  {
+                swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+
+            }
+          });
+    });
+
+ 
+
+});
+    
+
     
 $('#datosL').on('submit', function (e) {
 

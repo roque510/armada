@@ -11,16 +11,7 @@ $database = new medoo([
           'charset' => 'utf8'
         ]);
 
-    $datas = $database->select("solicitudes", [
-  "entidad_id",
-  "estatus_id",
-  "solicitud_fecha_inicio"
-], [
-  "estatus_id" => "1",
-  "ORDER" => "solicitud_id DESC"
-  
-]);
-    
+    $datas = $database->query("SELECT * FROM `solicitudes` where `estatus_id` = 1 or `estatus_id` = 8 ORDER BY solicitud_id DESC")->fetchall();    
  
  
 foreach($datas as $data)
@@ -52,6 +43,10 @@ switch ($data['estatus_id']) {
     case '3':
     $color = "red";
     $icon = "highlight_off";
+    break;
+    case '8':
+    $color = "grey";
+    $icon = "watch";
     break;
   default:
     $color = "orange";

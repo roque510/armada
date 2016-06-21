@@ -26,6 +26,7 @@ ALTER TABLE `referencias_personales` ADD `referencia_nid` INT NOT NULL , ADD `re
 ALTER TABLE `clientes` ADD `cliente_tipo` INT NOT NULL AFTER `cliente_id`;
 ALTER TABLE `solicitudes` CHANGE `soliciutd_comentario` `soliciutd_comentario` VARCHAR(2000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 ALTER TABLE `clientes` ADD `cliente_cuota_sugerida` BIGINT NOT NULL AFTER `cliente_cuota`, ADD `cliente_limite_sugerido` BIGINT NOT NULL AFTER `cliente_cuota_sugerida`;
+INSERT INTO `db_credistar`.`estatus` (`estatus_id`, `estatus_desripcion`, `estatus_comentario`) VALUES ('8', 'devuelta', 'solicitud');
 
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud

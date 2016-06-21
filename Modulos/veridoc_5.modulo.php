@@ -5,12 +5,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination">
     
-    <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
-    <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
-    <li class="active teal"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="#!">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="#!">Trabajo</a></li>
+    <li class="waves-effect"><a href="#!">Propiedades</a></li>
+    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
+    <li class="active teal"><a href="#!">Datos de Venta</a></li>
     
   </ul>     
 <div class="progress">
