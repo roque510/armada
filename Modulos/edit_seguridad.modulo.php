@@ -179,7 +179,7 @@
                 echo '<div id="cias_asignadas" class="row container">
                         <ul id="ul_cias_asignadas" class="collection">';
                             foreach($datas as $data){                
-                                  $direccion = (is_null($data["cia_direccion"])) ? "DIRECCION: " : $data["cia_descripcion"];
+                                  $direccion = (is_null($data["cia_direccion"])) ? "DIRECCION: " : $data["cia_direccion"];
                                   $telefono = (is_null($data["cia_telefono"])) ? "TELEFONO: " : $data["cia_telefono"];
                                   $contacto = (is_null($data["cia_contacto"])) ? "CONTACTO: " : $data["cia_contacto"];
                               echo ' <li id=cia_'.$data["cia_id"].' value="test" class="collection-item avatar" style="min-height:63px">
@@ -463,7 +463,7 @@ $(document).ready(function() {
     
 
     $("#btn_cancelar").click(function(){
-          alert("cancelar");   
+          //alert("cancelar");   
 
         });
 
@@ -493,7 +493,7 @@ $(document).ready(function() {
 });
 
   function delete_cia_asignada(cia){
-      alert("delete"+' '+cia);
+      //alert("delete"+' '+cia);
       var li = document.getElementById( 'cia_'+cia );
       li.parentNode.removeChild( li );
     }

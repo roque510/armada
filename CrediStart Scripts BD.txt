@@ -1,0 +1,63 @@
+ALTER TABLE `db_credistar`.`grupos_pantallas` 
+DROP FOREIGN KEY `FK_grupos_pantallas_cia_id`;
+
+ALTER TABLE `db_credistar`.`limites_creditos` 
+DROP FOREIGN KEY `FK_limites_creditos_cia_id`;
+ALTER TABLE `db_credistar`.`limites_creditos` 
+DROP INDEX `FK_limites_creditos_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`scores` 
+DROP FOREIGN KEY `FK_scores_cia_id`;
+ALTER TABLE `db_credistar`.`scores` 
+DROP INDEX `FK_scores_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`solicitudes_canales` 
+DROP FOREIGN KEY `FK_solicitudes_canales_cia_id`;
+ALTER TABLE `db_credistar`.`solicitudes_canales` 
+DROP INDEX `FK_solicitudes_canales_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`solicitudes` 
+DROP FOREIGN KEY `FK_solicitudes_cia_id`;
+ALTER TABLE `db_credistar`.`solicitudes` 
+DROP INDEX `FK_solicitudes_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`solicitudes_limites_creditos` 
+DROP FOREIGN KEY `FK_solicitudes_limites_creditos_cia_id`;
+ALTER TABLE `db_credistar`.`solicitudes_limites_creditos` 
+DROP INDEX `FK_solicitudes_limites_creditos_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`solicitudes_scores` 
+DROP FOREIGN KEY `FK_solicitudes_scores_cia_id`;
+ALTER TABLE `db_credistar`.`solicitudes_scores` 
+DROP INDEX `FK_solicitudes_scores_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`solicitudes_tipos` 
+DROP FOREIGN KEY `FK_solicitudes_tipos_cia_id`;
+ALTER TABLE `db_credistar`.`solicitudes_tipos` 
+DROP INDEX `FK_solicitudes_tipos_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`sucursales` 
+DROP FOREIGN KEY `FK_sucursales_cia_id`;
+ALTER TABLE `db_credistar`.`sucursales` 
+DROP INDEX `FK_sucursales_cia_id_idx` ;
+
+ALTER TABLE `db_credistar`.`usuarios_cias` 
+DROP FOREIGN KEY `FK_usuarios_cias_cia_id`;
+ALTER TABLE `db_credistar`.`usuarios_cias` 
+DROP INDEX `FK_usuarios_cias_cia_id_idx` ;
+
+
+ALTER TABLE `db_credistar`.`cias` 
+CHANGE COLUMN `cia_id` `cia_id` BIGINT NOT NULL AUTO_INCREMENT ;
+
+
+
+
+---------------------
+
+ALTER TABLE `db_credistar`.`sucursales` 
+DROP FOREIGN KEY `FK_sucursales_colonia_id`;
+ALTER TABLE `db_credistar`.`sucursales` 
+DROP INDEX `FK_sucursales_colonia_id_idx` ;
+
+

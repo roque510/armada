@@ -8,8 +8,8 @@
         ?>
 <div class="row" style="margin-bottom: 0px;">
   <div class="col s12">    
-    <i class="material-icons large left" style="color:#b2dfdb; text-shadow:0.01em 0.01em 0.1em #b2dfdb"> lock</i>
-    <h1 class="left" style="font-size:2.5rem; color:teal;">Mantenimiento de Seguridad</h1>            
+    <i class="material-icons large left" style="color:#b2dfdb; text-shadow:0.01em 0.01em 0.1em #b2dfdb"> business</i>
+    <h1 class="left" style="font-size:2.5rem; color:teal;">Mantenimiento de Compañias</h1>            
   </div>
 </div>
 
@@ -18,7 +18,7 @@
 	<!--<div class="col push-m9 push-l10 s12">-->
 	<!--<div class="col push-s10">-->
 	<div class="row s12 m6" style="width: 95%; margin: 0px auto;">
-		<a id="btn_new_user" href="?pg=seguridad" class="waves-effect waves-light btn right col s12 m4 l2"><i class="material-icons left ">person_add</i>Nuevo</a>
+		<a id="btn_new_user" href="?pg=cia_nueva" class="waves-effect waves-light btn right col s12 m4 l2"><i class="material-icons left ">add_circle</i>Nuevo</a>
 	</div>
 </div>
 
@@ -28,18 +28,20 @@
 			<thead>
 			 	<tr>
 				  	<th data-field="id">Editar</th>
-				  	<th data-field="id">Eliminar</th>
-				  	<th data-field="id">Alias</th>
-					<th data-field="name">Nombre</th>
-					<th data-field="price">Celular</th>
-					<th data-field="price	">Estatus</th>
-					<th data-field="price	">Administrador</th>
+				  	<th data-field="id">Eliminar</th>				  	
+				  	<th data-field="id">Compañia</th>
+					<th data-field="name">RTN</th>
+					<th data-field="name">Rubro</th>
+					<th data-field="price">Dirección</th>
+					<th data-field="price">Telefono</th>
+					<th data-field="price">Contacto</th>
+					<th data-field="id">Sucursales</th>
 				</tr>
 			</thead>
 
 			<tbody>
 				<?php
-		            $datas = $database->select("usuarios",["usuarios.usuario_id","usuarios.usuario_alias","usuarios.usuario_nombre","usuarios.usuario_apellido","usuarios.usuario_cel","usuarios.usuario_isadmin","usuarios.estatus_id"]);
+		            $datas = $database->select("cias",["cias.cia_id","cias.cia_descripcion","cias.cia_rtn","cias.cia_rubro","cias.cia_direccion","cias.cia_telefono","cias.cia_contacto","cias.estatus_id"]);
 		            $i=0;
 		            echo '<tr>';
 		            foreach($datas as $data){                
@@ -50,27 +52,19 @@
 		            	}elseif ($data["estatus_id"]==3) {
 		            		$estatus="BLOQUEADO";
 		            	}	
-		            	echo '<td id="edit_'.$data["usuario_alias"].'"> <a href="?pg=edit_seguridad&usr='.$data["usuario_alias"].'&usrid='.$data["usuario_id"].'"><i class="material-icons small center" style="color:gray;">edit</i></a></td>';
+		            	echo '<td id="edit_'.$data["cia_id"].'"> <a href="?pg=cia_edit&cia_id='.$data["cia_id"].'"><i class="material-icons small center" style="color:gray;">edit</i></a></td>';
 		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="?mod=delete_seguridad&usuarioid='	.$data["usuario_alias"].'"><i id="btn_delete" class="material-icons small center" style="color:gray;">delete</i></a></td>';
 		            	//echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a  onClick="return sweet_alert();" href="?mod=delete_seguridad&usuarioid='.$data["usuario_alias"].'"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';		            	
-		            	echo '<td id="btn_delete_user" name="'.$data["usuario_alias"].'"> <a href="javascript: sweet_alert(\''.$data["usuario_alias"].'\')"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';
+		            	echo '<td id="btn_delete_user" name="'.$data["cia_id"].'"> <a href="javascript: sweet_alert(\''.$data["cia_id"].'\')"><i class="material-icons small center" style="color:gray;">delete</i></a></td>';
 		            	echo '
-		            		  <td>'.$data["usuario_alias"].'</td>
-		            		  <td>'.$data["usuario_nombre"].' '.$data["usuario_apellido"].'</td>		            		  
-		            		  <td>'.$data["usuario_cel"].'</td>
-		            		  <td>'.$estatus.'</td>';
-
-		            	if ($data["usuario_isadmin"]==1) {
-		            		echo'<td style="margin-top:21px;">
-						          <input type="checkbox" name="usuario_isAdmin" class="filled-in" id="filled-in-box" checked="checked" disabled="disabled" />
-						          <label for="filled-in-box">Administrador Global</label>
-						    </td>';
-		            	}else{
-		            		echo'<td style="margin-top:21px;">
-						          <input type="checkbox" name="usuario_isAdmin" class="filled-in" id="filled-in-box" disabled="disabled" />
-						          <label for="filled-in-box">Administrador Global</label>
-						    </td>';
-		            	}
+		            		  <td>'.$data["cia_descripcion"].'</td>
+		            		  <td>'.$data["cia_rtn"].' </td>		            		  
+		            		  <td>'.$data["cia_rubro"].'</td>
+		            		  <td>'.$data["cia_direccion"].'</td>
+		            		  <td>'.$data["cia_telefono"].'</td>
+		            		  <td>'.$data["cia_contacto"].'</td>';
+		            	echo '<td id="btn_sucursales" name="'.$data["cia_id"].'"> <a href="?pg=sucursales_cias&cia_id='.$data["cia_id"].'"><i class="material-icons small center" style="color:gray;">dashboard</i></a></td>';
+		            	
 		            		
 		                $i++;
 		                echo '</tr>';   
@@ -118,12 +112,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
 	
-	 function sweet_alert(alias){
+	 function sweet_alert(cia){
 	 	//alert(alias);
       //e.preventDefault();
       swal({
-		  title: "¿Esta seguro que desea eliminar el usuario?",
-		  text: "Se eliminara el usuario seleccionado y todas sus dependencias",
+		  title: "¿Esta seguro que desea eliminar la Compañia?",
+		  text: "Se eliminara la compañia seleccionada y todas sus dependencias",
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
@@ -133,19 +127,19 @@
 		function(){ 
 		  swal({
           title: "Completado",
-          text: "El usuario y sus dependencias se han eliminado correctamente",
+          text: "La compañia y sus dependencias se han eliminado correctamente",
           type: "success",
           confirmButtonColor: "#b3dfdb",
-          confirmButtonText: "Ok"}, function(){redriect(alias)});		 
+          confirmButtonText: "Ok"}, function(){redriect(cia)});		 
 	} );
   }
 
-  function redriect(usr){
+  function redriect(cia){
   		//alert(usr);
   		//setTimeout("?mod=delete_seguridad&usuarioid=algo", 3000);
   		//setTimeout("?mod=delete_seguridad&usuarioid=algo");
 
-  		window.location.href = "?mod=delete_seguridad&usuarioid="+usr;
+  		window.location.href = "?mod=cia_delete&cia_id="+cia;
   		//window.location.href = "www.google.com"
   }
 
