@@ -11,6 +11,11 @@ if(isset($_GET['usr']))
     <li class="waves-effect"><a href="#!">Propiedades</a></li>
     <li class="active teal"><a href="#!">Referencias Personales</a></li>
     <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
+  </ul>
+   <form id="dvfrm" action="dvfrm.php" method="POST" >
+    <input id="userVal" type="hidden" name="user" value="<?php echo $usr; ?>">    
+    </form>
     
   </ul>
 <div class="progress">
