@@ -14,17 +14,6 @@ global $database;
 	$sucursal_direccion = strtoupper($_POST["sucursal_direccion"]);
 	$cia_id = $_POST["cia_id"];
 
-	echo $sucursal_descripcion . '<br>';
-	echo $sucursal_abreviatura . '<br>';
-	echo $sucursal_telefono1 . '<br>';
-	echo $sucursal_telefono2 . '<br>';
-	echo $sucursal_encargado . '<br>';
-	echo $sucursal_pais_id . '<br>';
-	echo $sucursal_depto_id . '<br>';
-	echo $sucursal_municipio_id . '<br>';
-	echo $sucursal_direccion . '<br>';
-	echo $cia_id . '<br>';
-
 
 	$last_user_id = $database->insert("sucursales",["sucursales.sucursal_descripcion" => $sucursal_descripcion,
 												  "sucursales.sucursal_abreviatura" => $sucursal_abreviatura,
@@ -38,7 +27,7 @@ global $database;
 												  "sucursales.cia_id" => $cia_id,
 												  "sucursales.estatus_id" => '1']);
 	
-	var_dump($database->error());												  
+												  
 	/*
 	if (is_null($database->error()[1]) && is_null($database->error()[2])){		
 	}else{		

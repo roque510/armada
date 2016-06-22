@@ -29,16 +29,7 @@
       <ul class="side-nav" id="mobile-demo">
         <li><a href="?pg=home">Inicio</a></li>
         <li><a href="?pg=cliente2">Cliente Nuevo</a></li>
-            <?php 
-              if (isset($_SESSION['anl'])) {
-                echo '<li><a href="?pg=mant_seguridad">Usuarios</a></li>';        
-              }
-            ?>
-            <?php 
-              if (isset($_SESSION['anl'])) {
-                echo '<li><a href="?pg=mant_cias">Compañias</a></li>';        
-              }
-            ?>
+            
         <li><a href="?pg=estado">Estado de Solicitudes</a></li>
 
 

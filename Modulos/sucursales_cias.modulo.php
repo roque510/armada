@@ -71,24 +71,34 @@
 				<input id="sucursal_descripcion" type="text" class="validate" name="sucursal_descripcion">
 				<label for="icon_prefix">Sucursal</label>
 				<div id="error_sucursal_descripcion" style="text-align:center; margin-top:-10px; color:lightcoral; font-size:12px;"></div>
-			</div>
+			</div>			
 
 			<div class="input-field col s12 m2">
 				<select name="pais_id">
 					<option value="" disabled selected>Elija un Pais</option>
-					<option value="1">Honduras</option>
-					<option value="2">Costa Rica</option>
-					<option value="3">El Salvador</option>
+					<?php
+				        $datas = $database->select("pais", ["pais_id","pais_nombre","flag"]);
+				         foreach($datas as $data)
+				          {  
+				          //echo '<script> alert("'.$data["pais_id"].'"); </script>';         
+				            echo '<option data-icon="img/'.$data["flag"].'.png" value="'.$data["pais_id"].'" '; if($data["pais_id"] == 999 /*$direcciones[0]['pais_id']*/) { echo "selected";} echo ' >'.$data["pais_nombre"].'</option>';
+				          }
+				       ?>
 				</select>
 				<label>Pais</label>
 			</div>
 
 			<div class="input-field col s12 m2">
 				<select name="departamento_id">
-					<option value="" disabled selected>Elija un Depto</option>
-					<option value="1">Cortes</option>
-					<option value="2">Tegucigalpa</option>
-					<option value="3">Intibuca</option>
+					<option value="" disabled selected>Elija un Departamento</option>
+					<?php
+				        $datas = $database->select("departamentos", ["depto_id","depto_nombre"]);
+				         foreach($datas as $data)
+				          {  
+				          //echo '<script> alert("'.$data["pais_id"].'"); </script>';         
+				            echo '<option value="'.$data["depto_id"].'" '; if($data["depto_id"] == 999 /*$direcciones[0]['depto_id']*/) { echo "selected";} echo ' >'.$data["depto_nombre"].	'</option>';
+				          }
+				       ?>>
 				</select>
 				<label>Departamento</label>
 			</div>	
@@ -96,9 +106,14 @@
 			<div class="input-field col s12 m2">
 				<select name="municipio_id">
 					<option value="" disabled selected>Elija un Municipio</option>
-					<option value="1">San Pedro Sula</option>
-					<option value="2">Choloma</option>
-					<option value="3">Puerto Cortes</option>
+					<?php
+				        $datas = $database->select("municipios", ["municipio_id","municipio_nombre"]);
+				        foreach($datas as $data)
+				         {  
+				          //echo '<script> alert("'.$data["pais_id"].'"); </script>';         
+				            echo '<option value="'.$data["municipio_id"].'" '; if($data["municipio_id"] == 999 /*$direcciones[0]['municipio_id']*/) { echo "selected";} echo ' >'.$data["municipio_nombre"].'</option>';
+				          }
+				       ?>
 				</select>
 				<label>Municipio</label>
 			</div>	
@@ -137,7 +152,8 @@
 			</div>
 		</div>
 		<div class="row s12 m6" style="width: 95%; margin: 0px auto;">
-			<a id="btn_submit" class="waves-effect waves-light btn right col s12 m3"><i class="material-icons left ">add_circle</i>Adicionar</a>
+			<a id="btn_submit" class="waves-effect waves-light btn right col s12 m3" style="margin-left:1%;"><i class="material-icons left ">add_circle</i>Adicionar</a>
+			<a id="btn_back" class="waves-effect waves-light btn right col s12 m3 push" href="?pg=mant_cias"><i class="material-icons left ">cancel</i>Cancelar</a>
 		</div>
 	</div>
 </form>

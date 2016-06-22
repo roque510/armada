@@ -48,10 +48,10 @@ if(isset($_POST["submit"])) {
 // Check if file already exists
 
 // Check file size
-if ($FILE["size"] > 500000) {
+/*if ($FILE["size"] > 500000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
-}
+}*/
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
 //echo "<script>alert('".$target_dir."');</script>";

@@ -187,7 +187,9 @@
                                       <i class="material-icons circle">business</i>
                                       <span class="title">'.$data["cia_descripcion"].'</span>
                                       <p style="font-size: 11px;">'.$direccion.' | '.$telefono.' | '.$contacto.'</p>
-                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="secondary-content"><i class="material-icons">delete</i></a> 
+                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="content" style="float:right; color:#4db6ac; margin-top:-3%; margin-left:2%;"><i class="material-icons">dashboard</i></a> 
+                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="content" style="float:right; color:#4db6ac; margin-top:-3%;"><i class="material-icons">delete</i>
+                                      </a> 
                                     </li>';//Cambiar el HREF para que elimine las comapñias
                               $i++;
                             }      
@@ -235,7 +237,7 @@
             $i=0;
             foreach($datas as $data){                
               echo '<div id="grupos_disponibles_'.$data["grupo_id"].'" name="usuario_grupo_id_'.$data["grupo_id"].'" class="row container" draggable="true" ondragstart="drag(event)" style="margin-bottom:0; margin-left:1px;"> 
-                      <div class="chip">
+                      <div class="chip" >
                         '.$data["grupo_nombre"].' ►                        
                       </div>                              
                       <input class="input_grupos_disponibles" type="hidden" name="grupo_id_disponibles[]" value="'.$data["grupo_id"].'">
@@ -286,6 +288,11 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
+
+        function deasignar(ev){
+            alert("click");
+            dropAsignado(ev);
+        };
 
 
         function allowDrop(ev) {

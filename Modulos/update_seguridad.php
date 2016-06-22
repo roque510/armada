@@ -80,6 +80,6 @@ global $database;
 								  "usuarios_cias.cia_id" => $value]);
 		}
 	} 
-	echo 'test';	
-@header('Location:../?pg=mant_seguridad');
+	
+header('Location: ../index.php?pg=mant_seguridad');
 ?>

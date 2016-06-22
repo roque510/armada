@@ -14,17 +14,6 @@ global $database;
 	$cia_generico1 = strtoupper($_POST["cia_generico1"]);
 	$cia_generico2 = strtoupper($_POST["cia_generico2"]);
 
-	echo $cia_descripcion . '<br>';
-	echo $cia_abreviatura . '<br>';
-	echo $cia_rtn . '<br>';
-	echo $cia_rubro . '<br>';
-	echo $cia_direccion . '<br>';
-	echo $cia_telefono . '<br>';
-	echo $cia_telefono1 . '<br>';
-	echo $cia_contacto . '<br>';
-	echo $cia_generico1 . '<br>';
-	echo $cia_generico2 . '<br>';
-
 	$last_user_id = $database->insert("cias",["cias.cia_descripcion" => $cia_descripcion,
 												  "cias.cia_abreviatura" => $cia_abreviatura,
 												  "cias.cia_rtn" => $cia_rtn,
