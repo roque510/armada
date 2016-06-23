@@ -320,6 +320,12 @@ switch ($estatus["estatus_desripcion"]) {
           <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</b></p>' ?>
     </div>
     
+    <?php 
+      if ($estatus["estatus_desripcion"] == "Atendiendo") {
+        echo '<a class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>
+';
+      }
+     ?>
 
 </div>
 

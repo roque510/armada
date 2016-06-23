@@ -40,6 +40,8 @@ $database->insert("usuarios_solicitudes", [
 	"#fecha_solicitud_tomada" => "CURDATE()"
 ]);
 
+$database->update("solicitudes", ["estatus_id" => 9],["solicitud_id" => $solicitud]);
+
 $arr = array ('response'=>'correcto');
 	echo json_encode($arr);
 
