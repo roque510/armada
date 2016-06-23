@@ -40,6 +40,12 @@ session_destroy();*/
         echo '<body class="bd_clr" style ="background-color:whitesmoke;">';
       }
     ?>
+    <div id="response"></div>
+    <div id="modal1" class="modal loadingModal">
+    <div class="modal-content">
+      <img src="img/loading.gif">
+      </div>
+  </div>
     
      <?php 
 

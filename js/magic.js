@@ -52,6 +52,9 @@ $('#atsoli').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){               
                 
@@ -75,10 +78,55 @@ $('#atsoli').on('submit', function (e) {
 
         });
 
+$('#rmtsolifrm').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'rmtsoli.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
+            success: function (data) {
+              if(data.response == "correcto"){               
+                
+
+                swal({   title: "Exito!",   text: "Solicitud Remitida." ,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   
+                   location.reload();
+                    } 
+                    });
+              }
+              else {
+                swal("Error", data.comment, "error");
+              }
+
+
+              
+
+
+            }
+          });
+
+        });
+
 $('#submitDatos').click(function(){
 $( "#datosL" ).submit();
 
 });
+
+$('#rmtsoli').click(function(){
+$( "#rmtsolifrm" ).submit();
+
+});
+
 $('#dvfrmbtn').click(function(){
 
 swal({   title: "Atencion!",   text: "Porfavor Escriba el motivo:",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Escriba su razon" }
@@ -96,12 +144,16 @@ swal({   title: "Atencion!",   text: "Porfavor Escriba el motivo:",   type: "inp
     name : inputValue, // will be accessible in $_POST['data1']
     usr: $('#userVal').val()
   },
-  dataType: 'json',                   
+  dataType: 'json',
+  beforeSend: function() {
+    //$('#response').html("<img src='img/loading.gif' />");
+    $('#modal1').openModal();
+  },                   
   success: function(data)         
   {
                 swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    
-                   location.reload();
+                   location.href = "?pg=estado";
                     } 
                     });
 
@@ -126,6 +178,9 @@ $('#datosL').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
                 swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    
@@ -168,6 +223,9 @@ $('#estado').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){               
                 
@@ -216,6 +274,10 @@ $('#login').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+    //$('#response').html("<img src='img/loading.gif' />");
+    $('#modal1').openModal();
+  },  
             success: function (data) {
               if(data.response == "correcto"){               
                 
@@ -250,6 +312,9 @@ $('#dl').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (response) {
               
 
@@ -276,6 +341,9 @@ $('#dp').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (response) {
               
 
@@ -302,6 +370,9 @@ $('#rc').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (response) {
               
 
@@ -329,6 +400,9 @@ $('#rc').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (response) {
               
 
@@ -355,6 +429,9 @@ $('#rc').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (response) {
               
 
@@ -383,6 +460,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
@@ -409,6 +489,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
@@ -435,6 +518,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
@@ -461,6 +547,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
@@ -487,6 +576,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            }, 
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
@@ -513,6 +605,9 @@ $('#rc').on('submit', function (e) {
             processData: false,
             data: new FormData(this),
             dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            },  
             success: function (data) {
               if(data.response == "correcto"){ 
                 swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(){
@@ -543,6 +638,10 @@ $('#rc').on('submit', function (e) {
             contentType: false,
             processData: false,
             data: new FormData(this),
+            beforeSend: function() {
+    //$('#response').html("<img src='img/loading.gif' />");
+    $('#modal1').openModal();
+  },  
             success: function (response) {
               
               swal({   title: "Exito!",   text: "Deseas ingresar a otro cliente?",   type: "success",   showCancelButton: true,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Si, Porfavor",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {

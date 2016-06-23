@@ -319,10 +319,12 @@ switch ($estatus["estatus_desripcion"]) {
           <input disabled  id="text" type="text" class="validate">
           <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</b></p>' ?>
     </div>
-    
+    <form id="rmtsolifrm" action="rmtsoli.php" method="POST">
+      <input type="hidden" name="solicitud_id" value="<?php echo $datas['solicitud_id']; ?>" >
+    </form>
     <?php 
-      if ($estatus["estatus_desripcion"] == "Atendiendo") {
-        echo '<a class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>
+      if ($estatus["estatus_desripcion"] == "devuelta") {
+        echo '<a id="rmtsoli" class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>
 ';
       }
      ?>

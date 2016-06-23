@@ -5,6 +5,10 @@
  *
  * Made By MaterializeCSS.com
  */
+.loadingModal{
+  width:300px !important;
+}
+
 .bgd {
   background-repeat: no-repeat;
   position: relative;
