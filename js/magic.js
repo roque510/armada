@@ -527,6 +527,10 @@ $('#rc').on('submit', function (e) {
               }
               
 
+            },
+            error: function(){
+                swal("Error", "Hay campos que faltan de llenar aun", "error");
+                $('#modal1').closeModal();
             }
           });
 
@@ -550,12 +554,17 @@ $('#rc').on('submit', function (e) {
             }, 
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                swal({   title: "Cargando...",   text: "",   timer: 1000,   showConfirmButton: false });
                    location.href = "?pg=veridoc_2&usr="+data.user;
                     
               }
+
               
 
+            },
+            error: function(){
+                swal("Error", "Hay campos que faltan de llenar aun", "error");
+                $('#modal1').closeModal();
             }
           });
 
@@ -585,6 +594,10 @@ $('#rc').on('submit', function (e) {
               }
               
 
+            },
+            error: function(){
+                swal("Error", "Hay campos que faltan de llenar aun", "error");
+                $('#modal1').closeModal();
             }
           });
 
@@ -639,6 +652,10 @@ $('#rc').on('submit', function (e) {
               }
               
 
+            },
+            error: function(){
+                swal("Error", "Hay campos que faltan de llenar aun", "error");
+                $('#modal1').closeModal();
             }
           });
 
@@ -668,6 +685,10 @@ $('#rc').on('submit', function (e) {
               }
               
 
+            },
+            error: function(){
+                swal("Error", "Hay campos que faltan de llenar aun", "error");
+                $('#modal1').closeModal();
             }
           });
 

@@ -11,22 +11,53 @@ $database = new medoo([
           'charset' => 'utf8'
         ]);
 
+$tipo_telefono = ""; //done
+$telefono = ""; //done
+$extension = ""; //done
 
+$tipo_telefono2 = ""; //done
+$telefono2 = ""; //done
+$extension2 = ""; //done
+$tipo_telefono3 = ""; //done
+$telefono3 = ""; //done
+$extension3 = ""; //done
 
 $usr = $_POST['usr']; //done
 $tipo_direccion = $_POST['tipo_direccion']; //done
 $estado_direccion = $_POST['estado_direccion']; //done
 $tipo_propiedad = $_POST['tipo_propiedad']; //
 $fechaantiguedad = $_POST['fechaantiguedad']; //done
-$tipo_telefono = $_POST['tipo_telefono']; //done
-$telefono = $_POST['telefono']; //done
-$extension = $_POST['extension']; //done
-$tipo_telefono2 = $_POST['tipo_telefono2']; //done
-$telefono2 = $_POST['telefono2']; //done
-$extension2 = $_POST['extension2']; //done
-$tipo_telefono3 = $_POST['tipo_telefono3']; //done
-$telefono3 = $_POST['telefono3']; //done
-$extension3 = $_POST['extension3']; //done
+
+if (isset($_POST['tipo_telefono'])) {
+  $tipo_telefono = $_POST['tipo_telefono']; //done
+}
+if (isset($_POST['telefono'])) {
+  $telefono = $_POST['telefono']; //done
+}
+if (isset($_POST['extension'])) {
+  $extension = $_POST['extension']; //done
+}
+
+if (isset($_POST['tipo_telefono2'])) {
+  $tipo_telefono2 = $_POST['tipo_telefono2']; //done
+}
+if (isset($_POST['telefono2'])) {
+  $telefono2 = $_POST['telefono2']; //done
+}
+if (isset($_POST['extension2'])) {
+  $extension2 = $_POST['extension2']; //done
+}
+
+if (isset($_POST['tipo_telefono3'])) {
+  $tipo_telefono3 = $_POST['tipo_telefono3']; //done
+}
+if (isset($_POST['telefono3'])) {
+  $telefono3 = $_POST['telefono3']; //done
+}
+if (isset($_POST['extension3'])) {
+  $extension3 = $_POST['extension3']; //done
+}
+
 $pais = $_POST['pais']; //done
 $departamento = $_POST['departamento'];//done
 $municipio = $_POST['municipio'];//done
@@ -55,6 +86,8 @@ $database->update("direcciones", [
 ],[
   "direccion_id" => $dirID
 ]);
+
+
 
 $database->update("propiedades",["propiedad_tipo_id" => $tipo_propiedad],["direccion_id" => $dirID]);
 
