@@ -38,36 +38,36 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 if(isset($_POST["submit"])) {
     $check = getimagesize($FILE["tmp_name"]);
     if($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+       // echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
-        echo "File is not an image.";
+        //echo "File is not an image.";
         $uploadOk = 0;
     }
 }
 // Check if file already exists
 
 // Check file size
-/*if ($FILE["size"] > 500000) {
-    echo "Sorry, your file is too large.";
+if ($FILE["size"] > 1000000) {
+    //echo "Sorry, your file is too large.";
     $uploadOk = 0;
-}*/
+}
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
 //echo "<script>alert('".$target_dir."');</script>";
 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-    echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
+    //echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
+    //echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($FILE["tmp_name"], $target_dir.$nombre.".".$file_extension)) {
-        echo "The file ". basename( $FILE["name"]). " has been uploaded.";
+        //echo "The file ". basename( $FILE["name"]). " has been uploaded.";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        //echo "Sorry, there was an error uploading your file.";
     }
 }
 }

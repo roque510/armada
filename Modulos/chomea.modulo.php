@@ -23,6 +23,7 @@
         <li><a href="?pg=estado">Estado de Solicitudes</a></li>
 
         <li> <a class="dropdown-button" href="#!" data-activates="dropdown1"> Configuraciones <i class="material-icons right">arrow_drop_down</i> </a> </li>
+        <li><a class="button" href="#" >Central de Riesgo</a></li>
         <li><a class="button" href="cerrar.php" >Cerrar Sesion</a></li>        
 
       </ul>
@@ -53,7 +54,7 @@
           </li>
         </ul>
               
-
+        <li><a class="button" href="#" >Central de Riesgo</a></li>  
         <li><a class="button" href="cerrar.php" >Cerrar Sesion</a></li>
       </ul>
     </div>

@@ -7,12 +7,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination center">
     
-    <li class="active teal"><a href="#!">Datos del Cliente</a></li>
-    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
-    <li class="waves-effect"><a href="#!">Trabajo</a></li>
-    <li class="waves-effect"><a href="#!">Propiedades</a></li>
-    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
-    <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <li class="active teal"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
     <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
@@ -62,10 +62,33 @@ if ($subsid == 1) {
         $solicitud = $database->select("solicitudes", "*",["entidad_id" => $num]);
         $id = $database->select("identificaciones", "*",["entidad_id" => $num]);
 
-       
+ 
+ //
+
+ if ($database->has("blacklist_identidad", [
+  "AND" => [
+    
+    "blacklist_identidad" => trim($id[0]['identificacion_numero']," ")
+  ]
+]))
+{
+  echo '<div id="infolista" class="row"><div class="col s12"><div id="card-alert" class="card red lighten-5"><div class="card-content red-text"><p>OJO : este usuario se encuentra en la lista negra.</p></div></div> </div>';
+  
+}
+else
+{
+  
+  
+}      
 
 
  ?>
+ 
+ 
+
+   
+ </div>
+ 
  <br>
  <br>
   <div class="row container">
@@ -74,32 +97,42 @@ if ($subsid == 1) {
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" type="text" name="pnombre" class="validate" value='<?php echo $entidad[0]['entidad_primer_nombre']; ?>'>
-          <label for="icon_prefix">Primer Nombre</label>
+          <label class="active" for="icon_prefix">Primer Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="snombre" type="text" class="validate" value='<?php echo $entidad[0]['entidad_segundo_nombre']; ?>' >
-          <label for="icon_prefix">Segundo Nombre</label>
+          <label class="active" for="icon_prefix">Segundo Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="papellido" type="text" class="validate" value='<?php echo $entidad[0]['entidad_primer_apellido']; ?>' >
-          <label for="icon_prefix">Primer Apellido</label>
+          <label class="active" for="icon_prefix">Primer Apellido</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
           <input id="icon_prefix" name="sapellido" type="text" class="validate" value='<?php echo $entidad[0]['entidad_segund_apellido']; ?>' >
-          <label for="icon_prefix">Segundo Apellido</label>
+          <label class="active" for="icon_prefix">Segundo Apellido</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">cake</i>
           <input id="icon_prefix2" type="date" name="fechanac" class="datepicker" value='<?php echo $entidad[0]['entidad_fecha_nacimiento']; ?>'>
-          <label for="icon_prefix2">Fecha Nacimiento</label>
+          <label  class="active" for="icon_prefix2">Fecha Nacimiento</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">mail_outline</i>
           <input id="icon_prefix" type="text" name="correo" class="validate" value='<?php echo $entidad[0]['entidad_correo']; ?>' >
-          <label for="icon_prefix">Correo</label>
+          <label class="active" for="icon_prefix">Correo</label>
+        </div>
+        <div class="input-field col s12 m6">
+          <i class="material-icons prefix">fingerprint</i>
+          <input id="icon_prefixid" name="id" type="text" value=" <?php echo $id[0]['identificacion_numero'];?> " class="validate">
+          <label class="active" for="icon_prefix">Numero de Identificacion</label>
+        </div>
+
+        <div class="col s12 m6">
+          <a id="listanegra" class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons">add</i></a>
+          <label>Agregar a lista negra</label>
         </div>
         
         
@@ -127,11 +160,7 @@ if ($subsid == 1) {
     </select>
     <label>Tipo de Identificacion</label>
   </div>
-  <div class="input-field col s12 m6">
-          <i class="material-icons prefix">fingerprint</i>
-          <input id="icon_prefix" name="id" type="text" value=" <?php echo $id[0]['identificacion_numero'];?> " class="validate">
-          <label for="icon_prefix">Numero de Identificacion</label>
-        </div>
+  
 
  <div class="input-field col s12 m6">
     <select name="genero">
@@ -237,7 +266,7 @@ if ($subsid == 1) {
 <div class="row">
     <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Continuar</button>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar</button>
       </p>
     </div>
   </div>

@@ -5,12 +5,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination">
     
-    <li class="waves-effect"><a href="#!">Datos del Cliente</a></li>
-    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
-    <li class="waves-effect"><a href="#!">Trabajo</a></li>
-    <li class="waves-effect"><a href="#!">Propiedades</a></li>
-    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
-    <li class="active teal"><a href="#!">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
+    <li class="active teal"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
     <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
@@ -62,17 +62,17 @@ $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">account_circle</i>
               <input style="color: grey;" disabled id="icon_prefix" name="solicitud_ingresada_por" type="text" class="validate" value="<?php echo $vendedorAlias["cliente_usuario_creacion"]; ?>">
-              <label style="color: grey;" for="icon_prefix">Solicitud Ingresada Por:</label>
+              <label class="active" style="color: grey;" for="icon_prefix">Solicitud Ingresada Por:</label>
             </div>
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">store</i>
               <input style="color: grey;" disabled id="icon_prefix" name="sucursal" type="text" class="validate" value="Sucursal La Ceiba - #2">
-              <label style="color: grey;" for="icon_prefix">Sucursal</label>
+              <label class="active" style="color: grey;" for="icon_prefix">Sucursal</label>
             </div>
             <div class="input-field col s12 m12">
               <i class="material-icons prefix">business</i>
               <input style="color: grey;" disabled id="icon_prefix" name="cia" type="text" class="validate" value="<?php echo $cia["cia_descripcion"]; ?>">
-              <label style="color: grey;" for="icon_prefix">Compañia</label>
+              <label class="active" style="color: grey;" for="icon_prefix">Compañia</label>
             </div>
             
         </div>
@@ -121,15 +121,15 @@ $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
       <div class="input-field col s12 m4">
         <i class="material-icons prefix">credit_card</i>
         <input id="icon_prefix" style="color: grey;" disabled name="snombre" type="text" class="validate" value="<?php echo $cliente[0]["cliente_limite_credito"]; ?>">
-        <label for="icon_prefix">Monto Solicitado</label>
+        <label class="active" for="icon_prefix">Monto Solicitado</label>
       </div>
       <div class="input-field col s12 m4">
         <input id="icon_prefix" style="color: grey;" disabled name="snombre" type="text" class="validate" value="<?php echo $cliente[0]["cliente_cuota"]; ?>" >
-        <label for="icon_prefix">Cuota Solicitada</label>
+        <label class="active" for="icon_prefix">Cuota Solicitada</label>
       </div>
       <div class="input-field col s12 m4">
         <input id="icon_prefix" style="color: grey;" disabled name="snombre" type="text" class="validate" value="<?php echo $cliente[0]["cliente_plazo"]; ?>" >
-        <label for="icon_prefix">Plazo en Meses</label>
+        <label class="active" for="icon_prefix">Plazo en Meses</label>
       </div>
   </div>
   <input type="hidden" name="usr" value="<?php echo $_GET['usr']; ?>"></input>

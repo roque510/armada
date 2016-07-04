@@ -75,7 +75,7 @@ $database->update("clientes", [
 ]);
 
 $database->update("identificaciones", [
-  "identificacion_numero" => $id
+  "identificacion_numero" => trim($id," ")
 ], [
 	"entidad_id" => $usr
 ]);

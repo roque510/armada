@@ -1,4 +1,6 @@
-<?php 
+<?php
+date_default_timezone_set('America/Tegucigalpa');
+
 require_once 'medoo.php';
 require_once 'funciones.php';
       require_once 'config.php';
@@ -13,17 +15,63 @@ require_once 'funciones.php';
           'charset' => 'utf8'
         ]);
 
-        echo $_POST['pnombre'];
-        echo $_POST['snombre'];
-        echo $_POST['papellido'];
-        echo $_POST['sapellido'];
-        echo $_POST['tipo_id'];
-        echo $_POST['nacionalidad'];
-        echo $_POST['canal_venta'];
-        echo $_POST['genero'];
-        echo $_POST['tipo_cliente'];
-        echo $_POST['nivel_educativo'];
-        echo $_POST['estado_civil'];
+        $tipo_telefono = ""; //done
+        $telefono = ""; //done
+        $extension = ""; //done
+
+        if (isset($_POST['tipo_telefono'])) {
+          $tipo_telefono = $_POST['tipo_telefono']; //done
+        } //done
+        if (isset($_POST['telefono'])) {
+          $telefono = $_POST['telefono']; //done
+        } //done
+        if (isset($_POST['extension'])) {
+          $extension = $_POST['extension']; //done
+        } //done
+        
+
+        $error = false;
+
+        if (!isset($_POST['pnombre'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['snombre'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['papellido'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['sapellido'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['tipo_id'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['id'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['canal_venta'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['tipo_cliente'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['monto'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['cuota'])) {
+          $error = true;
+        } //done
+        if (!isset($_POST['plazo'])) {
+          $error = true;
+        } //done
+        
+        if ($error) {
+          $arr = array ('response'=>'error');
+            echo json_encode($arr);
+        }
+        else {
+        
         
 
 $path = "clientes/";
@@ -57,7 +105,7 @@ $last_user_id = $database->insert("entidades", [
 $ultimoID = $database->insert("identificaciones", [
   "entidad_id" => $last_user_id,
   "identificacion_tipo_id" => $_POST['tipo_id'],
-  "identificacion_numero" => $_POST['id']
+  "identificacion_numero" => trim($_POST['id']," ")
 ]);
 
 $database->insert("entidades_identificaciones", [
@@ -69,7 +117,8 @@ $database->insert("entidades_identificaciones", [
 $database->insert("clientes", [
   //"nivel_edu_id" => $_POST['nivel_educativo'],
   "cliente_limite_credito" => $_POST['monto'],
-  "cliente_cuota" => $_POST['cuota'], 
+  "cliente_cuota" => $_POST['cuota'],
+  "cliente_tipo" => $_POST['tipo_cliente'],
   "cliente_usuario_creacion" => $_SESSION['usr'],
   "cliente_fecha_creacion" => date("Y-m-d H:i:s"),
   "cliente_plazo" => $_POST['plazo'],
@@ -105,6 +154,12 @@ $propiedades = $database->insert("propiedades", [
 $ultimoTel = $database->insert("telefonos", [
   
 ]);
+$ultimoTel2 = $database->insert("telefonos", [
+  
+]);
+$ultimoTel3 = $database->insert("telefonos", [
+  
+]);
 
 $ultimoTelEmp = $database->insert("telefonos", [
   
@@ -112,7 +167,9 @@ $ultimoTelEmp = $database->insert("telefonos", [
 
 $database->insert("entidades_telefonos", [
   "entidad_id" => $last_user_id,
-  "telefono_id" => $ultimoTel
+  "telefono_id" => $ultimoTel,
+  "telefono_id2" => $ultimoTel2,
+  "telefono_id3" => $ultimoTel3
   
 ]);
 
@@ -143,6 +200,16 @@ $database->insert("referencias_personales", [
   "entidad_id" => $last_user_id 
 ]);
 
+$telID = $database->get("entidades_telefonos",["telefono_id"],["entidad_id" => $last_user_id ]);
+
+$database->update("telefonos", [
+  "telefono_tipo_id" => $tipo_telefono,
+  "telefono_numero" => $telefono,
+  "telefono_extesnion" => $extension,
+  "estatus_id" => '7'
+  
+],["telefono_id" => $telID ]);
+
 
 
 
@@ -166,6 +233,9 @@ upload($_FILES["docpro"],$target_dir,"Documentacion_Propia");
 upload($_FILES["recicom"],$target_dir,"Recibo_Comprobante");
 upload($_FILES["solifi"],$target_dir,"Solicitud_fisica");
 
+$arr = array ('response'=>'correcto');
+  echo json_encode($arr);
+}
 
 
 

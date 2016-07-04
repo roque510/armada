@@ -5,12 +5,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination">
     
-    <li class="waves-effect"><a href="#!">Datos del Cliente</a></li>
-    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
-    <li class="active teal"><a href="#!">Trabajo</a></li>
-    <li class="waves-effect"><a href="#!">Propiedades</a></li>
-    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
-    <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
+    <li class="active teal"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
     <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
@@ -133,11 +133,12 @@ if ($subsid == 1) {
             </div >
         </div>
         <div class="row">
-            <div class="input-field col s12 m12">
+            <div class="input-field col s12 m6">
               <i class="material-icons prefix">date_range</i>
-              <input id="icon_prefix2" type="date" name="fechaempleo" class="datepicker" value='<?php echo $empleo[0]['empleo_antiguedad']; ?>'>
+              <input id="icon_prefix2" type="date" name="fechaempleo" class="datepicker antemp" value='<?php echo $empleo[0]['empleo_antiguedad']; ?>'>
               <label for="icon_prefix2">Antiguedad de Empleo</label>
             </div>
+            <b id="Diasantib" class="col s12 m6">-</b>
             
         </div>             
 <br>
@@ -195,20 +196,24 @@ if ($subsid == 1) {
        ?>
             </select>
         </div >
-        
         <div class="input-field col s12 m4">
         <i class="material-icons prefix">monetization_on</i>
+            <input id="bruto" name="bruto" type="number" class="validate" value='<?php echo $empleo[0]['empleo_ingreso_bruto']; ?>'>
+            <label for="icon_prefix">Ingreso Bruto</label>
+        </div>
+        <div class="input-field col s12 m4">
+        
             <input id="comision" name="comision" type="number" class="validate" value='<?php echo $empleo[0]['empleo_comsiones_extras']; ?>'>
             <label for="icon_prefix">Comisiones y Extras</label>
         </div>
+        
+      </div>  
+
+      <div class="row">
         <div class="input-field col s12 m5">
             <input id="impuesto" name="impuesto" type="number" class="validate" value='<?php echo $empleo[0]['empleo_imp_deduciones']; ?>'>
             <label for="icon_prefix">Impuestos y Deducciones</label>
         </div>
-      </div>  
-
-      <div class="row">
-
         <div class="input-field right col s12 m3">
         <label for="icon_prefix" class="right">Ingreso Neto</label>
             <input id="ingreso_neto" name="ingreso_neto" type="number" style="color: grey;" class="validate" value='<?php echo intval($empleo[0]['empleo_ingreso_neto']); ?>'>
@@ -335,7 +340,7 @@ if ($subsid == 1) {
       <div class="row">
     <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Continuar</button>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar</button>
       </p>
     </div>
   </div>

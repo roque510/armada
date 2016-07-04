@@ -5,12 +5,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination">
     
-    <li class="waves-effect"><a href="#!">Datos del Cliente</a></li>
-    <li class="active teal"><a href="#!">Datos del Domicilio</a></li>
-    <li class="waves-effect"><a href="#!">Trabajo</a></li>
-    <li class="waves-effect"><a href="#!">Propiedades</a></li>
-    <li class="waves-effect"><a href="#!">Referencias Personales</a></li>
-    <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
+    <li class="active teal"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
     <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
@@ -61,6 +61,8 @@ if ($subsid == 1) {
         $propiedades  = $database->select("propiedades", "*",["direccion_id" => $did[0]['direccion_id']]);
         $tid = $database->select("entidades_telefonos", "*",["entidad_id" => $num]);
         $telefonos  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id']]);
+        $telefonos2  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id2']]);
+        $telefonos3  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id3']]);
       
       /*var_dump($entidad);
       var_dump($did);
@@ -122,11 +124,12 @@ if ($subsid == 1) {
         </div >
       </div>
         <div class="row">
-            <div class="input-field col s12 m12">
+            <div class="input-field col s12 m6">
               <i class="material-icons prefix">date_range</i>
-              <input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker" value='<?php echo $direcciones[0]['direccion_antiguedad']; ?>'>
-              <label for="icon_prefix2">Antiguedad de la propiedad</label>
+              <input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php echo $direcciones[0]['direccion_antiguedad']; ?>'>
+              <label class="active" for="icon_prefix2">Antiguedad de la propiedad</label>
             </div>
+            <b id="Diasanti" class="col s12 m6">-</b>
             <!--div class="input-field col s12 m3">
               <i class="material-icons prefix">history</i>
               <input id="icon_prefix" name="snombre" type="text" class="validate">
@@ -156,11 +159,63 @@ if ($subsid == 1) {
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
               <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
-              <label for="icon_prefix">Telefono</label>
+              <label class="active" for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="extension" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_extesnion'] ?>">
-              <label for="icon_prefix">Extension</label>
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+        </div> 
+         <div class="row">
+             <div class="col s12 m4">
+              <label>Tipo Telefono</label>
+                <select name="tipo_telefono2">
+                  <option value="" disabled selected>Elija Tipo Telefono</option>
+                  <?php 
+        
+        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == $telefonos2[0]['telefono_tipo_id']) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
+          }
+       ?>
+                </select>
+            </div >
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+        </div> 
+         <div class="row">
+             <div class="col s12 m4">
+              <label>Tipo Telefono</label>
+                <select name="tipo_telefono3">
+                  <option value="" disabled selected>Elija Tipo Telefono</option>
+                  <?php 
+        
+        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == $telefonos3[0]['telefono_tipo_id']) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
+          }
+       ?>
+                </select>
+            </div >
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
             </div>
         </div>             
 <br>
@@ -222,22 +277,22 @@ if ($subsid == 1) {
           <div class="input-field col  s12">
             <i class="material-icons prefix">edit_location</i>
             <input id="icon_prefix" name="direccion" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_descripcion']; ?>">
-            <label for="icon_prefix">Dirección</label>
+            <label class="active" for="icon_prefix">Dirección</label>
           </div>
       </div>
       <div class="row">
           <div class="input-field col s12 m3">
             <input id="icon_prefix" name="cp" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_codigo_postal']; ?>">
-            <label for="icon_prefix">Código Postal</label>
+            <label class="active" for="icon_prefix">Código Postal</label>
           </div>
           <div class="input-field col s12 m6">
             <i class="material-icons prefix">my_location</i>
             <input id="icon_prefix" name="pr" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_punto_referencia']; ?>">
-            <label for="icon_prefix">Punto de Referencia</label>
+            <label class="active" for="icon_prefix">Punto de Referencia</label>
           </div>
           <div class="input-field col s12 m3">
             <input id="icon_prefix" name="nc" type="text" class="validate" value="<?php echo $direcciones[0]['direccion_numero_casa']; ?>">
-            <label for="icon_prefix">Numero Casa</label>
+            <label class="active" for="icon_prefix">Numero Casa</label>
           </div>
       </div>
 
@@ -250,7 +305,7 @@ if ($subsid == 1) {
       <div class="row">
     <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Continuar</button>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar</button>
       </p>
     </div>
   </div>

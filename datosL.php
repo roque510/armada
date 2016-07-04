@@ -31,6 +31,7 @@ $database = new medoo([
         $edad = $database->query("SELECT TIMESTAMPDIFF(YEAR, `entidad_fecha_nacimiento`, CURDATE()) AS age from `entidades` where `entidad_id` = ".$usr)->fetchAll();
         $entidadi = $database->select("entidades", "*",["entidad_id" => $usr]);
         $estadoCIV = $database->select("estados_civiles", ["estado_civil_descripcion"],["estado_civil_id" => $entidadi[0]["estado_civil_id"]]);
+        $id = $database->select("identificaciones", "*",["entidad_id" => $usr]);
 
 
 //SCORE BAJO: if score es menor a socre de correcto
@@ -50,6 +51,21 @@ if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
 if ($edadEmpleo[0][0] < 3) {
    	$Error = 3;
    }
+ if ($database->has("blacklist_identidad", [
+  "AND" => [
+    
+    "blacklist_identidad" => trim($id[0]['identificacion_numero']," ")
+  ]
+]))
+{
+  $Error = 4;
+  
+}
+else
+{
+  
+  
+}    
 
 $mensaje = "";
 $resp = 'error';
@@ -64,8 +80,11 @@ $status = 3;
 			$mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'INGRESO INSUFICIENTE'. ";
 			break;}
 		case 3:{
-			$mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'ANTIGUEDAD LABORAL INSUFICIENTE'. ";
-			break;}		
+      $mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'ANTIGUEDAD LABORAL INSUFICIENTE'. ";
+      break;}
+    case 4:{
+      $mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'Lista Negra de cedulas'. ";
+      break;}    	
 		default:{
 			$mensaje = "La solicitud en verificacion ah terminado Exitosamente sin ningun problema.";
 			$resp = 'success';

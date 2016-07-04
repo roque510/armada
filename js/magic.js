@@ -1,4 +1,41 @@
         $( document ).ready(function(){
+
+          $.validator.addMethod("valueNotEquals", function(value, element, arg){
+        return arg != value;
+    }, "");
+
+$("#leform").validate({
+        rules: {
+            pnombre:"required",
+            snombre:"required",
+            papellido:"required",
+            sapellido:"required",
+            monto:"required",
+            cuota:"required",
+            plazo:"required",
+            tipo_id:{valueNotEquals: $('#tipo_id').val('Elija una opcion')},
+            id:"required",
+            canal_venta:"required",
+            tipo_cliente:"required",
+          },
+        //For custom messages
+        messages: {
+          
+            
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+        
+     });
+
+
 var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
     //Zero the idle timer on mouse movement.
@@ -238,6 +275,7 @@ $('#estado').on('submit', function (e) {
               }
               else {
                 swal("Error", data.comment, "error");
+                $('#modal1').closeModal();
               }
 
 
@@ -267,6 +305,19 @@ $('#login').on('submit', function (e) {
           e.preventDefault();
 
           $.ajax({
+              xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                  if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    console.log(percentComplete);
+                    if (percentComplete === 100) {
+                    }
+                  }
+                }, false);
+                return xhr;
+              },
             type: 'post',
             url: 'usrp.php',
             cache: false,
@@ -290,6 +341,7 @@ $('#login').on('submit', function (e) {
               }
               else {
                 swal("Cancelled", data.comment, "error");
+                 $('#modal1').closeModal();
               }
 
 
@@ -581,7 +633,7 @@ $('#rc').on('submit', function (e) {
             }, 
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                swal({   title: "Cargando...",   text: "-",   timer: 1000,   showConfirmButton: false });
                    location.href = "?pg=veridoc_5&usr="+data.user;
                     
               }
@@ -625,6 +677,170 @@ $('#rc').on('submit', function (e) {
 
         });
 
+         $('#fileToUpload').bind('change', function() {
+          var size = this.files[0].size;
+          if (size > 1000000) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          }
+          else 
+            {
+              
+            }
+        });
+
+        $('#docla').bind('change', function() {
+          var size = this.files[0].size;
+          if (size > 1000000) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          }
+          else 
+            {
+              
+            }
+        });
+
+        $('#docpro').bind('change', function() {
+          var size = this.files[0].size;
+          if (size > 1000000) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          }
+          else 
+            {
+              
+            }
+        });
+
+        $('#recicom').bind('change', function() {
+          var size = this.files[0].size;
+          if (size > 1000000) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          }
+          else 
+            {
+              
+            }
+        });
+
+        $('#solifi').bind('change', function() {
+          var size = this.files[0].size;
+          if (size > 1000000) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          }
+          else 
+            {
+              
+            }
+        });
+
+        
+
+function CalDate(date1,date2) {
+    var diff = Math.floor(date1.getTime() - date2.getTime());
+    var secs = Math.floor(diff/1000);
+    var mins = Math.floor(secs/60);
+    var hours = Math.floor(mins/60);
+    var days = Math.floor(hours/24);
+    var months = Math.floor(days/31);
+    var years = Math.floor(months/12);
+    months=Math.floor(months%12);
+    days = Math.floor(days%31);
+    hours = Math.floor(hours%24);
+    mins = Math.floor(mins%60);
+    secs = Math.floor(secs%60); 
+    var message = ""; 
+    if(days<=0){
+    message += secs + " sec "; 
+    message += mins + " min "; 
+    message += hours + " hours "; 
+    }else{
+        message += "Antiguedad: " + days + " dias "; 
+        if(months>0 || years>0){
+            message += months + " meses ";
+        }
+        if(years>0){
+            message += "y " + years + " años";    
+        }
+    }
+    return message
+}
+
+
+    $('#icon_prefix2').on('change', function(e){
+      e.preventDefault();
+      var today = new Date();
+      var past = $('#icon_prefix2').val();
+      var inputval = past.split("-");
+ var dateval = new Date(inputval[1]+"/"+inputval[2]+"/"+inputval[0]);
+
+      
+
+      a = CalDate(today,dateval);
+$("#Diasanti").html(a);
+    });
+
+$("#listanegra").on('click', function(e){
+  e.preventDefault();
+
+  if($("#listanegra").hasClass("disabled")){
+
+  }
+  else{
+  var fd = new FormData();    
+  fd.append( 'id', $("#icon_prefixid").attr("value") );
+  console.log($("#icon_prefixid").attr("value"));
+
+  swal({   title: "Esta seguro?",   text: "Si agrega el cliente a la lista negra no podra optar por un credito.",
+     type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Si, Agregar a la lista negra!",
+        cancelButtonText: "No, cancelar porfavor!",
+        showLoaderOnConfirm: true,
+        closeOnConfirm: false,
+        closeOnCancel: false },
+
+          function(isConfirm){
+            if (isConfirm) {
+
+              $.ajax({
+                
+                url: 'addlistaN.php',
+                data: fd,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                type: 'POST',               
+                success: function (data) {
+                  if(data.response == "correcto"){ 
+                    swal("Agregado!", "El usuario a sido agregado a la lista negra de credistart.", "success");
+                  }
+                }
+              });
+              
+            }
+            else {
+              swal("Cancelado", "Accion cancelada.", "error");
+            }
+    });
+}
+
+});
+
+
+
+$('.antemp').on('change', function(e){
+      e.preventDefault();
+      var today = new Date();
+      var past = $('.antemp').val();
+      var inputval = past.split("-");
+ var dateval = new Date(inputval[1]+"/"+inputval[2]+"/"+inputval[0]);
+
+      
+
+      a = CalDate(today,dateval);
+$("#Diasantib").html(a);
+    });
+
    
 
         $('#leform').on('submit', function (e) {
@@ -632,17 +848,31 @@ $('#rc').on('submit', function (e) {
           e.preventDefault();
 
           $.ajax({
+            xhr: function() {
+                var xhr = new window.XMLHttpRequest();
+                xhr.upload.addEventListener("progress", function(evt) {
+                  if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    console.log(percentComplete);
+                    if (percentComplete === 100) {
+                    }
+                  }
+                }, false);
+                return xhr;
+              },
             type: 'post',
             url: $('#leform').attr('action'),
             cache: false,
             contentType: false,
             processData: false,
             data: new FormData(this),
+            dataType: "json",
             beforeSend: function() {
-    //$('#response').html("<img src='img/loading.gif' />");
-    $('#modal1').openModal();
-  },  
-            success: function (response) {
+              $('#modal1').openModal();
+            },  
+            success: function (data) {
+              if(data.response == "correcto"){ 
               
               swal({   title: "Exito!",   text: "Deseas ingresar a otro cliente?",   type: "success",   showCancelButton: true,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Si, Porfavor",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: false,   closeOnCancel: false }, function(isConfirm){   if (isConfirm) {
                    var url = window.location.href;
@@ -667,8 +897,94 @@ window.location.href = url;
 
 
             }
+            else{              
+              $('#modal1').closeModal();
+            }
+          }
           });
 
         });
 
+             
+
       });
+
+        $("#listanegra").on("change",function(e){
+          if($("#listanegra").hasClass("disabled")){
+            $("#listanegra").removeClass("disabled");
+          }
+          else{
+
+         }
+          
+        });
+
+        $(document).ready(function(){
+
+          if ($("#id").val() == "") {
+            $("#listanegra").addClass("disabled");
+          }
+          //<div class="col s12"><div id="card-alert" class="card red lighten-5"><div class="card-content red-text"><p>OJO : este usuario se encuentra en la lista negra.</p></div></div> 
+          
+
+
+          function CalDate(date1,date2) {
+    var diff = Math.floor(date1.getTime() - date2.getTime());
+    var secs = Math.floor(diff/1000);
+    var mins = Math.floor(secs/60);
+    var hours = Math.floor(mins/60);
+    var days = Math.floor(hours/24);
+    var months = Math.floor(days/31);
+    var years = Math.floor(months/12);
+    months=Math.floor(months%12);
+    days = Math.floor(days%31);
+    hours = Math.floor(hours%24);
+    mins = Math.floor(mins%60);
+    secs = Math.floor(secs%60); 
+    var message = ""; 
+    if(days<=0){
+    message += secs + " sec "; 
+    message += mins + " min "; 
+    message += hours + " hours "; 
+    }else{
+        message += "Antiguedad: " + days + " dias "; 
+        if(months>0 || years>0){
+            message += months + " meses ";
+        }
+        if(years>0){
+            message += "y " + years + " años";    
+        }
+    }
+    return message
+}
+
+    if ($('#icon_prefix2').val() != "0000-00-00") {
+     var today = new Date();
+      var past = $('#icon_prefix2').val();
+      var inputval = past.split("-");
+ var dateval = new Date(inputval[1]+"/"+inputval[2]+"/"+inputval[0]);
+
+      
+
+      a = CalDate(today,dateval);
+$("#Diasanti").html(a);
+    }
+    else{
+      console.log("no");
+    }
+
+        if ($('.antemp').val() != "" && $('.antemp').val() ) {
+     var today = new Date();
+      var past = $('.antemp').val();
+      var inputval = past.split("-");
+ var dateval = new Date(inputval[1]+"/"+inputval[2]+"/"+inputval[0]);
+
+      
+
+      a = CalDate(today,dateval);
+$("#Diasantib").html(a);
+    }
+    else{
+      console.log("no");
+    }
+});

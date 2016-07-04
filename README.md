@@ -27,6 +27,12 @@ ALTER TABLE `clientes` ADD `cliente_tipo` INT NOT NULL AFTER `cliente_id`;
 ALTER TABLE `solicitudes` CHANGE `soliciutd_comentario` `soliciutd_comentario` VARCHAR(2000) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
 ALTER TABLE `clientes` ADD `cliente_cuota_sugerida` BIGINT NOT NULL AFTER `cliente_cuota`, ADD `cliente_limite_sugerido` BIGINT NOT NULL AFTER `cliente_cuota_sugerida`;
 INSERT INTO `db_credistar`.`estatus` (`estatus_id`, `estatus_desripcion`, `estatus_comentario`) VALUES ('8', 'devuelta', 'solicitud');
+-----------------------------
+
+ALTER TABLE  `entidades_telefonos` ADD  `telefono_id2` BIGINT( 20 ) NOT NULL AFTER  `telefono_id` ,
+ADD  `telefono_id3` BIGINT( 20 ) NOT NULL AFTER  `telefono_id2`
+ALTER TABLE  `empleos` ADD  `empleo_ingreso_bruto` DECIMAL( 10, 2 ) NOT NULL AFTER  `empleo_ingreso_declarado`
+se creo tabla blacklist_identidad
 
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud

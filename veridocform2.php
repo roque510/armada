@@ -27,6 +27,7 @@ $tipo_moneda = $_POST['tipo_moneda'];//*
 $comision = $_POST['comision'];//*
 $impuesto = $_POST['impuesto'];//*
 $ingreso_neto = $_POST['ingreso_neto'];//*
+$bruto = $_POST['bruto'];//*
 $ingreso_declarado = $_POST['ingreso_declarado'];//*
 $tipo_tel = $_POST['tipo_tel'];//
 $tel = $_POST['tel'];//
@@ -55,6 +56,7 @@ $database->update("empleos", [
   "moneda_id" => $tipo_moneda,
   "empleo_ingreso_neto" => $ingreso_neto,
   "empleo_ingreso_declarado" => $ingreso_declarado,
+  "empleo_ingreso_bruto" => $bruto,
   "empleo_comsiones_extras" => $comision,
   "empleo_imp_deduciones" => $impuesto,
   "empleo_hora_contactar" => $horas_contact,

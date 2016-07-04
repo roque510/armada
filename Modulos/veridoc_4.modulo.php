@@ -5,12 +5,12 @@ if(isset($_GET['usr']))
 ?>
   <ul class="pagination">
     
-    <li class="waves-effect"><a href="#!">Datos del Cliente</a></li>
-    <li class="waves-effect"><a href="#!">Datos del Domicilio</a></li>
-    <li class="waves-effect"><a href="#!">Trabajo</a></li>
-    <li class="waves-effect"><a href="#!">Propiedades</a></li>
-    <li class="active teal"><a href="#!">Referencias Personales</a></li>
-    <li class="waves-effect"><a href="#!">Datos de Venta</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc&usr=<?php echo $usr ?>">Datos del Cliente</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_1&usr=<?php echo $usr ?>">Datos del Domicilio</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_2&usr=<?php echo $usr ?>">Trabajo</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
+    <li class="active teal"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
+    <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
     <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
@@ -97,18 +97,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <label for="icon_prefix">Segundo Apellido</label>
           </div>
       </div>
-      <div class="row">
-          <div class="input-field col s12 m6">
-              <i class="material-icons prefix">fingerprint</i>
-              <input id="icon_prefix" name="nidA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_nid']; ?>'>
-              <label for="icon_prefix">Numero Identificación</label>
-          </div>
-          <div class="input-field col s12 m6">
-              <i class="material-icons prefix">cake</i>
-              <input id="icon_prefix2" type="date" name="fechanacA" class="datepicker" value='<?php echo $entidadA[0]['referencia_fechanac']; ?>'>
-              <label for="icon_prefix2">Fecha Nacimiento</label>
-            </div>
-      </div>
+      
       <div class="row">
              <div class="col s12 m3">
               <label>Tipo Telefono</label>
@@ -190,18 +179,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <label for="icon_prefix">Segundo Apellido</label>
           </div>
       </div>
-      <div class="row">
-          <div class="input-field col s12 m6">
-              <i class="material-icons prefix">fingerprint</i>
-              <input id="icon_prefix" name="nidB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_nid']; ?>'>
-              <label for="icon_prefix">Numero Identificación</label>
-          </div>
-          <div class="input-field col s12 m6">
-              <i class="material-icons prefix">cake</i>
-              <input id="icon_prefix2" type="date" name="fechanacB" class="datepicker" value='<?php echo $entidadA[1]['referencia_fechanac']; ?>'>
-              <label for="icon_prefix2">Fecha Nacimiento</label>
-            </div>
-      </div>
+      
       <div class="row">
              <div class="col s12 m3">
               <label>Tipo Telefono</label>
@@ -243,7 +221,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
       <div class="row">
     <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Continuar</button>
+        <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar</button>
       </p>
     </div>
   </div>

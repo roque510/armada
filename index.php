@@ -41,9 +41,9 @@ session_destroy();*/
       }
     ?>
     <div id="response"></div>
-    <div id="modal1" class="modal loadingModal">
+    <div id="modal1" class="modal loadingModal transparent z-depth-0">
     <div class="modal-content">
-      <img src="img/loading.gif">
+      <img style="width:300px; height:300px;" src="img/loading.gif">
       </div>
   </div>
     
@@ -118,7 +118,8 @@ session_destroy();*/
       <script type="text/javascript" src="js/materialize.min.js"></script>
 
       <script type="text/javascript" src="js/magic.js"></script>
-
+      <script type="text/javascript" src="js/jquery.validate.js"></script>
+      <script type="text/javascript" src="js/messages_es.js"></script>
     <script src="dist/sweetalert.min.js"></script>
     </body>
   </html>

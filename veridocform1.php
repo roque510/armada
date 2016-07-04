@@ -21,6 +21,12 @@ $fechaantiguedad = $_POST['fechaantiguedad']; //done
 $tipo_telefono = $_POST['tipo_telefono']; //done
 $telefono = $_POST['telefono']; //done
 $extension = $_POST['extension']; //done
+$tipo_telefono2 = $_POST['tipo_telefono2']; //done
+$telefono2 = $_POST['telefono2']; //done
+$extension2 = $_POST['extension2']; //done
+$tipo_telefono3 = $_POST['tipo_telefono3']; //done
+$telefono3 = $_POST['telefono3']; //done
+$extension3 = $_POST['extension3']; //done
 $pais = $_POST['pais']; //done
 $departamento = $_POST['departamento'];//done
 $municipio = $_POST['municipio'];//done
@@ -31,6 +37,8 @@ $nc = $_POST['nc'];//done
 
 $dirID = $database->get("entidades_direcciones",["direccion_id"],["entidad_id" => $usr ]);
 $telID = $database->get("entidades_telefonos",["telefono_id"],["entidad_id" => $usr ]);
+$telID2 = $database->get("entidades_telefonos",["telefono_id2"],["entidad_id" => $usr ]);
+$telID3 = $database->get("entidades_telefonos",["telefono_id3"],["entidad_id" => $usr ]);
 
 $database->update("direcciones", [
   "direccion_descripcion" => $direccion,
@@ -57,6 +65,22 @@ $database->update("telefonos", [
   "estatus_id" => '7'
   
 ],["telefono_id" => $telID ]);
+
+$database->update("telefonos", [
+  "telefono_tipo_id" => $tipo_telefono2,
+  "telefono_numero" => $telefono2,
+  "telefono_extesnion" => $extension2,
+  "estatus_id" => '7'
+  
+],["telefono_id" => $telID2 ]);
+
+$database->update("telefonos", [
+  "telefono_tipo_id" => $tipo_telefono3,
+  "telefono_numero" => $telefono3,
+  "telefono_extesnion" => $extension3,
+  "estatus_id" => '7'
+  
+],["telefono_id" => $telID3 ]);
 
 
 

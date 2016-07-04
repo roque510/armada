@@ -23,26 +23,52 @@ require_once 'config.php';
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" type="text" name="pnombre" class="validate">
+          <input id="icon_prefix" type="text" name="pnombre" data-error="" class="validate" required="">
           <label for="icon_prefix">Primer Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="snombre" type="text" class="validate">
+          <input id="o" name="snombre" type="text" data-error="" class="validate">
           <label for="icon_prefix">Segundo Nombre</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="papellido" type="text" class="validate">
+          <input id="e" name="papellido" type="text" class="validate">
           <label for="icon_prefix">Primer Apellido</label>
         </div>
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="icon_prefix" name="sapellido" type="text" class="validate">
+          <input id="g" name="sapellido" type="text" class="validate">
           <label for="icon_prefix">Segundo Apellido</label>
         </div>
         
       </div>
+      <div class="row">
+             <div class="col s12 m4">
+              <label>Tipo Telefono</label>
+                <select name="tipo_telefono">
+                  <option value="" disabled selected>Elija Tipo Telefono</option>
+                  <?php 
+        
+        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["telefono_tipo_id"].'" >'.$data["telefono_descripcion"].'</option>';
+          }
+       ?>
+                </select>
+            </div >
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono" type="text" class="validate" >
+              <label for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension" type="text" class="validate" >
+              <label for="icon_prefix">Extension</label>
+            </div>
+        </div> 
       
       <!-- div class="input-field col s12 m6">
           <i class="material-icons prefix">cake</i>
@@ -70,7 +96,11 @@ require_once 'config.php';
       <div class="determinate" style="width: 100%"></div>
   </div>
   
-      
+      <div class="input-field col s12 m6">
+          <i class="material-icons prefix">fingerprint</i>
+          <input id="icon_prefix" name="id" type="text" class="validate">
+          <label for="icon_prefix">Numero de Identificacion</label>
+        </div>
       <div class="input-field col s12 m6">
     <select name="tipo_id">
       <option value="" disabled selected>Elija una opcion</option>
@@ -88,11 +118,7 @@ require_once 'config.php';
     </select>
     <label>Tipo de Identificacion</label>
   </div>
-  <div class="input-field col s12 m6">
-          <i class="material-icons prefix">fingerprint</i>
-          <input id="icon_prefix" name="id" type="text" class="validate">
-          <label for="icon_prefix">Numero de Identificacion</label>
-        </div>
+  
 
  <!-- div class="input-field col s12 m6">
     <select name="genero">
@@ -194,7 +220,7 @@ require_once 'config.php';
 
   <div class="row">
         <div class="input-field col s4">
-          <input type="number" name="monto" class="validate">
+          <input  type="number" name="monto" class="validate">
           <label for="first_name">Monto Solicitado</label>
         </div>
         <div class="input-field col s4">
@@ -219,7 +245,7 @@ require_once 'config.php';
     <div class="file-field input-field">
       <div class="btn">
         <span>File</span>
-        <input name="fileToUpload" id="fileToUpload" type="file">
+        <input name="fileToUpload" type="file"  id="fileToUpload" />
       </div>
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
@@ -285,5 +311,7 @@ require_once 'config.php';
 
 
   </div>  
-
+<script>
+$("#leform").validate();
+</script>
 
