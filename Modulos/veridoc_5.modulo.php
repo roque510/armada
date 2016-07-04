@@ -51,6 +51,16 @@ $ciaID = $database->get("usuarios_cias","*",["usuario_id" => $vendedor["usuario_
 $cia = $database->get("cias","*",["cia_id" => $ciaID]);
 $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
 
+$tid = $database->select("entidades_telefonos", "*",["entidad_id" => $usr]);
+$telefonos  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id']]);
+$telefonos2  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id2']]);
+$telefonos3  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id3']]);
+
+$empleo  = $database->select("empleos", "*",["entidad_id" => $usr]);
+$telefonosT  = $database->select("telefonos", "*",["telefono_id" => $empleo[0]['telefono_id']]);
+
+$entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr ]);
+
 
  ?>
  <br>
@@ -136,8 +146,154 @@ $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
 
   <div class="col m12">
       <p class="right-align">
-        <button class="btn btn-large waves-effect waves-light" type="submit" name="action"><i class="material-icons">done</i><span style="margin-bottom: 10px;">Mostrar Reporte</span></button>
+         
+        
+
+        
       </p>
     </div>
+
+    <input type="hidden" id="telspersonales" name="telspersonales" value="noContestado">
+    <input type="hidden" id="teltrabajo" name="teltrabajo" value="noContestado">
+    <input type="hidden" id="telref1" name="telref1" value="noContestado">
+    <input type="hidden" id="telref2" name="telref2" value="noContestado">
+
   </form>
+  <button id="modalopener" data-target="modal1" class="btn modal-trigger">Modal</button>
+
+    <!-- Modal Trigger -->
+  
+
+  <!-- Modal Structure -->
+
+        <div id="moda" style="width:700px !important;" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>Verificacion de Informacion.</h4>
+      <p>Telefonos del cliente.</p>
+      <div class="row">
+             
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+            
+        </div> 
+         <div class="row">
+             
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+           
+        </div> 
+         <div class="row">
+
+              
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+            <p>
+      <input type="checkbox" id="indeterminate-checkbox3" />
+      <label for="indeterminate-checkbox3">Marcar si fue contestado</label>
+    </p>
+        </div>
+          <p>Telefonos del Trabajo.</p>
+    <div class="row">
+             
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="" name="tel" type="text" class="validate" value='<?php echo $telefonosT[0]['telefono_numero']; ?>'>
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="" name="ext" type="text" class="validate" value='<?php echo $telefonosT[0]['telefono_extesnion']; ?>'>
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+            <p>
+      <input type="checkbox" id="indeterminate-checkbox4" />
+      <label for="indeterminate-checkbox4">Marcar si fue contestado</label>
+    </p>
+        </div>
+        <p>Referencias Personales</p>
+        <div class="row">
+             <div class="input-field col s12 m12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_pnombre'].$entidadA[0]['referencia_snombre'].$entidadA[0]['referencia_papellido'].$entidadA[0]['referencia_sapellido']; ?>'>
+              <label class="active" for="icon_prefix">Nombre</label>
+          </div>
+            <div class="input-field col s12 m3">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_telefono']; ?>'>
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_extension']; ?>'>
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="hcB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_hora_contacto']; ?>'>
+              <label class="active" for="icon_prefix">Hora Contactar</label>
+            </div>
+            <p>
+      <input type="checkbox" id="indeterminate-checkbox5" />
+      <label for="indeterminate-checkbox5">Marcar si fue contestado</label>
+    </p>
+        </div>
+        <br>
+        <div class="row">
+             <div class="input-field col s12 m12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_pnombre'].$entidadA[1]['referencia_snombre'].$entidadA[1]['referencia_papellido'].$entidadA[1]['referencia_sapellido']; ?>'>
+              <label class="active" for="icon_prefix">Nombre</label>
+          </div>
+            <div class="input-field col s12 m3">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_telefono']; ?>'>
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_extension']; ?>'>
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="hcB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_hora_contacto']; ?>'>
+              <label class="active" for="icon_prefix">Hora Contactar</label>
+            </div>
+            <p>
+      <input type="checkbox" id="indeterminate-checkbox6" />
+      <label for="indeterminate-checkbox6">Marcar si fue contestado</label>
+    </p>
+        </div>
+
+
+
+
+    </div>
+  
+    
+
+    <!-- FOOTER DEL MODAL  -->
+    <div style="height: 60px !important;" class="modal-footer">
+      <button id="mreport" class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+          <!--a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a-->
+    </div>
+
+  </div>
+
    

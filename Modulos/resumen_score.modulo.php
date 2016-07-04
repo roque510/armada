@@ -21,6 +21,7 @@ $database = new medoo([
         ]);
 
         $usr = $_GET['usr'];
+
         $queryA = "SELECT concat(`entidad_primer_nombre`,' ', `entidad_segundo_nombre`,' ',`entidad_primer_apellido`,' ',`entidad_segund_apellido`) FROM `entidades` where `entidad_id` = ".$usr;
         $queryB = "SELECT TIMESTAMPDIFF(YEAR, `empleo_antiguedad`, CURDATE()) AS age from `empleos` where `entidad_id` = ".$usr;
 
@@ -30,6 +31,7 @@ $database = new medoo([
         
         $cliente = $database->select("clientes", "*",["entidad_id" => $usr]); 
         $empleo  = $database->select("empleos", "*",["entidad_id" => $usr]);
+        $veri  = $database->select("verificacion_telefonos", "*",["entidad_id" => $usr]);
 
         $fpago = $database->select("frecuencias_pagos", ["frecuencia_pago_id","frecuencia_pago_descripcion"],["frecuencia_pago_id" => $empleo[0]["frecuencia_pago_id"]]);
 
@@ -109,6 +111,42 @@ $database = new medoo([
             <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $fpago[0]['frecuencia_pago_descripcion']; ?> " style="border-color:#bf360c; color:gray;">
           </div>
         </div>
+
+        <div class="row container">
+  <div class="progress">
+      <div class="determinate" style="width: 100%; background-color:#bf360c"></div>
+  </div>
+</div>
+
+        <div class="row">
+          <p><b>Verificacion Telefonos</b></p>
+
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">attach_money</i>
+            <label for="icon_prefix2" style="color:black;">Telefonos Personales</label>
+            <input readonly id="ingreso_neto" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telspersonales']; ?>" style="border-color:#bf360c; color:gray;">
+          </div>
+          
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">short_text</i>
+            <label for="icon_prefix2" style="color:black;">Telefono Empleo</label>
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['teltrabajo']; ?> " style="border-color:#bf360c; color:gray;">
+          </div>
+        </div>
+        <div class="row">
+          
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">attach_money</i>
+            <label for="icon_prefix2" style="color:black;">Telefono Referencia 1</label>
+            <input readonly id="ingreso_neto" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telref1']; ?>" style="border-color:#bf360c; color:gray;">
+          </div>
+          
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">short_text</i>
+            <label for="icon_prefix2" style="color:black;">Telefono Referencia 2</label>
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telref2']; ?> " style="border-color:#bf360c; color:gray;">
+          </div>
+        </div>
     </div>
 
 
@@ -170,6 +208,19 @@ $database = new medoo([
     
     <input type="hidden" name="usuario" value="<?php echo $_GET['usr']; ?>">
 
+    <div class="row container">
+  <div class="progress">
+      <div class="determinate" style="width: 100%; background-color:#bf360c"></div>
+  </div>
+
+  <div class="input-field col s12">
+            <textarea id="textarea1" name="textarea1" class="materialize-textarea" length="120"></textarea>
+            <label for="textarea1">Bitacora de analista</label>
+          </div>
+</div>
+    
+          
+    
     
 
     <div class="row container">

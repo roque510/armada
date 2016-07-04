@@ -15,6 +15,13 @@ $database = new medoo([
 
 $usr = $_POST['usr']; //done
 
+$database->update("verificacion_telefonos",[
+	"telspersonales" => $_POST['telspersonales'],
+	"teltrabajo" => $_POST['teltrabajo'],
+	"telref1" => $_POST['telref1'],
+	"telref2" => $_POST['telref2']
+	]);
+
 
 	$arr = array ('response'=>'correcto','user'=> $usr, 'comment'=> $usr);
 	echo json_encode($arr);

@@ -70,6 +70,12 @@ else
 $mensaje = "";
 $resp = 'error';
 $status = 3;
+$txt = "";
+
+if (isset($_POST['textarea1'])) {
+  $txt = $_POST['textarea1'];
+}
+
 
 
 	switch ($Error) {
@@ -113,7 +119,7 @@ $database->update("clientes", [
   "cliente_fecha_modificacion" => date("Y-m-d H:i:s")
 ],["entidad_id" => $usu]);
 
-$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje,"subestatus_id" => 1],["entidad_id" => $usu]);
+$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje,"subestatus_id" => 1, "solicitud_comentario_analista" => $txt ],["entidad_id" => $usu]);
      
 
 

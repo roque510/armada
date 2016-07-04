@@ -4,6 +4,10 @@
         return arg != value;
     }, "");
 
+
+
+
+
 $("#leform").validate({
         rules: {
             pnombre:"required",
@@ -586,6 +590,31 @@ $('#rc').on('submit', function (e) {
 
         });
 
+        $('#modalopener').on('click',function (e){
+          $('#moda').openModal();
+        });
+
+        $('#mreport').on('click',function (e){
+
+          if ($("#indeterminate-checkbox3").is(':checked')) {
+            
+            $("#telspersonales").val("contestado");
+
+          }
+          if ($("#indeterminate-checkbox4").is(':checked')) {
+            $("#teltrabajo").val("contestado");
+          }
+          if ($("#indeterminate-checkbox5").is(':checked')) {
+            $("#telref1").val("contestado");
+          }
+          if ($("#indeterminate-checkbox6").is(':checked')) {
+            $("#telref2").val("contestado");
+          }
+
+
+          $('#reporte').submit();
+        });
+
         $('#veridocform3').on('submit', function (e) {
 
           e.preventDefault();
@@ -664,7 +693,6 @@ $('#rc').on('submit', function (e) {
               if(data.response == "correcto"){ 
                 swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(){
                    setTimeout(function(){
-                        
                         location.href = "?pg=resumen_score&usr="+data.user;   
                  }, 2000); });
                    

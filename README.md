@@ -32,7 +32,32 @@ INSERT INTO `db_credistar`.`estatus` (`estatus_id`, `estatus_desripcion`, `estat
 ALTER TABLE  `entidades_telefonos` ADD  `telefono_id2` BIGINT( 20 ) NOT NULL AFTER  `telefono_id` ,
 ADD  `telefono_id3` BIGINT( 20 ) NOT NULL AFTER  `telefono_id2`
 ALTER TABLE  `empleos` ADD  `empleo_ingreso_bruto` DECIMAL( 10, 2 ) NOT NULL AFTER  `empleo_ingreso_declarado`
-se creo tabla blacklist_identidad
+CREATE TABLE IF NOT EXISTS `blacklist_identidad` (
+  `blacklist_id` int(11) NOT NULL AUTO_INCREMENT,
+  `blacklist_identidad` varchar(30) NOT NULL,
+  PRIMARY KEY (`blacklist_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+INSERT INTO  `db_credistar`.`estatus` (
+`estatus_id` ,
+`estatus_desripcion` ,
+`estatus_comentario`
+)
+VALUES (
+'10',  'positiva',  'telefono'
+), (
+'11',  'negativa',  'telefono'
+), (
+'12',  'sin telefono',  'telefono'
+);
+CREATE TABLE IF NOT EXISTS `verificacion_telefonos` (
+  `entidad_id` int(11) NOT NULL,
+  `telspersonales` tinyint(1) NOT NULL,
+  `teltrabajo` tinyint(1) NOT NULL,
+  `telref1` tinyint(1) NOT NULL,
+  `telref2` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ALTER TABLE  `solicitudes` ADD  `solicitud_comentario_analista` TEXT NOT NULL AFTER  `soliciutd_comentario`
+
 
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud

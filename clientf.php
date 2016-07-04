@@ -195,6 +195,11 @@ $last_empleo = $database->insert("propiedades", [
 $database->insert("referencias_personales", [
   "entidad_id" => $last_user_id 
 ]);
+//verificacion_telefonos
+
+$database->insert("verificacion_telefonos", [
+  "entidad_id" => $last_user_id 
+]);
 
 $database->insert("referencias_personales", [
   "entidad_id" => $last_user_id 
