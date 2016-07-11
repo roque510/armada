@@ -4,7 +4,7 @@ date_default_timezone_set('America/Tegucigalpa');
 require_once 'medoo.php';
 require_once 'funciones.php';
       require_once 'config.php';
-      session_start();
+      
       
         $database = new medoo([
           'database_type' => 'mysql',
@@ -15,12 +15,16 @@ require_once 'funciones.php';
           'charset' => 'utf8'
         ]);
 
+        $usucre = "";
         $tipo_telefono = ""; //done
         $telefono = ""; //done
         $extension = ""; //done
 
         if (isset($_POST['tipo_telefono'])) {
           $tipo_telefono = $_POST['tipo_telefono']; //done
+        } //done
+        if (isset($_POST['usucre'])) {
+          $usucre = $_POST['usucre']; //done
         } //done
         if (isset($_POST['telefono'])) {
           $telefono = $_POST['telefono']; //done
@@ -119,7 +123,7 @@ $database->insert("clientes", [
   "cliente_limite_credito" => $_POST['monto'],
   "cliente_cuota" => $_POST['cuota'],
   "cliente_tipo" => $_POST['tipo_cliente'],
-  "cliente_usuario_creacion" => $_SESSION['usr'],
+  "cliente_usuario_creacion" => $usucre,
   "cliente_fecha_creacion" => date("Y-m-d H:i:s"),
   "cliente_plazo" => $_POST['plazo'],
   "entidad_id" => $last_user_id

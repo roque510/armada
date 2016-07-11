@@ -41,9 +41,51 @@ session_destroy();*/
       }
     ?>
     <div id="response"></div>
-    <div id="modal1" class="modal loadingModal transparent z-depth-0">
+    <div id="modal1" class="modal loadingModal z-depth-0">
     <div class="modal-content">
-      <img style="width:300px; height:300px;" src="img/loading.gif">
+            <div class="preloader-wrapper big active">
+      <div class="spinner-layer spinner-blue">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-red">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-yellow">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+
+      <div class="spinner-layer spinner-green">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+
+    
       </div>
   </div>
     
@@ -123,5 +165,6 @@ session_destroy();*/
       <script type="text/javascript" src="js/jquery.validate.js"></script>
       <script type="text/javascript" src="js/messages_es.js"></script>
     <script src="dist/sweetalert.min.js"></script>
+    <script src="js/dropzone.js"></script>
     </body>
   </html>

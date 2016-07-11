@@ -521,7 +521,7 @@ $('#rc').on('submit', function (e) {
             }, 
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                swal({   title: "Cargando...",   text: "",   timer: 3000,   showConfirmButton: false });
                    location.href = "?pg=veridoc_1&usr="+data.user;
                     
               }
@@ -588,7 +588,7 @@ $('#rc').on('submit', function (e) {
             }, 
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                swal({   title: "Cargando...",   text: "",   timer: 3000,   showConfirmButton: false });
                    location.href = "?pg=veridoc_3&usr="+data.user;
                     
               }
@@ -602,6 +602,59 @@ $('#rc').on('submit', function (e) {
           });
 
         });
+
+        $('#mun').on('change', function (e) {
+
+        });
+
+        $('#dept').on('change', function (e) {
+
+    var $selectDropdown = 
+      $("#muni")
+        .empty()
+        .html(' ');
+
+    var deptId = $('#dept').find(":selected").val();
+    console.log(deptId);
+    $.ajax({
+            type: "POST",
+            url: "getmun.php",
+            data: { 'deptid': deptId  },
+            success: function(data){
+                // Parse the returned json data
+                var opts = $.parseJSON(data);
+                // Use jQuery's each to iterate over the opts value
+                $.each(opts, function(i, d) {
+                  
+                    // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                    $('#muni').append('<option value="' + d.municipio_id + '">' + d.municipio_nombre + '</option>');
+                });
+                $("#muni").material_select();
+            },
+            error: function(){
+              alert("error");
+            }
+        });
+
+    
+  });
+
+        $('#muni').on('contentChanged', function() {
+    // re-initialize (update)
+    $(this).material_select();
+  });
+
+        function removeOptions(selectbox)
+{
+    var i;
+    for(i = selectbox.options.length - 1 ; i >= 0 ; i--)
+    {
+        selectbox.remove(i);
+    }
+    alert("se borro");
+}
+//using the function:
+
 
         $('#modalopener').on('click',function (e){
           $('#moda').openModal();
@@ -646,7 +699,7 @@ $('#rc').on('submit', function (e) {
             }, 
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Cargando...",   text: "I will close in 2 seconds.",   timer: 3000,   showConfirmButton: false });
+                swal({   title: "Cargando...",   text: "",   timer: 3000,   showConfirmButton: false });
                    location.href = "?pg=veridoc_4&usr="+data.user;
                     
               }
@@ -905,7 +958,9 @@ $("#Diasantib").html(a);
                     percentComplete = parseInt(percentComplete * 100);
                     console.log(percentComplete);
                     if (percentComplete === 100) {
+                      
                     }
+
                   }
                 }, false);
                 return xhr;

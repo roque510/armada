@@ -243,7 +243,7 @@ if ($subsid == 1) {
         </div >
         <div class="col s12 m4">
           <label>Departamento</label>
-            <select name="departamento">
+            <select id="dept" name="departamento">
               <option value="" disabled selected>Elija el Departamento</option>
                <?php 
         
@@ -258,7 +258,7 @@ if ($subsid == 1) {
         </div >
         <div class="col s12 m4">
           <label>Municipio</label>
-            <select name="municipio">
+            <select id="muni" name="municipio">
               <option value="" disabled selected>Elija El Municipio</option>
               <?php 
         

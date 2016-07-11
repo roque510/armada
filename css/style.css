@@ -11,7 +11,9 @@
 }
 
 .loadingModal{
-  width:400px !important;
+  width:500px !important;
+  height:500px !important;
+  overflow: hidden;
   background: transparent !important;
   background-size: cover;
 }

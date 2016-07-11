@@ -20,6 +20,30 @@ require_once 'config.php';
  <br>
   <div class="row container">
     <form id="leform" class="col s12" method="post" action="clientf.php" enctype="multipart/form-data">
+
+      <div class="input-field col s12 m6">
+          <i class="material-icons prefix">fingerprint</i>
+          <input id="icon_prefix" name="id" type="text" class="validate">
+          <label for="icon_prefix">Numero de Identificacion</label>
+        </div>
+      <div class="input-field col s12 m6">
+    <select name="tipo_id">
+      <option value="" disabled selected>Elija una opcion</option>
+      <?php 
+        
+        $datas = $database->select("identificaciones_tipos", ["identificacion_tipo_descripcion","identificacion_tipo_id"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["identificacion_tipo_id"].'">'.$data["identificacion_tipo_descripcion"].'</option>';
+          }
+       ?>
+      
+
+    </select>
+    <label>Tipo de Identificacion</label>
+  </div>
+
       <div class="row">
         <div class="input-field col s12 m6">
           <i class="material-icons prefix">account_circle</i>
@@ -43,19 +67,19 @@ require_once 'config.php';
         </div>
         
       </div>
-      <div class="row">
+      <!-- div class="row">
              <div class="col s12 m4">
               <label>Tipo Telefono</label>
                 <select name="tipo_telefono">
                   <option value="" disabled selected>Elija Tipo Telefono</option>
                   <?php 
         
-        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+       /* $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
          foreach($datas as $data)
           {   
           //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
             echo '<option value="'.$data["telefono_tipo_id"].'" >'.$data["telefono_descripcion"].'</option>';
-          }
+          }*/
        ?>
                 </select>
             </div >
@@ -68,7 +92,7 @@ require_once 'config.php';
               <input id="icon_prefix" name="extension" type="text" class="validate" >
               <label for="icon_prefix">Extension</label>
             </div>
-        </div> 
+        </div --> 
       
       <!-- div class="input-field col s12 m6">
           <i class="material-icons prefix">cake</i>
@@ -96,28 +120,7 @@ require_once 'config.php';
       <div class="determinate" style="width: 100%"></div>
   </div>
   
-      <div class="input-field col s12 m6">
-          <i class="material-icons prefix">fingerprint</i>
-          <input id="icon_prefix" name="id" type="text" class="validate">
-          <label for="icon_prefix">Numero de Identificacion</label>
-        </div>
-      <div class="input-field col s12 m6">
-    <select name="tipo_id">
-      <option value="" disabled selected>Elija una opcion</option>
-      <?php 
-        
-        $datas = $database->select("identificaciones_tipos", ["identificacion_tipo_descripcion","identificacion_tipo_id"]);
-         foreach($datas as $data)
-          {   
-          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
-            echo '<option value="'.$data["identificacion_tipo_id"].'">'.$data["identificacion_tipo_descripcion"].'</option>';
-          }
-       ?>
       
-
-    </select>
-    <label>Tipo de Identificacion</label>
-  </div>
   
 
  <!-- div class="input-field col s12 m6">
@@ -213,9 +216,6 @@ require_once 'config.php';
   </div -->
 
 
-<div class="progress" >
-      <div class="determinate" style="width: 100%"></div>
-  </div>
  
 
   <div class="row">
@@ -297,6 +297,8 @@ require_once 'config.php';
   
 
   </div>
+
+  <input type="hidden" name="usucre" value="<?php echo $_SESSION['usr']; ?>">
     
   <div class="row">
     <div class="col m12">
@@ -312,6 +314,6 @@ require_once 'config.php';
 
   </div>  
 <script>
-$("#leform").validate();
+
 </script>
 

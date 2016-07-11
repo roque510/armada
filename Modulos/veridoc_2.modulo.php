@@ -181,7 +181,7 @@ if ($subsid == 1) {
       </div>
 
       <div class="row">
-        <div class="col s12 m3" style="margin-top:-7px;">
+        <div class="col s12 m6" style="margin-top:-7px;">
           <label>Tipo de Moneda</label>
             <select name="tipo_moneda">
               <option value="" disabled selected>Elija Moneda</option>
@@ -196,9 +196,9 @@ if ($subsid == 1) {
        ?>
             </select>
         </div >
-        <div class="input-field col s12 m4">
+        <!--div class="input-field col s12 m4">
         <i class="material-icons prefix">monetization_on</i>
-            <input id="bruto" name="bruto" type="number" class="validate" value='<?php echo $empleo[0]['empleo_ingreso_bruto']; ?>'>
+            <input id="bruto" name="bruto" type="number" class="validate" value='<?php /* echo $empleo[0]['empleo_ingreso_bruto']; ?>'>
             <label for="icon_prefix">Ingreso Bruto</label>
         </div>
         <div class="input-field col s12 m4">
@@ -211,19 +211,16 @@ if ($subsid == 1) {
 
       <div class="row">
         <div class="input-field col s12 m5">
-            <input id="impuesto" name="impuesto" type="number" class="validate" value='<?php echo $empleo[0]['empleo_imp_deduciones']; ?>'>
+            <input id="impuesto" name="impuesto" type="number" class="validate" value='<?php echo $empleo[0]['empleo_imp_deduciones']; */ ?>'>
             <label for="icon_prefix">Impuestos y Deducciones</label>
-        </div>
-        <div class="input-field right col s12 m3">
+        </div -->
+        <div class="input-field right col s12 m6">
+        <i class="material-icons prefix">attach_money</i>
         <label for="icon_prefix" class="right">Ingreso Neto</label>
             <input id="ingreso_neto" name="ingreso_neto" type="number" style="color: grey;" class="validate" value='<?php echo intval($empleo[0]['empleo_ingreso_neto']); ?>'>
             
         </div>
-        <div class="input-field right col s12 m3">
-            <i class="material-icons prefix">attach_money</i>
-            <input id="ingreso_declarado" name="ingreso_declarado"  type="number" class="validate" value='<?php echo intval($empleo[0]['empleo_ingreso_declarado']); ?>'>
-            <label for="icon_prefix">Ingreso Declarado</label>
-        </div>        
+               
       </div>
 
 <div class="progress" >
@@ -275,7 +272,7 @@ if ($subsid == 1) {
         </div >
         <div class="col s12 m4">
           <label>Tipo de Dirección</label>
-            <select name="dep">
+            <select id="dept" name="dep">
               <option value="" disabled selected>Elija el Departamento</option>
               
               <?php 
@@ -292,7 +289,7 @@ if ($subsid == 1) {
         </div >
         <div class="col s12 m4">
           <label>Municipio</label>
-            <select name="mun">
+            <select id="muni" name="mun">
               <option value="" disabled selected>Elija El Municipio</option>
               <?php 
         

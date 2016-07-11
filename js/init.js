@@ -5,6 +5,8 @@
     $('.parallax').parallax();
     $(".dropdown-button").dropdown();
     $('.modal-trigger').leanModal();
+    $('select').material_select();
+  
 
 
   }); // end of document ready

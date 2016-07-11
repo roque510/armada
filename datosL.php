@@ -42,14 +42,27 @@ $database = new medoo([
 
 $Error = 0;
      
+$mensaje = "La solicitud a sido DENEGADA por el siguiente motivo: ";
+
 if ($edad[0][0] < 18) {
    	$Error = 1;
+    $mensaje = $mensaje."'EDAD INSUFICIENTE'";
    }
 if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
    	$Error = 2;
+    if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'INGRESO INSUFICIENTE'";
+
    }
 if ($edadEmpleo[0][0] < 3) {
    	$Error = 3;
+    if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'ANTIGUEDAD LABORAL INSUFICIENTE'";
+
    }
  if ($database->has("blacklist_identidad", [
   "AND" => [
@@ -59,15 +72,20 @@ if ($edadEmpleo[0][0] < 3) {
 ]))
 {
   $Error = 4;
+  if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'Lista Negra de cedulas'";
   
 }
 else
 {
   
   
-}    
+} 
 
-$mensaje = "";
+$mensaje = $mensaje.".";   
+
 $resp = 'error';
 $status = 3;
 $txt = "";
@@ -79,20 +97,8 @@ if (isset($_POST['textarea1'])) {
 
 
 	switch ($Error) {
-		case 1:{
-			$mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'EDAD INSUFICIENTE'. ";
-			break;}
-		case 2:{
-			$mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'INGRESO INSUFICIENTE'. ";
-			break;}
-		case 3:{
-      $mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'ANTIGUEDAD LABORAL INSUFICIENTE'. ";
-      break;}
-    case 4:{
-      $mensaje = "La solicitud ah sido DENEGADA por el siguiente motivo: 'Lista Negra de cedulas'. ";
-      break;}    	
-		default:{
-			$mensaje = "La solicitud en verificacion ah terminado Exitosamente sin ningun problema.";
+		case 0:{
+			$mensaje = "La solicitud en verificacion a terminado Exitosamente sin ningun problema.";
 			$resp = 'success';
 			$status = 2;
 			break;}

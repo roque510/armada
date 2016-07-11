@@ -2,7 +2,7 @@
 require_once ('medoo.php');
       require_once('funciones.php');
 require_once('config.php');
-session_start();
+
 
 $usuario = "";
 $entidad = "";

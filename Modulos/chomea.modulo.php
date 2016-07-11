@@ -19,7 +19,7 @@
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="?pg=home">Inicio</a></li>
-        <li><a href="?pg=cliente2">Cliente Nuevo</a></li>        
+        <li><a href="?pg=cliente2">Nueva Solicitud</a></li>        
         <li><a href="?pg=estado">Estado de Solicitudes</a></li>
 
         <li> <a class="dropdown-button" href="#!" data-activates="dropdown1"> Configuraciones <i class="material-icons right">arrow_drop_down</i> </a> </li>
@@ -29,7 +29,7 @@
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="?pg=home">Inicio</a></li>
-        <li><a href="?pg=cliente2">Cliente Nuevo</a></li>
+        <li><a href="?pg=cliente2">Nueva Solicitud</a></li>
             
         <li><a href="?pg=estado">Estado de Solicitudes</a></li>
 

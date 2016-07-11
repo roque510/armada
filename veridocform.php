@@ -28,6 +28,24 @@ $canal_venta = ""; //done
 $tipo_cliente = ""; //done
 $nacionalidad = ""; //done
 
+$usucre = "";
+        $tipo_telefono = ""; //done
+        $telefono = ""; //done
+        $extension = ""; //done
+
+        if (isset($_POST['tipo_telefono'])) {
+          $tipo_telefono = $_POST['tipo_telefono']; //done
+        } //done
+        if (isset($_POST['usucre'])) {
+          $usucre = $_POST['usucre']; //done
+        } //done
+        if (isset($_POST['telefono'])) {
+          $telefono = $_POST['telefono']; //done
+        } //done
+        if (isset($_POST['extension'])) {
+          $extension = $_POST['extension']; //done
+        } //done
+
 $usr = $_POST['usr']; //done
 $pnombre = $_POST['pnombre']; //done
 $snombre = $_POST['snombre']; //done
@@ -86,6 +104,16 @@ $database->update("solicitudes", [
 ], [
 	"entidad_id" => $usr
 ]);
+
+$telID = $database->get("entidades_telefonos",["telefono_id"],["entidad_id" => $usr ]);
+
+$database->update("telefonos", [
+  "telefono_tipo_id" => $tipo_telefono,
+  "telefono_numero" => $telefono,
+  "telefono_extesnion" => $extension,
+  "estatus_id" => '7'
+  
+],["telefono_id" => $telID ]);
 
 
 	$arr = array ('response'=>'correcto','user'=> $usr, 'comment'=> $fechanac);

@@ -61,6 +61,8 @@ if ($subsid == 1) {
         $cliente = $database->select("clientes", "*",["entidad_id" => $num]);
         $solicitud = $database->select("solicitudes", "*",["entidad_id" => $num]);
         $id = $database->select("identificaciones", "*",["entidad_id" => $num]);
+         $tid = $database->select("entidades_telefonos", "*",["entidad_id" => $num]);
+        $telefonos  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id']]);
 
  
  //
@@ -134,9 +136,37 @@ else
           <a id="listanegra" class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons">add</i></a>
           <label>Agregar a lista negra</label>
         </div>
+
+        
         
         
       </div>
+      <div class="row">
+             <div class="col s12 m4">
+              <label>Tipo Telefono</label>
+                <select name="tipo_telefono">
+                  <option value="" disabled selected>Elija Tipo Telefono</option>
+                  <?php 
+        
+        $datas = $database->select("telefonos_tipos", ["telefono_tipo_id","telefono_descripcion"]);
+         foreach($datas as $data)
+          {   
+          //echo '<script> alert("'.$data["pais_id"].'"); </script>';          
+            echo '<option value="'.$data["telefono_tipo_id"].'" '; if($data["telefono_tipo_id"] == $telefonos[0]['telefono_tipo_id']) { echo "selected";} echo ' >'.$data["telefono_descripcion"].'</option>';
+          }
+       ?>
+                </select>
+            </div >
+            <div class="input-field col s12 m5">
+              <i class="material-icons prefix">phone</i>
+              <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
+              <label class="active" for="icon_prefix">Telefono</label>
+            </div>
+            <div class="input-field col s12 m3">
+              <input id="icon_prefix" name="extension" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_extesnion'] ?>">
+              <label class="active" for="icon_prefix">Extension</label>
+            </div>
+        </div> 
 <br>
 <div class="progress">
       <div class="determinate" style="width: 100%"></div>

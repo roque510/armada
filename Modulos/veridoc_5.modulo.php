@@ -50,6 +50,7 @@ $vendedor = $database->get("usuarios","*",["usuario_alias" => $vendedorAlias]);
 $ciaID = $database->get("usuarios_cias","*",["usuario_id" => $vendedor["usuario_id"] ]);
 $cia = $database->get("cias","*",["cia_id" => $ciaID]);
 $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
+$entidad = $database->select("entidades", "*",["entidad_id" => $usr]);
 
 $tid = $database->select("entidades_telefonos", "*",["entidad_id" => $usr]);
 $telefonos  = $database->select("telefonos", "*",["telefono_id" => $tid[0]['telefono_id']]);
@@ -159,7 +160,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
     <input type="hidden" id="telref2" name="telref2" value="noContestado">
 
   </form>
-  <button id="modalopener" data-target="modal1" class="btn modal-trigger">Modal</button>
+  <button id="modalopener" data-target="modal1" class="btn modal-trigger">Evaluar políticas </button>
 
     <!-- Modal Trigger -->
   
@@ -171,7 +172,11 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
       <h4>Verificacion de Informacion.</h4>
       <p>Telefonos del cliente.</p>
       <div class="row">
-             
+             <div class="input-field col s12 m12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidad[0]['entidad_primer_nombre'].' '.$entidad[0]['entidad_segundo_nombre'].' '.$entidad[0]['entidad_primer_apellido'].' '.$entidad[0]['entidad_segund_apellido']; ?>'>
+              <label class="active" for="icon_prefix">Nombre</label>
+          </div>
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
               <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
@@ -215,6 +220,11 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
         </div>
           <p>Telefonos del Trabajo.</p>
     <div class="row">
+    <div class="input-field col s12 m12">
+              <i class="material-icons prefix">account_circle</i>
+              <input id="icon_prefix" name="cia" type="text" class="validate" value='<?php echo $empleo[0]['empleo_nombre']; ?>'>
+              <label class="active" for="icon_prefix">Nombre Empresa</label>
+          </div>
              
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
@@ -234,7 +244,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
         <div class="row">
              <div class="input-field col s12 m12">
               <i class="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_pnombre'].$entidadA[0]['referencia_snombre'].$entidadA[0]['referencia_papellido'].$entidadA[0]['referencia_sapellido']; ?>'>
+              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_pnombre'].' '.$entidadA[0]['referencia_snombre'].' '.$entidadA[0]['referencia_papellido'].' '.$entidadA[0]['referencia_sapellido']; ?>'>
               <label class="active" for="icon_prefix">Nombre</label>
           </div>
             <div class="input-field col s12 m3">
@@ -259,7 +269,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
         <div class="row">
              <div class="input-field col s12 m12">
               <i class="material-icons prefix">account_circle</i>
-              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_pnombre'].$entidadA[1]['referencia_snombre'].$entidadA[1]['referencia_papellido'].$entidadA[1]['referencia_sapellido']; ?>'>
+              <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_pnombre'].' '.$entidadA[1]['referencia_snombre'].' '.$entidadA[1]['referencia_papellido'].' '.$entidadA[1]['referencia_sapellido']; ?>'>
               <label class="active" for="icon_prefix">Nombre</label>
           </div>
             <div class="input-field col s12 m3">

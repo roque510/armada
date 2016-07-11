@@ -102,7 +102,7 @@ $direcciones  = $database->select("direcciones", "*",["direccion_id" => $propied
         </div >
         <div class="col s12 m4">
           <label>Tipo de Dirección</label>
-            <select name="dpto">
+            <select id="dept" name="dpto" >
               <option value="" disabled selected>Elija el Departamento</option>
                <?php 
         
@@ -117,7 +117,7 @@ $direcciones  = $database->select("direcciones", "*",["direccion_id" => $propied
         </div >
         <div class="col s12 m4">
           <label>Municipio</label>
-            <select name="mun">
+            <select id="muni" name="mun">
               <option value="" disabled selected>Elija El Municipio</option>
               <?php 
         
