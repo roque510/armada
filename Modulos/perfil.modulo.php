@@ -315,7 +315,7 @@ switch ($estatus["estatus_desripcion"]) {
           <input id="text" type="text" class="validate">
           <label for="text">RTN</label>
     </div-->
-   <div class="input-field col s12">
+   <div class="input-field col s12" >
           <input disabled  id="text" type="text" class="validate">
           <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</b></p>' ?>
     </div>
@@ -334,10 +334,11 @@ switch ($estatus["estatus_desripcion"]) {
 <div class="row container">
 	<h3>Documentos</h3>
 </div>
-<div class="row container">
-	<div class="card  col m5">
+<div class="row">
+	<div class="card  col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
     <?php 
+    $pdf = false;
     	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
         if (file_exists(''.$path.$_GET['usr'].'/Solicitud_fisica.png')) 
         {
@@ -351,7 +352,15 @@ switch ($estatus["estatus_desripcion"]) {
         {
     		$image = $path.$_GET['usr'].'/Solicitud_fisica.jpeg';
     	}
-  echo '<img class="activator" src="'.$image.'">';
+      if (file_exists(''.$path.$_GET['usr'].'/Solicitud_fisica.pdf')) 
+        {
+        $image = $path.$_GET['usr'].'/Solicitud_fisica.pdf';
+        $pdf = true;
+      }
+      if(!$pdf)
+        echo '<img class="activator" " src="'.$image.'">';
+      else
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
     ?>
 
     
@@ -360,6 +369,9 @@ switch ($estatus["estatus_desripcion"]) {
       <span class="card-title activator grey-text text-darken-4">Solicitud fisica<i class="material-icons right">collections</i></span>
       
     </div>
+    <?php if ($datas['subestatus_id'] != 1) { echo '
+      
+    
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Solicitud fisica<i class="material-icons right">close</i></span>
       <form id="wot" action="imgForm.php" method="post" enctype="multipart/form-data">
@@ -374,24 +386,24 @@ switch ($estatus["estatus_desripcion"]) {
       </div>
     </div>
     
-    <?php 
-echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
+'; echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';  echo '
 
-?>
+
 <input type="hidden" name="tipo" value="Solicitud_fisica">
-    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+    <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar Imagen</button>
 </form>
 
 
 
     
     
-    </div>
+    </div>'; } ?>
   </div>
 
-		<div class="card push-m2 col m5">
+		<div class="card  push-m2 col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
       <?php 
+      $pdf = false;
     	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
         if (file_exists(''.$path.$_GET['usr'].'/Documentacion_Laboral.png')) 
         {
@@ -405,13 +417,21 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
         {
     		$image = $path.$_GET['usr'].'/Documentacion_Laboral.jpeg';
     	}
-
-  echo '<img class="activator" src="'.$image.'">';
+      if (file_exists(''.$path.$_GET['usr'].'/Documentacion_Laboral.pdf')) 
+        {
+        $image = $path.$_GET['usr'].'/Documentacion_Laboral.pdf';
+        $pdf = true;
+      }
+      if(!$pdf)
+        echo '<img class="activator" " src="'.$image.'">';
+      else
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
     ?>
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Documentacion Laboral<i class="material-icons right">collections</i></span>      
     </div>
+    <?php if ($datas['subestatus_id'] != 1) { echo '
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Documentacion Laboral<i class="material-icons right">close</i></span>
       <form id="dl" action="imgForm.php" method="post" enctype="multipart/form-data">
@@ -426,22 +446,23 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       </div>
     </div>
     
-    <?php 
+    ';
 echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
 
-?>
+echo '
 <input type="hidden" name="tipo" value="Documentacion_Laboral">
-    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+    <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar Imagen</button>
 </form>
     </div>
-  </div>
+  </div> '; }?>
 
 </div>
 
-<div class="row container">
-	<div class="card  col m5">
+<div class="row">
+	<div class="card   col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
     <?php 
+    $pdf = false;
     	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
         if (file_exists(''.$path.$_GET['usr'].'/Documentacion_Propia.png')) 
         {
@@ -455,7 +476,15 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
         {
     		$image = $path.$_GET['usr'].'/Documentacion_Propia.jpeg';
     	}
-  echo '<img class="activator" src="'.$image.'">';
+  if (file_exists(''.$path.$_GET['usr'].'/Documentacion_Propia.pdf')) 
+        {
+        $image = $path.$_GET['usr'].'/Documentacion_Propia.pdf';
+        $pdf = true;
+      }
+      if(!$pdf)
+        echo '<img class="activator" " src="'.$image.'">';
+      else
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
     ?>
 
     
@@ -463,6 +492,7 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Documentacion Propia<i class="material-icons right">collections</i></span>      
     </div>
+    <?php if ($datas['subestatus_id'] != 1) { echo '
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Documentacion Propia<i class="material-icons right">close</i></span>
       <form id="dp" action="imgForm.php" method="post" enctype="multipart/form-data">
@@ -475,21 +505,22 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
       </div>
-    </div>
+    </div>';
     
-    <?php 
+    
 echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
 
-?>
+echo '
 <input type="hidden" name="tipo" value="Documentacion_Propia">
-    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+    <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar Imagen</button>
 </form>
-    </div>
+    </div>'; }?>
   </div>
 
-		<div class="card push-m2  col m5">
+		<div class="card push-m2 col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
       <?php 
+      $pdf = false;
     	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
         if (file_exists(''.$path.$_GET['usr'].'/Recibo_Comprobante.png')) 
         {
@@ -501,14 +532,24 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
     	}
     	if (file_exists(''.$path.$_GET['usr'].'/Recibo_Comprobante.jpeg')) 
         {
-    		$image = $path.$_GET['usr'].'/Recibo_Comprobante.jpeg';
-    	}
-  echo '<img class="activator" " src="'.$image.'">';
+        $image = $path.$_GET['usr'].'/Recibo_Comprobante.jpeg';
+      }
+      if (file_exists(''.$path.$_GET['usr'].'/Recibo_Comprobante.pdf')) 
+        {
+        $image = $path.$_GET['usr'].'/Recibo_Comprobante.pdf';
+        $pdf = true;
+      }
+      if(!$pdf)
+        echo '<img class="activator" " src="'.$image.'">';
+      else
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
+
     ?>
     </div>
     <div class="card-content">
       <span class="card-title activator grey-text text-darken-4">Recibo Comprobante<i class="material-icons right">collections</i></span>      
     </div>
+    <?php if ($datas['subestatus_id'] != 1) { echo '
     <div class="card-reveal">
       <span class="card-title grey-text text-darken-4">Recibo Comprobante<i class="material-icons right">close</i></span>
       <form id="rc" action="imgForm.php" method="post" enctype="multipart/form-data">
@@ -521,19 +562,21 @@ echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
       </div>
-    </div>
+    </div>';
     
-    <?php 
+    
 echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
 
-?>
+echo '
 <input type="hidden" name="tipo" value="Recibo_Comprobante">
-    <input class="btn btn-large waves-effect waves-light" type="submit" value="Salvar Image" name="submit">
+    <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar Imagen</button>
 </form>
-    </div>
+    </div> '; }?>
   </div>
 
   
 
 </div>
-</div bgd> 
+</div bgd>
+
+

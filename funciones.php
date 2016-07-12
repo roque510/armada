@@ -35,7 +35,7 @@ $file_extension = end($tmp);
   $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
-if(isset($_POST["submit"])) {
+/*if(isset($_POST["submit"])) {
     $check = getimagesize($FILE["tmp_name"]);
     if($check !== false) {
        // echo "File is an image - " . $check["mime"] . ".";
@@ -44,8 +44,9 @@ if(isset($_POST["submit"])) {
         //echo "File is not an image.";
         $uploadOk = 0;
     }
-}
+}*/
 // Check if file already exists
+
 
 // Check file size
 if ($FILE["size"] > 1000000) {
@@ -55,7 +56,7 @@ if ($FILE["size"] > 1000000) {
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
 //echo "<script>alert('".$target_dir."');</script>";
-if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+if($imageFileType != "jpg" && $imageFileType != "pdf" && $imageFileType != "png" && $imageFileType != "jpeg") {
     //echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
     $uploadOk = 0;
 }
@@ -64,10 +65,23 @@ if ($uploadOk == 0) {
     //echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
+      if (file_exists($target_dir.$nombre.".pdf")) {
+  unlink($target_dir.$nombre.".pdf");
+}
+if (file_exists($target_dir.$nombre.".jpg")) {
+  unlink($target_dir.$nombre.".jpg");
+}
+if (file_exists($target_dir.$nombre.".png")) {
+  unlink($target_dir.$nombre.".png");
+}
+if (file_exists($target_dir.$nombre.".jpeg")) {
+  unlink($target_dir.$nombre.".jpeg");
+}
+
     if (move_uploaded_file($FILE["tmp_name"], $target_dir.$nombre.".".$file_extension)) {
-        //echo "The file ". basename( $FILE["name"]). " has been uploaded.";
+        echo "The file ". basename( $FILE["name"]). " has been uploaded.";
     } else {
-        //echo "Sorry, there was an error uploading your file.";
+        echo "Sorry, there was an error uploading your file.";
     }
 }
 }
