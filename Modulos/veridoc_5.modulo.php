@@ -11,7 +11,7 @@ if(isset($_GET['usr']))
     <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
     <li class="active teal"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
-    <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
+    <a id="devoluciones" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
     <input id="userVal" type="hidden" name="user" value="<?php echo $usr; ?>">    
@@ -154,10 +154,12 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
       </p>
     </div>
 
-    <input type="hidden" id="telspersonales" name="telspersonales" value="noContestado">
-    <input type="hidden" id="teltrabajo" name="teltrabajo" value="noContestado">
-    <input type="hidden" id="telref1" name="telref1" value="noContestado">
-    <input type="hidden" id="telref2" name="telref2" value="noContestado">
+    <input type="hidden" id="telspersonal1" name="telspersonal1" value="No Revisado">
+    <input type="hidden" id="telspersonal2" name="telspersonal2" value="No Revisado">
+    <input type="hidden" id="telspersonal3" name="telspersonal3" value="No Revisado">
+    <input type="hidden" id="teltrabajo" name="teltrabajo" value="No Revisado">
+    <input type="hidden" id="telref1" name="telref1" value="No Revisado">
+    <input type="hidden" id="telref2" name="telref2" value="No Revisado">
 
   </form>
   <button id="modalopener" data-target="modal1" class="btn modal-trigger">Evaluar políticas </button>
@@ -167,12 +169,12 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
 
   <!-- Modal Structure -->
 
-        <div id="moda" style="width:700px !important;" class="modal modal-fixed-footer">
+        <div id="moda" class="modal modal-fixed-footer">
     <div class="modal-content">
       <h4>Verificacion de Informacion.</h4>
       <p>Telefonos del cliente.</p>
       <div class="row">
-             <div class="input-field col s12 m12">
+             <div class="input-field col s12 m5">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidad[0]['entidad_primer_nombre'].' '.$entidad[0]['entidad_segundo_nombre'].' '.$entidad[0]['entidad_primer_apellido'].' '.$entidad[0]['entidad_segund_apellido']; ?>'>
               <label class="active" for="icon_prefix">Nombre</label>
@@ -182,10 +184,25 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="icon_prefix" name="extension" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_extesnion'] ?>">
               <label class="active" for="icon_prefix">Extension</label>
             </div>
+        
+    <div class="row">
+    <p class="col push-m1 m4">
+      <input type="checkbox" id="indeterminate-checkbox1" />
+      <label for="indeterminate-checkbox1">Marcar una vez revisado</label>
+    </p>
+
+    <select class="col push-m1 m6" name="verioptions1" id="verioptions1">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
             
         </div> 
          <div class="row">
@@ -195,10 +212,24 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="icon_prefix" name="telefono2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_numero'] ?>">
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m5">
               <input id="icon_prefix" name="extension2" type="text" class="validate" value="<?php echo $telefonos2[0]['telefono_extesnion'] ?>">
               <label class="active" for="icon_prefix">Extension</label>
             </div>
+             <div class="row">
+    <p class="col push-m1 m4">
+      <input type="checkbox" id="indeterminate-checkbox2" />
+      <label for="indeterminate-checkbox2">Marcar una vez revisado</label>
+    </p>
+
+    <select class="col push-m1 m6" name="verioptions2" id="verioptions2">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
            
         </div> 
          <div class="row">
@@ -209,18 +240,30 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="icon_prefix" name="telefono3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_numero'] ?>">
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m5">
               <input id="icon_prefix" name="extension3" type="text" class="validate" value="<?php echo $telefonos3[0]['telefono_extesnion'] ?>">
               <label class="active" for="icon_prefix">Extension</label>
             </div>
-            <p>
+           
+            <div class="row">
+    <p class="col push-m1 m4">
       <input type="checkbox" id="indeterminate-checkbox3" />
-      <label for="indeterminate-checkbox3">Marcar si fue contestado</label>
+      <label for="indeterminate-checkbox3">Marcar una vez revisado</label>
     </p>
+
+    <select class="col push-m1 m6" name="verioptions3" id="verioptions3">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
+
         </div>
           <p>Telefonos del Trabajo.</p>
     <div class="row">
-    <div class="input-field col s12 m12">
+    <div class="input-field col s12 m5">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="cia" type="text" class="validate" value='<?php echo $empleo[0]['empleo_nombre']; ?>'>
               <label class="active" for="icon_prefix">Nombre Empresa</label>
@@ -231,18 +274,31 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="" name="tel" type="text" class="validate" value='<?php echo $telefonosT[0]['telefono_numero']; ?>'>
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="" name="ext" type="text" class="validate" value='<?php echo $telefonosT[0]['telefono_extesnion']; ?>'>
               <label class="active" for="icon_prefix">Extension</label>
             </div>
-            <p>
+          
+        <div class="row">
+    <p class="col push-m1 m4">
       <input type="checkbox" id="indeterminate-checkbox4" />
-      <label for="indeterminate-checkbox4">Marcar si fue contestado</label>
+      <label for="indeterminate-checkbox4">Marcar una vez revisado</label>
     </p>
+
+    <select class="col push-m1 m6" name="verioptions4" id="verioptions4">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
+
+
         </div>
         <p>Referencias Personales</p>
         <div class="row">
-             <div class="input-field col s12 m12">
+             <div class="input-field col s12 m5">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_pnombre'].' '.$entidadA[0]['referencia_snombre'].' '.$entidadA[0]['referencia_papellido'].' '.$entidadA[0]['referencia_sapellido']; ?>'>
               <label class="active" for="icon_prefix">Nombre</label>
@@ -252,22 +308,32 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="icon_prefix" name="telB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_telefono']; ?>'>
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="icon_prefix" name="extB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_extension']; ?>'>
               <label class="active" for="icon_prefix">Extension</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="icon_prefix" name="hcB" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_hora_contacto']; ?>'>
               <label class="active" for="icon_prefix">Hora Contactar</label>
             </div>
-            <p>
+            <div class="row">
+    <p class="col push-m1 m4">
       <input type="checkbox" id="indeterminate-checkbox5" />
-      <label for="indeterminate-checkbox5">Marcar si fue contestado</label>
+      <label for="indeterminate-checkbox5">Marcar una vez revisado</label>
     </p>
+
+    <select class="col push-m1 m6" name="verioptions5" id="verioptions5">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
         </div>
         <br>
         <div class="row">
-             <div class="input-field col s12 m12">
+             <div class="input-field col s12 m5">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_pnombre'].' '.$entidadA[1]['referencia_snombre'].' '.$entidadA[1]['referencia_papellido'].' '.$entidadA[1]['referencia_sapellido']; ?>'>
               <label class="active" for="icon_prefix">Nombre</label>
@@ -277,18 +343,28 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               <input id="icon_prefix" name="telB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_telefono']; ?>'>
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="icon_prefix" name="extB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_extension']; ?>'>
               <label class="active" for="icon_prefix">Extension</label>
             </div>
-            <div class="input-field col s12 m3">
+            <div class="input-field col s12 m2">
               <input id="icon_prefix" name="hcB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_hora_contacto']; ?>'>
               <label class="active" for="icon_prefix">Hora Contactar</label>
             </div>
-            <p>
+            <div class="row">
+    <p class="col push-m1 m4">
       <input type="checkbox" id="indeterminate-checkbox6" />
-      <label for="indeterminate-checkbox6">Marcar si fue contestado</label>
+      <label for="indeterminate-checkbox6">Marcar una vez revisado</label>
     </p>
+
+    <select class="col push-m1 m6" name="verioptions6" id="verioptions6">
+      <option value="Positivo">Positivo</option>
+      <option value="Negativo">Negativo</option>
+      <option value="Pendiente">Pendiente</option>
+      <option value="noinfo">No Proporciono Informacion</option>
+    </select>
+          
+    </div>
         </div>
 
 
@@ -300,7 +376,9 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
 
     <!-- FOOTER DEL MODAL  -->
     <div style="height: 60px !important;" class="modal-footer">
-      <button id="mreport" class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+    
+      <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+      <a id="devoluciones" style="margin-right:10px;" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>
           <!--a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a-->
     </div>
 

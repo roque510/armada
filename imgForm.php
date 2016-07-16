@@ -18,6 +18,7 @@ require_once 'funciones.php';
       
 
      $target_dir = "clientes/".$_POST['id']."/";
+     
 upload($_FILES["fileToUpload"],$target_dir,$_POST['tipo']);
 
 ?>

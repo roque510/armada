@@ -5,6 +5,15 @@
  *
  * Made By MaterializeCSS.com
  */
+
+#modalDevolucion{
+  height: 400px;
+}
+
+#moda {
+  width: 800px;
+}
+
 .error{
   color:red;
   font-size: 12px;

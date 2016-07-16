@@ -16,7 +16,9 @@ $database = new medoo([
 $usr = $_POST['usr']; //done
 
 $database->update("verificacion_telefonos",[
-	"telspersonales" => $_POST['telspersonales'],
+	"telpersonal1" => $_POST['telspersonal1'],
+	"telpersonal2" => $_POST['telspersonal2'],
+	"telspersonales" => $_POST['telspersonal3'],
 	"teltrabajo" => $_POST['teltrabajo'],
 	"telref1" => $_POST['telref1'],
 	"telref2" => $_POST['telref2']

@@ -74,7 +74,7 @@ $database = new medoo([
           <div class="input-field col s12 m3">
           <i class="material-icons prefix" style="color:#bf360c;">supervisor_account</i>
             <label for="icon_prefix2" style="color:black;">Estado Civil</label>
-            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $estadoCIV[0]['estado_civil_descripcion']; ?>" style="border-color:#bf360c; color:gray;">
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php if (isset($estadoCIV[0]['estado_civil_descripcion'])) { echo $estadoCIV[0]['estado_civil_descripcion']; }else echo 'no Definido'; ?>" style="border-color:#bf360c; color:gray;">
           </div>
           
           <div class="input-field col s12 m6">
@@ -108,7 +108,7 @@ $database = new medoo([
           <div class="input-field col s12 m6">
           <i class="material-icons prefix" style="color:#bf360c;">short_text</i>
             <label for="icon_prefix2" style="color:black;">Frecuencia de pago</label>
-            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $fpago[0]['frecuencia_pago_descripcion']; ?> " style="border-color:#bf360c; color:gray;">
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php if (isset($fpago[0]['frecuencia_pago_descripcion'])) { echo $fpago[0]['frecuencia_pago_descripcion']; }else echo 'no Definido'; ?> " style="border-color:#bf360c; color:gray;">
           </div>
         </div>
 
@@ -123,7 +123,19 @@ $database = new medoo([
 
           <div class="input-field col s12 m6">
           <i class="material-icons prefix" style="color:#bf360c;">attach_money</i>
-            <label for="icon_prefix2" style="color:black;">Telefonos Personales</label>
+            <label for="icon_prefix2" style="color:black;">Telefonos Personales 1</label>
+            <input readonly id="ingreso_neto" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telpersonal1']; ?>" style="border-color:#bf360c; color:gray;">
+          </div>
+
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">attach_money</i>
+            <label for="icon_prefix2" style="color:black;">Telefonos Personales 2</label>
+            <input readonly id="ingreso_neto" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telpersonal2']; ?>" style="border-color:#bf360c; color:gray;">
+          </div>
+
+          <div class="input-field col s12 m6">
+          <i class="material-icons prefix" style="color:#bf360c;">attach_money</i>
+            <label for="icon_prefix2" style="color:black;">Telefonos Personales 3</label>
             <input readonly id="ingreso_neto" type="text" name="fechanac" class="validate" value="<?php echo $veri[0]['telspersonales']; ?>" style="border-color:#bf360c; color:gray;">
           </div>
           
@@ -218,15 +230,18 @@ $database = new medoo([
             <label for="textarea1">Bitacora de analista</label>
           </div>
 </div>
-    
+    <form id="dvfrm" action="dvfrm.php" method="POST" >
+    <input id="userVal" type="hidden" name="user" value="<?php echo $usr; ?>">    
+    </form>
           
     
     
 
     <div class="row container">
-      <div class="row">
+
             <a id="submitDatos"  class="waves-effect waves-light btn deep-orange darken-3 col s12 m4 right"><i class="material-icons left">verified_user</i>Finalizar Solicitud</a>
-      </div>      
+            <a id="rechazos" style="" class="waves-effect waves-light btn deep-orange darken-3"><i class="material-icons right">call_missed</i>Rechazar solicitud</a>
+            
     </div>
 
     </form>

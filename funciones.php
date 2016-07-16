@@ -1,5 +1,6 @@
 
 <?php
+// Play with the values
 /**
  * Created by PhpStorm.
  * User: Armando Roque
@@ -29,6 +30,11 @@ function redirect($url, $statusCode = 303)
 }
 
 function upload($FILE,$target_dir,$nombre){
+  set_time_limit(0);
+ini_set('upload_max_filesize', '500M');
+ini_set('post_max_size', '500M');
+ini_set('max_input_time', 4000); // Play with the values
+ini_set('max_execution_time', 4000); 
   $target_file = $target_dir . basename($FILE["name"]);
   $tmp = explode('.', $FILE["name"]);
 $file_extension = end($tmp);
@@ -49,10 +55,10 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 
 // Check file size
-if ($FILE["size"] > 1000000) {
+/*if ($FILE["size"] > 1000000000) {
     //echo "Sorry, your file is too large.";
     $uploadOk = 0;
-}
+}*/
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
 //echo "<script>alert('".$target_dir."');</script>";
@@ -78,10 +84,13 @@ if (file_exists($target_dir.$nombre.".jpeg")) {
   unlink($target_dir.$nombre.".jpeg");
 }
 
+echo ini_get('upload-max-filesize'),'<br />'
+,ini_get('post-max-size'),'<br />';
+
     if (move_uploaded_file($FILE["tmp_name"], $target_dir.$nombre.".".$file_extension)) {
-        echo "The file ". basename( $FILE["name"]). " has been uploaded.";
+        echo "<script>alert('The file ". basename( $FILE["name"]). " has been uploaded.');</script>";
     } else {
-        echo "Sorry, there was an error uploading your file.";
+        echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
     }
 }
 }

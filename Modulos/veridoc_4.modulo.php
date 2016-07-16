@@ -11,7 +11,7 @@ if(isset($_GET['usr']))
     <li class="waves-effect"><a href="?pg=veridoc_3&usr=<?php echo $usr ?>">Propiedades</a></li>
     <li class="active teal"><a href="?pg=veridoc_4&usr=<?php echo $usr ?>">Referencias Personales</a></li>
     <li class="waves-effect"><a href="?pg=veridoc_5&usr=<?php echo $usr ?>">Datos de Venta</a></li>
-    <a id="dvfrmbtn" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
+    <a id="devoluciones" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>    
   </ul>
    <form id="dvfrm" action="dvfrm.php" method="POST" >
     <input id="userVal" type="hidden" name="user" value="<?php echo $usr; ?>">    

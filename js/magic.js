@@ -7,39 +7,6 @@
 
 
 
-
-$("#leform").validate({
-        rules: {
-            pnombre:"required",
-            snombre:"required",
-            papellido:"required",
-            sapellido:"required",
-            monto:"required",
-            cuota:"required",
-            plazo:"required",
-            tipo_id:{valueNotEquals: $('#tipo_id').val('Elija una opcion')},
-            id:"required",
-            canal_venta:"required",
-            tipo_cliente:"required",
-          },
-        //For custom messages
-        messages: {
-          
-            
-        },
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-        
-     });
-
-
 var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
 
     //Zero the idle timer on mouse movement.
@@ -119,6 +86,14 @@ $('#atsoli').on('submit', function (e) {
 
         });
 
+$("#devoluciones").on('click', function (e) {
+   $('#modalDevolucion').openModal();
+});
+
+$("#rechazos").on('click', function (e) {
+   $('#modalrechazos').openModal();
+});
+
 $('#rmtsolifrm').on('submit', function (e) {
 
           e.preventDefault();
@@ -170,37 +145,54 @@ $( "#rmtsolifrm" ).submit();
 
 $('#dvfrmbtn').click(function(){
 
-swal({   title: "Atencion!",   text: "Porfavor Escriba el motivo:",   type: "input",   showCancelButton: true,   closeOnConfirm: false,   animation: "slide-from-top",   inputPlaceholder: "Escriba su razon" }
-  , function(inputValue){
-     if (inputValue === false) return false;
-     if (inputValue === "") {
-         swal.showInputError("Debes escribir algo!");
-         return false
-      }
-       $.ajax({
-            
+       $.ajax({            
             url: 'dvfrm.php',
             type: 'post', // performing a POST request
-  data : {
-    name : inputValue, // will be accessible in $_POST['data1']
-    usr: $('#userVal').val()
-  },
-  dataType: 'json',
-  beforeSend: function() {
-    //$('#response').html("<img src='img/loading.gif' />");
-    $('#modal1').openModal();
-  },                   
-  success: function(data)         
-  {
-                swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
-                   
-                   location.href = "?pg=estado";
-                    } 
-                    });
-
+            data : {
+              name : $("#respuestas").val(), // will be accessible in $_POST['data1']
+              usr: $('#userVal').val()
+            },
+            dataType: 'json',
+            beforeSend: function() {
+              $('#modal1').openModal();
+            },
+            success: function(data)
+            {
+              swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                      location.href = "?pg=estado";
+                    }
+                  });
             }
           });
-    });
+    
+
+ 
+
+});
+
+$('#rechfrmbtn').click(function(){
+
+       $.ajax({            
+            url: 'dvfrm.php',
+            type: 'post', // performing a POST request
+            data : {
+              name : $("#respuestasr").val(), // will be accessible in $_POST['data1']
+              usr: $('#userVal').val(),
+              rech: "rechazo"
+            },
+            dataType: 'json',
+            beforeSend: function() {
+              $('#modal1').openModal();
+            },
+            success: function(data)
+            {
+              swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                      location.href = "?pg=estado";
+                    }
+                  });
+            }
+          });
+    
 
  
 
@@ -463,7 +455,7 @@ $('#rc').on('submit', function (e) {
               
 
 
-              swal({   title: "Exito!",   text: "Documento ingresado exitosamente!",   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+              swal({   title: "Exito!",   text: response,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    location.reload();
                     } 
                     });
@@ -662,19 +654,29 @@ $('#rc').on('submit', function (e) {
 
         $('#mreport').on('click',function (e){
 
+          if ($("#indeterminate-checkbox1").is(':checked')) {
+            
+            $("#telspersonal1").val($('#verioptions1').val());
+
+          }
+          if ($("#indeterminate-checkbox2").is(':checked')) {
+            
+            $("#telspersonal2").val($('#verioptions2').val());
+
+          }
           if ($("#indeterminate-checkbox3").is(':checked')) {
             
-            $("#telspersonales").val("contestado");
+            $("#telspersonal3").val($('#verioptions3').val());
 
           }
           if ($("#indeterminate-checkbox4").is(':checked')) {
-            $("#teltrabajo").val("contestado");
+            $("#teltrabajo").val($('#verioptions4').val());
           }
           if ($("#indeterminate-checkbox5").is(':checked')) {
-            $("#telref1").val("contestado");
+            $("#telref1").val($('#verioptions5').val());
           }
           if ($("#indeterminate-checkbox6").is(':checked')) {
-            $("#telref2").val("contestado");
+            $("#telref2").val($('#verioptions6').val());
           }
 
 
@@ -781,7 +783,7 @@ $('#rc').on('submit', function (e) {
 
          $('#fileToUpload').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000) {
+          if (size > 1000000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -792,7 +794,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docla').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000) {
+          if (size > 1000000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -803,7 +805,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docpro').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000) {
+          if (size > 1000000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -814,7 +816,7 @@ $('#rc').on('submit', function (e) {
 
         $('#recicom').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000) {
+          if (size > 1000000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -825,7 +827,7 @@ $('#rc').on('submit', function (e) {
 
         $('#solifi').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000) {
+          if (size > 1000000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 

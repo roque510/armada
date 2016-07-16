@@ -3,16 +3,24 @@
 require_once ('medoo.php');
 require_once('funciones.php');
 require_once('config.php');
-
+$rechazo = false;
 $usr = "";
 if (isset($_POST['usr'])) {
 	$usr = $_POST['usr'];
 }
 $name = "";
 if (isset($_POST['name'])) {
-	$name = $_POST['name'];
+  $name = $_POST['name'];
 }
+
+if (isset($_POST['rech'])) {
+  $rechazo = true;
+}
+
 $status = 8;
+if ($rechazo) {
+  $status = 3;
+}
 
 $database = new medoo([
           'database_type' => 'mysql',

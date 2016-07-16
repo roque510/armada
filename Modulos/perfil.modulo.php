@@ -78,28 +78,37 @@ switch ($datas['estatus_id']) {
 	<div class="card col m4">
     <div class="card-image waves-effect waves-block waves-light" style=" background-size: cover ;">
      <?php 
-    	$image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
+    $pdf = false;
+      $image ="https://placeholdit.imgix.net/~text?txtsize=28&txt=SIN DOCUMENTO&w=300&h=300";
         if (file_exists(''.$path.$_GET['usr'].'/Identificacion.png')) 
         {
-    		$image = $path.$_GET['usr'].'/Identificacion.png';
-    	}
-    	if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpg')) 
+        $image = $path.$_GET['usr'].'/Identificacion.png';
+      }
+      if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpg')) 
         {
-    		$image = $path.$_GET['usr'].'/Identificacion.jpg';
-    	}
-    	if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpeg')) 
+        $image = $path.$_GET['usr'].'/Identificacion.jpg';
+      }
+      if (file_exists(''.$path.$_GET['usr'].'/Identificacion.jpeg')) 
         {
-    		$image = $path.$_GET['usr'].'/Identificacion.jpeg';
-    	}
-
-  echo '<img class="activator" src="'.$image.'">';
+        $image = $path.$_GET['usr'].'/Identificacion.jpeg';
+      }
+      if (file_exists(''.$path.$_GET['usr'].'/Identificacion.pdf')) 
+        {
+        $image = $path.$_GET['usr'].'/Identificacion.pdf';
+        $pdf = true;
+      }
+      if(!$pdf)
+        echo '<img class="activator" " src="'.$image.'">';
+      else
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe>
+        <a href="'.$image.'" target="_blank">click aqui para ver.</a> ';
     ?>
     </div>
     <div class="card-content">
 <br>
       <span class="card-title activator grey-text text-darken-4"><?php echo $entidad[0]["entidad_primer_nombre"].' '.$entidad[0]["entidad_segundo_nombre"].' '.$entidad[0]["entidad_primer_apellido"].' '.$entidad[0]["entidad_segund_apellido"];?><i class="material-icons right">collections</i></span><span></span><br>
       
-    </div>
+    </div> <?php if ($datas['subestatus_id'] != 1) { echo '
     <div class="card-reveal">
     <br><br>
       <span class="card-title grey-text text-darken-4">Identificacion Personal.<i class="material-icons right">close</i></span>
@@ -112,17 +121,14 @@ switch ($datas['estatus_id']) {
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text">
       </div>
-    </div>
-
-<?php 
+    </div>';
+ 
 echo '<input type="hidden" name="id" value="'.$_GET["usr"].'">';
-
-?>
-    
+echo '   
     <input type="hidden" name="tipo" value="Identificacion">
     <button class="btn btn-large waves-effect waves-light" type="submit" name="action">Salvar Imagen</button>
     </form>
-    </div>
+    </div>'; } ?>
   </div>
   <?php if(isset($_SESSION['anl']) || $_SESSION['grpid'] == 2){ ?>
 	<div class="col m8" style="margin-top: 10px;">
@@ -209,63 +215,7 @@ else
       
       
     </li>
-  <!-- li class="collection-item avatar hover">
-      <i class="material-icons circle teal">assignment</i>
-      <span class="title"><h5><b>Verificar Documentos</b></h5></span>      
-         Click aqui para verificar documentos
-      
-      
-    </li -->
 
-    <!-- li class="collection-item avatar">
-      <i class="material-icons circle <?php // echo $color ?>">insert_chart</i>
-
-<?php /*
-
-$checkeda = "";
-$checkedp = "";
-$checkedd = "";
-
-switch ($estatus["estatus_desripcion"]) {
-  case 'Pendiente':
-    $checkedp = "checked";
-    break;
-    case 'Aprobada':
-    $checkeda = "checked";
-    break;
-    case 'Denegada':
-    $checkedd = "checked";
-    break;
-  
-  default:
-    # code...
-    break;
-}
-*/
-?>
-
-      <form id="estado" action="estado.php" method="post" >
-      <input type="hidden" name="id" value="<?php //echo $cliente ?>"></input>
-    <p>
-      <input class="with-gap " <?php //echo $checkeda ?> name="radio" value="2"  type="radio" id="test1" />
-      <label for="test1">Aprobada </label>
-    </p>
-    <p>
-      <input class="with-gap" <?php //echo $checkedp ?> name="radio" value="1"  type="radio" id="test2" />
-      <label for="test2">Pendiente</label>
-    </p>
-    <p>
-      <input class="with-gap" <?php //echo $checkedd ?> name="radio" value="3"  type="radio" id="test3"  />
-      <label for="test3">Denegada</label>
-    </p>
-      
-      <button class="secondary-content btn waves-effect waves-light " type="submit" name="action">Submit
-    <i class="material-icons right ">send</i>
-  </button>
-  </form>
-      
-      
-    </li -->
 
       
     <?php }}
@@ -281,51 +231,37 @@ switch ($estatus["estatus_desripcion"]) {
 
 </div>
 <?php } ?>
-<!--div class="row container">
-	<div class="input-field col s12">
-          <input id="email" type="email" class="validate">
-          <label for="email">Email</label>
-    </div>
-    <!--div class="col s6">
-    	<label for="bd">Fecha de Nacimiento</label>
-    	<input id="bd" type="date" class="datepicker">
-    	
-    </div-->
 
 
-</div-->
+
 <?php if ($estatus["estatus_desripcion"] != "pendiente") {
-  echo '
+  echo '<div class="row container">
   <div class="col m8" style="margin-top: 10px;">
       <ul class="collection z-depth-1">
       <li class="collection-item avatar">
       <i class="material-icons circle teal">assignment</i>
-      <span class="title"><h5><b>Estado de Solicitud</b></h5></span>      
-        '.$datas["soliciutd_comentario"].'  
+      <span class="title"><h5><b>Estado de Solicitud</b></h5>'.$datas["soliciutd_comentario"].'  </span>      
+        
       
     </li>
     </ul>
+    </div>
     </div>
   ';
 } ?>
 
 
 <div class="row container">
-	<!--div class="input-field col s6">
-          <input id="text" type="text" class="validate">
-          <label for="text">RTN</label>
-    </div-->
-   <div class="input-field col s12" >
-          <input disabled  id="text" type="text" class="validate">
-          <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</b></p>' ?>
+   <div class="input-field col s12 container" >
+          <input disabled  id="text" type="text" class="validate" />
+          <label for="text">Estado de Solicitud </label><b><?php echo '<p style="color:'.$color.'; font-size:20px;"> '.strtoupper($estatus["estatus_desripcion"]).'</p>'; ?></b>
     </div>
     <form id="rmtsolifrm" action="rmtsoli.php" method="POST">
       <input type="hidden" name="solicitud_id" value="<?php echo $datas['solicitud_id']; ?>" >
     </form>
     <?php 
       if ($estatus["estatus_desripcion"] == "devuelta") {
-        echo '<a id="rmtsoli" class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>
-';
+        echo '<a id="rmtsoli" class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>';
       }
      ?>
 
@@ -333,7 +269,7 @@ switch ($estatus["estatus_desripcion"]) {
 
 <div class="row container">
 	<h3>Documentos</h3>
-</div>
+
 <div class="row">
 	<div class="card  col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
@@ -457,7 +393,6 @@ echo '
   </div> '; }?>
 
 </div>
-
 <div class="row">
 	<div class="card   col m4" style="width:400px;">
     <div class="card-image waves-effect waves-block waves-light">
@@ -576,6 +511,7 @@ echo '
 
   
 
+</div>
 </div>
 </div bgd>
 
