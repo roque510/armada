@@ -55,10 +55,10 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
 
 // Check file size
-/*if ($FILE["size"] > 1000000000) {
+if ($FILE["size"] > 2011268) {
     //echo "Sorry, your file is too large.";
     $uploadOk = 0;
-}*/
+}
 // Allow certain file formats
 $imageFileType = strtolower($imageFileType);
 //echo "<script>alert('".$target_dir."');</script>";
@@ -84,13 +84,12 @@ if (file_exists($target_dir.$nombre.".jpeg")) {
   unlink($target_dir.$nombre.".jpeg");
 }
 
-echo ini_get('upload-max-filesize'),'<br />'
-,ini_get('post-max-size'),'<br />';
+
 
     if (move_uploaded_file($FILE["tmp_name"], $target_dir.$nombre.".".$file_extension)) {
-        echo "<script>alert('The file ". basename( $FILE["name"]). " has been uploaded.');</script>";
+       // echo "<script>alert('The file ". basename( $FILE["name"]). " has been uploaded.');</script>";
     } else {
-        echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
+       // echo "<script>alert('Sorry, there was an error uploading your file.');</script>";
     }
 }
 }

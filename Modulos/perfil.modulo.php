@@ -296,7 +296,7 @@ else
       if(!$pdf)
         echo '<img class="activator" " src="'.$image.'">';
       else
-        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe><a href="'.$image.'" target="_blank">click aqui para ver.</a> ';
     ?>
 
     
@@ -361,7 +361,7 @@ else
       if(!$pdf)
         echo '<img class="activator" " src="'.$image.'">';
       else
-        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe><a href="'.$image.'" target="_blank">click aqui para ver.</a> ';
     ?>
     </div>
     <div class="card-content">
@@ -419,7 +419,7 @@ echo '
       if(!$pdf)
         echo '<img class="activator" " src="'.$image.'">';
       else
-        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe><a href="'.$image.'" target="_blank">click aqui para ver.</a> ';
     ?>
 
     
@@ -477,7 +477,7 @@ echo '
       if(!$pdf)
         echo '<img class="activator" " src="'.$image.'">';
       else
-        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe> ';
+        echo '<iframe src="'.$image.'" title="your_title" align="top" height="300" width="400" frameborder="0" scrolling="auto" target="Message"></iframe><a href="'.$image.'" target="_blank">click aqui para ver.</a> ';
 
     ?>
     </div>

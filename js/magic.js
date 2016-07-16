@@ -455,7 +455,7 @@ $('#rc').on('submit', function (e) {
               
 
 
-              swal({   title: "Exito!",   text: response,   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+              swal({   title: "Exito!",   text: '',   type: "success",   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
                    location.reload();
                     } 
                     });
@@ -783,8 +783,8 @@ $('#rc').on('submit', function (e) {
 
          $('#fileToUpload').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000000) {
-            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
+          if (size > 2011268) {
+            alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela. : "+size);
           }
           else 
             {
@@ -794,7 +794,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docla').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000000) {
+          if (size > 2011268) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -805,7 +805,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docpro').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000000) {
+          if (size > 2011268) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -816,7 +816,7 @@ $('#rc').on('submit', function (e) {
 
         $('#recicom').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000000) {
+          if (size > 2011268) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -827,7 +827,7 @@ $('#rc').on('submit', function (e) {
 
         $('#solifi').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 1000000000) {
+          if (size > 2011268) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
