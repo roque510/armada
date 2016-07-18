@@ -767,10 +767,10 @@ $('#rc').on('submit', function (e) {
             },  
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(){
-                   setTimeout(function(){
+                swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
                         location.href = "?pg=resumen_score&usr="+data.user;   
-                 }, 2000); });
+                 }, 2000);}
+                    });
                    
                     
               }
@@ -881,6 +881,10 @@ function CalDate(date1,date2) {
       a = CalDate(today,dateval);
 $("#Diasanti").html(a);
     });
+
+$("#devolucionesmod").on('click', function(e){
+  $("#modalDevolucion").openModal();
+});
 
 $("#listanegra").on('click', function(e){
   e.preventDefault();

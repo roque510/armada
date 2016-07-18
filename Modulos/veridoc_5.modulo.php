@@ -378,7 +378,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
     <div style="height: 60px !important;" class="modal-footer">
     
       <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
-      <a id="devoluciones" style="margin-right:10px;" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>
+      <a id="devolucionesmod" style="margin-right:10px;" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>
           <!--a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a-->
     </div>
 

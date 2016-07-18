@@ -1,6 +1,6 @@
 
 <nav>
-    <div class="nav-wrapper deep-orange darken-4">
+    <div class="nav-wrapper <?php if (isset($_SESSION['anl']))echo "deep-orange";else echo "yellow" ?> darken-4">
       <!--<img src="credistart.png" width="3%">-->
       <a href="?pg=home" class="brand-logo" style="margin-left:1%">Credistart</a>      
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -21,8 +21,9 @@
         <li><a href="?pg=home">Inicio</a></li>
         <li><a href="?pg=cliente2">Nueva Solicitud</a></li>        
         <li><a href="?pg=estado">Estado de Solicitudes</a></li>
-
-        <li> <a class="dropdown-button" href="#!" data-activates="dropdown1"> Configuraciones <i class="material-icons right">arrow_drop_down</i> </a> </li>
+        <?php if (isset($_SESSION['anl'])) {
+            echo '<li> <a class="dropdown-button" data-activates="dropdown1"> Configuraciones <i class="material-icons right">arrow_drop_down</i> </a> </li>';} ?>
+        
         <li><a class="button" href="#" >Central de Riesgo</a></li>
         <li><a class="button" href="cerrar.php" >Cerrar Sesion</a></li>        
 
@@ -36,7 +37,9 @@
 
         <ul class="collapsible" data-collapsible="expandable">
           <li>
-            <div style="color:#424242;" class="collapsible-header">Configuraciones<i class="material-icons">arrow_drop_down</i></div>
+          <?php if (isset($_SESSION['anl'])) {
+          echo '
+            <div style="color:#424242;" class="collapsible-header">Configuraciones<i class="material-icons">arrow_drop_down</i></div>'; } ?>
             <div style="color:black; background-color:#eeeeee;" class="collapsible-body">
                 <?php 
                   if (isset($_SESSION['anl'])) {

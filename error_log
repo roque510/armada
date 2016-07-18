@@ -112,3 +112,14 @@ Stack trace:
 #1 /home/aroque/public_html/index.php(48): require_once('/home/aroque/pu...')
 #2 {main}
   thrown in /home/aroque/public_html/medoo.php on line 150
+[05-Jul-2016 19:33:50 UTC] PHP Warning:  getimagesize(): Filename cannot be empty in /home/vimeyaso/public_html/credistart/funciones.php on line 39
+[05-Jul-2016 13:48:29 America/Tegucigalpa] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/clientf.php on line 7
+[05-Jul-2016 19:50:31 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/atsoli.php on line 5
+[05-Jul-2016 19:50:55 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/atsoli.php on line 5
+[05-Jul-2016 19:51:09 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/atsoli.php on line 5
+[05-Jul-2016 14:25:22 America/Tegucigalpa] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/clientf.php on line 7
+[05-Jul-2016 14:26:02 America/Tegucigalpa] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/clientf.php on line 7
+[05-Jul-2016 14:38:50 America/Tegucigalpa] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/clientf.php on line 7
+[05-Jul-2016 14:40:45 America/Tegucigalpa] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/clientf.php on line 7
+[06-Jul-2016 18:16:24 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/atsoli.php on line 5
+[06-Jul-2016 18:28:20 UTC] PHP Warning:  session_start(): Cannot send session cache limiter - headers already sent (output started at /home/vimeyaso/public_html/credistart/funciones.php:2) in /home/vimeyaso/public_html/credistart/atsoli.php on line 5

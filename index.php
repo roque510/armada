@@ -119,7 +119,7 @@ session_destroy();*/
   </div>
 
 
-    <div id="modal1" class="modal loadingModal z-depth-0">
+    <div id="modal1" class="modal loadingModal z-depth-0 center">
     <div class="modal-content">
             <div class="preloader-wrapper big active">
       <div class="spinner-layer spinner-blue">
