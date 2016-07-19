@@ -28,27 +28,27 @@
 <div class="row" style="width:95%">
 	<div class="input-field col s6 m8">
 	  <input disabled value="<?php echo $cia_descripcion; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);">Compañia</label>	  
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);">Compañia</label>	  
 	</div>
 	<div class="input-field col s6 m4">
 	  <input disabled value="<?php echo $cia_rtn; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);">RTN</label>
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);">RTN</label>
 	</div>
 	<div class="input-field col s6 m6">
 	  <input disabled value="<?php echo $cia_contacto; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);">Contacto</label>
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);">Contacto</label>
 	</div>
 	<div class="input-field col s6 m3">
 	  <input disabled value="<?php echo $cia_telefono; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);">Telefono</label>
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);">Telefono</label>
 	</div>
 	<div class="input-field col s12 m3">
 	  <input disabled value="<?php echo $cia_rubro; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);">Rubro</label>
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);">Rubro</label>
 	</div>
 	<div class="input-field col s12 m12">
 	  <input disabled value="<?php echo $cia_direccion; ?>" id="disabled" type="text" class="validate" style="color:rgb(191, 54, 12); border-color:orange;">
-	  <label for="disabled" style="color:rgb(221, 44, 0);"	>Dirección</label>
+	  <label for="disabled" class="active" style="color:rgb(221, 44, 0);"	>Dirección</label>
 	</div>
 </div>
 
