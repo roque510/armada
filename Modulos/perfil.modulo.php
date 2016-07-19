@@ -37,6 +37,8 @@ $entidad = $database->select("entidades", [
   "entidad_id" => $cliente
 ]);
 
+$cli = $database->select("clientes", "*",["entidad_id" => $cliente]);
+
 $datas = $database->get("solicitudes", [
   "entidad_id",
   "solicitud_id",
@@ -250,7 +252,7 @@ else
   ';
 } ?>
 
-
+<input id="userVal" type="hidden" name="user" value="<?php echo $cliente; ?>"> 
 <div class="row container">
    <div class="input-field col s12 container" >
           <input disabled  id="text" type="text" class="validate" />
@@ -263,6 +265,14 @@ else
       if ($estatus["estatus_desripcion"] == "devuelta") {
         echo '<a id="rmtsoli" class="waves-effect waves-light btn"><i class="material-icons left">repeat</i>Remitir Solicitud</a>';
       }
+      if ($datas['estatus_id'] == 3){
+        if(isset($_SESSION["anl"]))
+          echo '<a id="Apfor" class="waves-effect waves-light red btn"><i class="material-icons left">warning</i>Forzar Aprobacion</a>';
+      }
+      if ($datas['estatus_id'] == 2){
+          echo '<h5><b>Limite sugerido:</b> <i>'.$cli[0]['cliente_limite_credito'].'</i> <b>Cuota sugerida:</b> <i>'.$cli[0]['cliente_cuota'].'</i></h5>';
+      }
+      //var_dump($cli);
      ?>
 
 </div>

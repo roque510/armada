@@ -296,6 +296,29 @@ function notify() {
 }
 $( ".hover" ).on( "click", notify );
 
+$("#Apfor").click(function(){
+
+$.ajax({            
+            url: 'apfo.php',
+            type: 'post', // performing a POST request
+            data : {
+              usuario: $('#userVal').val()
+            },
+            dataType: 'json',
+            beforeSend: function() {
+              $('#modal1').openModal();
+            },
+            success: function(data)
+            {
+              swal({   title: "Exito",   text: '' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                      location.href = "?pg=estado";
+                    }
+                  });
+            }
+          });    
+
+});
+
 $('#login').on('submit', function (e) {
 
           e.preventDefault();

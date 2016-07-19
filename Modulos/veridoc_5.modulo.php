@@ -48,7 +48,12 @@ $cliente = $database->select("clientes", "*",["entidad_id" => $usr]);
 $vendedorAlias = $database->get("clientes",["cliente_usuario_creacion"],["entidad_id" => $usr]);
 $vendedor = $database->get("usuarios","*",["usuario_alias" => $vendedorAlias]);
 $ciaID = $database->get("usuarios_cias","*",["usuario_id" => $vendedor["usuario_id"] ]);
+
 $cia = $database->get("cias","*",["cia_id" => $ciaID]);
+
+$suID = $database->get("usuarios_sucursales","*",["usuario_id" => $vendedor["usuario_id"] ]);
+$su = $database->get("sucursales","*",["sucursal_id" => $suID['sucursal_id']]);
+
 $solicitud = $database->select("solicitudes", "*",["entidad_id" => $usr]);
 $entidad = $database->select("entidades", "*",["entidad_id" => $usr]);
 
@@ -77,7 +82,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
             </div>
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">store</i>
-              <input style="color: grey;" disabled id="icon_prefix" name="sucursal" type="text" class="validate" value="Sucursal La Ceiba - #2">
+              <input style="color: grey;" disabled id="icon_prefix" name="sucursal" type="text" class="validate" value="<?php echo $su["sucursal_descripcion"]; ?>">
               <label class="active" style="color: grey;" for="icon_prefix">Sucursal</label>
             </div>
             <div class="input-field col s12 m12">

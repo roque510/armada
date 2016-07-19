@@ -66,5 +66,5 @@ global $database;
 		} 
 	}else{		
 	}
-	header('Location: ..?mod=mant_seguridad');
+	header('Location: .?mod=mant_seguridad');
 	?>

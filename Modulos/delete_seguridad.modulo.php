@@ -15,5 +15,5 @@ global $database;
 	$database->delete("usuarios_cias", ["usuario_id" => $id]);
 	$database->delete("usuarios_grupos", ["usuario_id" => $id]);
 	$database->delete("usuarios", ["usuario_id" => $id]);
-echo "<script>window.location.href = '../?mod=mant_seguridad';</script>";
+echo "<script>window.location.href = '.?mod=mant_seguridad';</script>";
 ?>

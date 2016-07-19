@@ -16,6 +16,7 @@
       ], [
         "usuario_alias" => $var_usuario_alias
       ]);
+
   foreach($datas as $data)
   {
     $usr_id = $data["usuario_id"];
@@ -169,24 +170,29 @@
         //echo $count;  
         if ($count <> 0) {
             $datas = $database->query("SELECT usuarios_cias.usuario_id, usuarios_cias.cia_id, cias.cia_descripcion, cias.cia_direccion ,cias.cia_telefono, cias.cia_contacto FROM usuarios_cias INNER JOIN cias ON usuarios_cias.cia_id = cias.cia_id WHERE usuarios_cias.usuario_id = ".$usr_id.";");
+
                 echo '<div id="cias_asignadas" class="row container">
                         <ul id="ul_cias_asignadas" class="collection">';
                             foreach($datas as $data){                
                                   $direccion = (is_null($data["cia_direccion"])) ? "DIRECCION: " : $data["cia_direccion"];
                                   $telefono = (is_null($data["cia_telefono"])) ? "TELEFONO: " : $data["cia_telefono"];
                                   $contacto = (is_null($data["cia_contacto"])) ? "CONTACTO: " : $data["cia_contacto"];
-                              echo ' <li id=cia_'.$data["cia_id"].' value="test" class="collection-item avatar" style="min-height:63px">
+                              echo ' <li id="cia_'.$data["cia_id"].'" value="test" class="collection-item avatar" style="min-height:63px">
                                       <input type="hidden" name="usuario_cia_id_asignadas[]" value='.$data["cia_id"].'>
                                       <i class="material-icons circle">business</i>
                                       <span class="title">'.$data["cia_descripcion"].'</span>
                                       <p style="font-size: 11px;">'.$direccion.' | '.$telefono.' | '.$contacto.'</p>
+
                                       <a href="#modal_'.$data["cia_id"].'" ID-cia="" class="content modal-trigger" style="float:right; color:#4db6ac; margin-top:-3%; margin-left:2%;"><i class="material-icons">dashboard</i></a> 
                                       <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="content" style="float:right; color:#4db6ac; margin-top:-3%;"><i class="material-icons">delete</i></a> 
+
                                     </li>';//Cambiar el HREF para que elimine las comapñias
                               $i++;
                             }      
                 echo '  </ul>
                       </div>';            
+
+
         /*    foreach($datas as $data){                
                     echo '<option class="cias_id_values" value="'.$data["cia_id"].'">'.$data["cia_descripcion"].'</option>:' ;
                     $i++;
@@ -347,16 +353,21 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
+
         function deasignar(ev){
             alert("click");
             dropAsignado(ev);
         };
+
+
         function allowDrop(ev) {
             ev.preventDefault();
         }
+
         function drag(ev) {
             ev.dataTransfer.setData("text", ev.target.id);
         }
+
         function dropAsignado(ev) {
             ev.preventDefault();
             var data = ev.dataTransfer.getData("text");
@@ -381,7 +392,9 @@
             //alert(new_input);
             document.getElementById(new_id).getElementsByTagName("INPUT")[0].name = new_input;
         }   
+
 $(document).ready(function() {
+
     $('#error_nombres').hide();
     $('#error_apellidos').hide();
     $('#error_alias').hide();
@@ -397,20 +410,26 @@ $(document).ready(function() {
     $("#usuario_nombres").focusout(function(){
       check_nombres();
     });
+
     $("#usuario_apellidos").focusout(function(){
       check_apellidos();
     });
+
     $("#usuario_alias").focusout(function(){
       check_alias();
     });
+
     $("#usuario_password").focusout(function(){
       check_password();
     });
+
     $("#usuario_cell").focusout(function(){
       check_cell();
     });
+
     function check_nombres(){
       var nombres_length = $("#usuario_nombres").val().length;
+
       if(nombres_length < 4){
         $("#error_nombres").html("<i>* Favor ingrese un nombre valido</i>");
         $("#error_nombres").show();
@@ -418,7 +437,9 @@ $(document).ready(function() {
       }else{
         $("#error_nombres").hide();
       }
+
     }
+
       function check_apellidos(){
       var apellido_length = $("#usuario_apellidos").val().length;  
       if(apellido_length < 4){
@@ -428,9 +449,12 @@ $(document).ready(function() {
       }else{
         $("#error_apellidos").hide();
       }
+
     }
+
       function check_alias(){
       var alias_length = $("#usuario_alias").val().length;
+
       if(alias_length < 3){
         $("#error_alias").html("<i>* Favor ingrese un alias valido</i>");
         $("#error_alias").show();
@@ -438,9 +462,12 @@ $(document).ready(function() {
       }else{
         $("#error_alias").hide();
       }
+
     }
+
       function check_password(){
       var password_length = $("#usuario_password").val().length;
+
       if(password_length < 5){
         $("#error_password").html("<i>* La contraseña debe contener mas de 5 caracteres</i>");
         $("#error_password").show();
@@ -448,9 +475,12 @@ $(document).ready(function() {
       }else{
         $("#error_password").hide();
       }
+
     }
+
       function check_cell(){
       var cell_length = $("#usuario_cell").val().length;
+
       if(cell_length < 6){
         $("#error_cell").html("<i>* Favor ingrese un celular valido</i>");
         $("#error_cell").show();
@@ -458,7 +488,9 @@ $(document).ready(function() {
       }else{
         $("#error_cell").hide();
       }
+
     }
+
 // Pendiente de verificar primero que lea si el alias ya esta creado en la base de datos //
     $("#btn_submit").on('click',function(e){
       e.preventDefault();
@@ -467,11 +499,13 @@ $(document).ready(function() {
       error_alias = false;
       error_password = false;
       error_cell = false;
+
       check_nombres();
       check_apellidos();
       check_alias();
       check_password();
       check_cell();
+
       if(error_nombres==false && error_apellidos==false && error_password==false && error_alias==false && error_cell==false){
         swal({
           title: "Completado",
@@ -495,19 +529,27 @@ $(document).ready(function() {
         });
         return false;
       }
+
     });
+
     
+
     $("#btn_cancelar").click(function(){
           //alert("cancelar");   
+
         });
+
     $("#add_user_cias").on('click',function(e){
       alert("evento");
       var node = document.createElement("LI");
       node.setAttribute("class","collection-item avatar");
       node.setAttribute("style","min-height:63px");
       alert("nuevo");      
+
       var text = "<input type='hidden' name='usuario_cia_id_asignadas[]' value='CIA2'><i class='material-icons circle'>business</i><span class='title'>Empresa  #2</span><p>Empresa #2, Ubicada en la colonia X cerca de la tienda Y</p><a href='#!' class='secondary-content'><i class='material-icons'>delete</i></a>";
+
       node.innerHTML=text;
+
       document.getElementById("ul_cias_asignadas").appendChild(node);
         /*
         <li class="collection-item avatar" style="min-height:63px">
@@ -519,10 +561,16 @@ $(document).ready(function() {
         </li>
         */
     });
+
 });
+
   function delete_cia_asignada(cia){
       //alert("delete"+' '+cia);
       var li = document.getElementById( 'cia_'+cia );
       li.parentNode.removeChild( li );
     }
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
 </script>

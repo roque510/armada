@@ -244,6 +244,10 @@ session_destroy();*/
       <script type="text/javascript" src="js/jquery.validate.js"></script>
       <script type="text/javascript" src="js/messages_es.js"></script>
     <script src="dist/sweetalert2.min.js"></script>
+<script>
+ 
+
+    </script>
 
     <script src="dist/sweetalert.min.js"></script>
     <script src="js/dropzone.js"></script>
