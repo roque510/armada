@@ -1,5 +1,7 @@
 <?php
   global $database;  
+  $database1 = $database;
+  $database2 = $database;
   
   $var_usuario_alias = $_GET["usr"];
   $datas = $database->select("usuarios", [
@@ -154,20 +156,13 @@
             $datas = $database->select("cias",["cias.cia_descripcion","cias.cia_id"]);
             $i=0;
             foreach($datas as $data){                
-                echo '<option class="cias_id_values" value="'.$data["cia_id"].'">'.$data["cia_descripcion"].'</option>:' ;
+                echo '<option class="cias_id_values" value="'.$data["cia_id"].'">'.$data["cia_descripcion"].'</option>' ;
                 $i++;
               }            
           ?>
         </select>
         <label>Trabjar con Compañías</label>
       </div>
-      <!--
-      <div class="col s2" style="margin-top:23px;">
-        <a id="add_user_cias" class="btn-floating btn-small waves-effect waves-light teal">
-          <i class="material-icons">add</i>
-        </a>
-      </div>
-      -->
     </div>
 
     <?php
@@ -187,7 +182,8 @@
                                       <i class="material-icons circle">business</i>
                                       <span class="title">'.$data["cia_descripcion"].'</span>
                                       <p style="font-size: 11px;">'.$direccion.' | '.$telefono.' | '.$contacto.'</p>
-                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="secondary-content"><i class="material-icons">delete</i></a> 
+                                      <a href="#modal_'.$data["cia_id"].'" ID-cia="" class="content modal-trigger" style="float:right; color:#4db6ac; margin-top:-3%; margin-left:2%;"><i class="material-icons">dashboard</i></a> 
+                                      <a href="javascript: delete_cia_asignada(\''.$data["cia_id"].'\')" class="content" style="float:right; color:#4db6ac; margin-top:-3%;"><i class="material-icons">delete</i></a> 
                                     </li>';//Cambiar el HREF para que elimine las comapñias
                               $i++;
                             }      
@@ -218,9 +214,10 @@
           <p>Empresa #2, Ubicada en la colonia X cerca de la tienda Y</p>
           <a href="#!" class="secondary-content"><i class="material-icons">delete</i></a>
         </li>
-      </ul>
+      </<u></u>l>
     </div>     
     -->
+
   </div>
 
   <div class="row user_groups" >    
@@ -235,7 +232,7 @@
             $i=0;
             foreach($datas as $data){                
               echo '<div id="grupos_disponibles_'.$data["grupo_id"].'" name="usuario_grupo_id_'.$data["grupo_id"].'" class="row container" draggable="true" ondragstart="drag(event)" style="margin-bottom:0; margin-left:1px;"> 
-                      <div class="chip">
+                      <div class="chip" >
                         '.$data["grupo_nombre"].' ►                        
                       </div>                              
                       <input class="input_grupos_disponibles" type="hidden" name="grupo_id_disponibles[]" value="'.$data["grupo_id"].'">
@@ -283,9 +280,82 @@
     </div>    
   </div>
 </form>    
+  
+  <?php    
+    echo $usr_id.'</br>';
+      $datas = $database->query("SELECT * FROM cias")->fetchAll();                          
+        foreach($datas as $data){                                          
+            echo '
+              <form id="sucursales_asignar_cia_'.$data["cia_id"].'" action="Modulos/update_sucursal.php" method="POST">      
+                  <div id="modal_'.$data["cia_id"].'" class="modal bottom-sheet" style="max-height:70%; height:60%; ">
+                    <div class="modal-content">
+                      <h4>Sucursales para Asignar</h4>
+                        <ul class="collection">';
+                        //echo "CIA:".$data["cia_id"]."-".$data["cia_id"]."</br></br>";
+            $datas1 = $database1->query("SELECT * FROM sucursales WHERE cia_id =".$data["cia_id"])->fetchAll();
+            if ($datas1==NULL) {
+                echo'<div class="row"> No existen sucursales creadas para esta compañía! </div>';
+              }
+            foreach($datas1 as $data1){                                
+                //echo "SUCURSALES: ".$data1["sucursal_id"];
+                $datas2 = $database2->query("SELECT usuarios_sucursales.usuario_id, usuarios.usuario_nombre, 
+                                                   usuarios_sucursales.cia_id, cias.cia_descripcion, 
+                                                     usuarios_sucursales.sucursal_id, sucursales.sucursal_descripcion FROM usuarios_sucursales INNER JOIN usuarios INNER JOIN sucursales INNER JOIN cias
+                                                        ON usuarios_sucursales.usuario_id = usuarios.usuario_id AND usuarios_sucursales.sucursal_id = sucursales.sucursal_id AND usuarios_sucursales.cia_id = cias.cia_id
+                                              WHERE usuarios_sucursales.sucursal_id =".$data1["sucursal_id"])->fetchAll();
+                
+                echo '                
+                  <li class="collection-item avatar">
+                    <i class="material-icons circle">folder</i>
+                    <span class="title">Descripción</span>
+                      <div class="row">
+                          <div class="col s11">';                            
+                            if ($data1["sucursal_descripcion"]==NULL){
+                                echo 'No existen sucursales creadas para esta compañia.';                                
+                            }
+                            else
+                            {
+                              echo $data1["sucursal_descripcion"];
+                            }
+                          echo '</div>
+                            <div class="col s1">';                            
+                            if ($datas2==NULL) {
+                                echo '<input type="checkbox" name="sucursal_id[]" value="'.$data1["sucursal_id"].'" class="filled-in" id="filled-in-box_'.$data["cia_id"].'_'.$data1["sucursal_id"].'" />';  
+                            }else
+                            {
+                                echo '<input type="checkbox" name="sucursal_id[]" checked="checked" value="'.$data1["sucursal_id"].'" class="filled-in" id="filled-in-box_'.$data["cia_id"].'_'.$data1["sucursal_id"].'" />';
+                            }
+                      //echo '<input type="checkbox" name="sucursal_id[]" value="'.$data1["sucursal_id"].'" class="filled-in" id="filled-in-box_'.$data["cia_id"].'_'.$data1["sucursal_id"].'" />
+                      echo'<label for="filled-in-box_'.$data["cia_id"].'_'.$data1["sucursal_id"].'"></label>
+                            <input type="hidden" name="usuario_cia" value="'.$data["cia_id"].'"/>
+                            <input type="hidden" name="usuario_id" value="'.$usr_id.'"/>
+                          </div>
+                      </div>                                                          
+                  </li>
+                ';
+            }
+                                
+          echo '
+              </ul>
+          </div>
+          <div class="modal-footer">
+            <button id="btn_submit_'.$data["cia_id"].'" class="btn waves-effect waves-light col s12 m4 push-m2" type="submit">Aceptar
+              <i class="material-icons right">send</i>
+            </button>
+            <!--<a href="Modulos/update_sucursal.php" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>-->
+          </div>          
+        </div>
+      </form>
+    ';}
+  ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 <script>
+
+        function deasignar(ev){
+            alert("click");
+            dropAsignado(ev);
+        };
 
 
         function allowDrop(ev) {
