@@ -245,7 +245,7 @@ if ($subsid == 1) {
             </div >
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
-              <input id="icon_prefix" name="tel" type="text" class="validate" value='<?php echo $telefonos[0]['telefono_numero']; ?>'>
+              <input id="icon_prefix" name="tel" type="text" class="validate telobligatorio" value='<?php echo $telefonos[0]['telefono_numero']; ?>'>
               <label for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">

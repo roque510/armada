@@ -3,7 +3,7 @@ require_once ('../medoo.php');
 require_once('../config.php');
 global $database;
  //	$cia_id = $_POST["cia_id"];	
- 	echo 'PHP</br>';
+ 	//echo 'PHP</br>';
 
  	$sucursal_id = $_POST["sucursal_id"];
  	$usuario_cia = $_POST["usuario_cia"];
@@ -15,14 +15,14 @@ global $database;
 		$alias = $data["usuario_alias"];
 	}	
 
-	echo $alias.'</br>';
- 	echo $usuario_cia.'</br>';
- 	echo $usuario_id.'</br>';
+	//echo $alias.'</br>';
+ 	//echo $usuario_cia.'</br>';
+ 	//echo $usuario_id.'</br>';
 
  	$database->delete("usuarios_sucursales", ["AND"=>["usuario_id" => $usuario_id,"cia_id" => $usuario_cia]]);	
 
 	foreach ($_POST["sucursal_id"] as $key => $value){
- 		echo $value[0].'</br>';		
+ 		//echo $value[0].'</br>';		
 
  		$last_user_id = $database->insert("usuarios_sucursales",["usuario_id" => $usuario_id,
 								  "cia_id" => $usuario_cia, "sucursal_id" => $value[0]]);		

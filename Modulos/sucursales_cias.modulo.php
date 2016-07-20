@@ -89,7 +89,7 @@
 			</div>
 
 			<div class="input-field col s12 m2">
-				<select name="departamento_id">
+				<select id="dept" name="departamento_id">
 					<option value="" disabled selected>Elija un Departamento</option>
 					<?php
 				        $datas = $database->select("departamentos", ["depto_id","depto_nombre"]);
@@ -104,7 +104,7 @@
 			</div>	
 
 			<div class="input-field col s12 m2">
-				<select name="municipio_id">
+				<select id="muni" name="municipio_id">
 					<option value="" disabled selected>Elija un Municipio</option>
 					<?php
 				        $datas = $database->select("municipios", ["municipio_id","municipio_nombre"]);

@@ -167,7 +167,8 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
     <input type="hidden" id="telref2" name="telref2" value="No Revisado">
 
   </form>
-  <button id="modalopener" data-target="modal1" class="btn modal-trigger">Evaluar políticas </button>
+  <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+  <!--button id="modalopener" data-target="modal1" class="btn modal-trigger">Evaluar políticas </button-->
 
     <!-- Modal Trigger -->
   

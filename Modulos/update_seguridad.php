@@ -74,8 +74,8 @@ global $database;
 	if (isset($_POST["usuario_cia_id_asignadas"])){
 		//$database->delete("usuarios_cias", ["usuario_id" => $id ]);	
 		foreach ($_POST["usuario_cia_id_asignadas"] as $key => $value) {	
-				echo $value .'<br>';
-				echo 'test';	
+				//echo $value .'<br>';
+				//echo 'test';	
 				$last_user_id = $database->insert("usuarios_cias",["usuarios_cias.usuario_id" => $id,
 								  "usuarios_cias.cia_id" => $value]);
 		}

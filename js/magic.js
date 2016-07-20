@@ -197,6 +197,11 @@ $('#rechfrmbtn').click(function(){
  
 
 });
+
+$("#finmo").on('click', function(e){
+  $("#reportin").submit();
+
+});
     
 
     
@@ -216,7 +221,9 @@ $('#datosL').on('submit', function (e) {
             }, 
             success: function (data) {
                 swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
-                   
+                   if (data.response === "success") {
+                    $('#moda').openModal();
+                   }else
                    location.href = "?pg=estado";
                     } 
                     });
@@ -318,6 +325,7 @@ $.ajax({
           });    
 
 });
+
 
 $('#login').on('submit', function (e) {
 
@@ -521,8 +529,20 @@ $('#rc').on('submit', function (e) {
         $('#veridocform').on('submit', function (e) {
 
           e.preventDefault();
+          $paso = true;
 
+          if($('.telobligatorio').val() === ""){
+            $paso = false;
+            swal("Atencion!", "El telefono debe ser ingresado", "warning");
+          }
+          if ($('.telobligatorio').val().length < 8 || $('.telobligatorio').val().length > 8 ) {
+            $paso = false;
+            swal("Atencion!", "El telefono debe tener 8 digitos", "warning");
+            
+          }
+        
 
+          if ($paso) {
           $.ajax({
             type: 'post',
             url: 'veridocform.php',
@@ -548,6 +568,7 @@ $('#rc').on('submit', function (e) {
                 $('#modal1').closeModal();
             }
           });
+        }
 
         });
 
@@ -589,7 +610,20 @@ $('#rc').on('submit', function (e) {
 
           e.preventDefault();
 
+          $paso = true;
 
+          if($('.telobligatorio').val() === ""){
+            $paso = false;
+            swal("Atencion!", "El telefono debe ser ingresado", "warning");
+          }
+          if ($('.telobligatorio').val().length < 8 || $('.telobligatorio').val().length > 8 ) {
+            $paso = false;
+            swal("Atencion!", "El telefono debe tener 8 digitos", "warning");
+            
+          }
+        
+
+          if ($paso)
           $.ajax({
             type: 'post',
             url: 'veridocform2.php',
@@ -793,6 +827,38 @@ $('#rc').on('submit', function (e) {
                 swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
                         location.href = "?pg=resumen_score&usr="+data.user;   
                  }, 2000);}
+                    });
+                   
+                    
+              }
+              
+
+            }
+          });
+
+        });
+
+        $('#reportin').on('submit', function (e) {
+
+          e.preventDefault();
+
+
+          $.ajax({
+            type: 'post',
+            url: 'reporte.php',
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: new FormData(this),
+            dataType: "json",
+            beforeSend: function() {
+              $('#modal1').openModal();
+            },  
+            success: function (data) {
+              if(data.response == "correcto"){ 
+                swal({   title: "Exito",   text: "Presione ok para continuar",   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
+                        location.href = "?pg=estado&usr="+data.user;   
+                 }, 1000);}
                     });
                    
                     

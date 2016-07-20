@@ -159,7 +159,7 @@ else
             </div >
             <div class="input-field col s12 m5">
               <i class="material-icons prefix">phone</i>
-              <input id="icon_prefix" name="telefono" type="text" class="validate" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
+              <input id="icon_prefix" name="telefono" type="text" class="validate telobligatorio" value="<?php echo $telefonos[0]['telefono_numero'] ?>">
               <label class="active" for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">

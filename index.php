@@ -89,14 +89,10 @@ session_destroy();*/
       <form action="rechfrm">
       <select name="respuestasr" id="respuestasr">
         <option  value="Nivel de endeudamiento">Nivel de endeudamiento</option>
-        <option  value="Edad Insuficiente">Edad Insuficiente</option>
         <option  value="Información Falsa">Información Falsa</option>
-        <option  value="Ingresos Insuficientes">Ingresos Insuficientes</option>
         <option  value="Referencias Negativas">Referencias Negativas</option>
-        <option  value="Mala referencia externa">Mala referencia externa</option>
         <option  value="Lista Negra">Lista Negra</option>
         <option  value="Política de Teléfonos">Condicionado por prima</option>
-        <option  value="Mala referencia interna">Mala referencia interna</option>
 
       </select>
       <!--select name="respuestas" id="respuestas">
