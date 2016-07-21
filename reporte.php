@@ -25,7 +25,7 @@ $database->update("verificacion_telefonos",[
 	]);
 
 
-	$arr = array ('response'=>'correcto','user'=> $usr, 'comment'=> $usr);
+	$arr = array ('response'=>'correcto','user'=> $usr, 'comment'=> $usr.$_POST['telspersonal2']);
 	echo json_encode($arr);
 //insert en telefonos primero
 // insert en entidades_telefonos

@@ -199,6 +199,31 @@ $('#rechfrmbtn').click(function(){
 });
 
 $("#finmo").on('click', function(e){
+  if ($("#indeterminate-checkbox1").is(':checked')) {
+            
+            $("#telspersonal1").val($('#verioptions1').val());
+
+          }
+          if ($("#indeterminate-checkbox2").is(':checked')) {
+            
+            $("#telspersonal2").val($('#verioptions2').val());
+
+          }
+          if ($("#indeterminate-checkbox3").is(':checked')) {
+            
+            $("#telspersonal3").val($('#verioptions3').val());
+
+          }
+          if ($("#indeterminate-checkbox4").is(':checked')) {
+            $("#teltrabajo").val($('#verioptions4').val());
+          }
+          if ($("#indeterminate-checkbox5").is(':checked')) {
+            $("#telref1").val($('#verioptions5').val());
+          }
+          if ($("#indeterminate-checkbox6").is(':checked')) {
+            $("#telref2").val($('#verioptions6').val());
+          }
+          
   $("#reportin").submit();
 
 });
@@ -856,7 +881,8 @@ $('#rc').on('submit', function (e) {
             },  
             success: function (data) {
               if(data.response == "correcto"){ 
-                swal({   title: "Exito",   text: "Presione ok para continuar",   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
+                
+                swal({   title: "Exito",   text: data.comment,   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
                         location.href = "?pg=estado&usr="+data.user;   
                  }, 1000);}
                     });
