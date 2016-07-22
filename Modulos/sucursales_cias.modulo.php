@@ -259,25 +259,9 @@
 	$('#error_sucursal_descripcion').hide();
 
 	var error_sucursal_descripcion = false;
-	var error_sucursal_telefono1 = false;
-	var error_sucursal_direccion = false;
-	var error_sucursal_encargado = false;
-
 
 	$("#sucursal_descripcion").focusout(function(){
       check_descripcion();
-    });
-
-    $("#sucursal_telefono1").focusout(function(){
-      check_telefono1();
-    });
-
-    $("#sucursal_direccion").focusout(function(){
-      check_direccion();
-    });
-
-    $("#sucursal_encargado").focusout(function(){
-      check_encargado();
     });
 
     function check_descripcion(){
@@ -293,43 +277,6 @@
 
     }
 
-    function check_telefono1(){
-      var telefono1_length = $("#sucursal_telefono1").val().length;
-
-  	if(telefono1_length < 4){
-        $("#error_sucursal_telefono1").html("<i>* Favor ingrese un numero valido</i>");
-        $("#error_sucursal_telefono1").show();
-        error_sucursal_telefono1 = true;
-      }else{
-        $("#error_sucursal_telefono1").hide();
-      }
-    }
-
-    function check_direccion(){
-      var direccion_length = $("#sucursal_direccion").val().length;
-
-  	if(direccion_length < 4){
-        $("#error_sucursal_direccion").html("<i>* Favor ingrese un numero valido</i>");
-        $("#error_sucursal_direccion").show();
-        error_sucursal_direccion = true;
-      }else{
-        $("#error_sucursal_direccion").hide();
-      }
-
-    }
-
-    function check_encargado(){
-      var encargado_length = $("#sucursal_encargado").val().length;
-
-  	if(encargado_length < 4){
-        $("#error_sucursal_encargado").html("<i>* Favor ingrese un numero valido</i>");
-        $("#error_sucursal_encargado").show();
-        error_sucursal_encargado = true;
-      }else{
-        $("#error_sucursal_encargado").hide();
-      }
-
-    }
 
 	 function sweet_alert(sucursal,cia){
 	 	//alert(alias);
@@ -366,16 +313,11 @@
   $("#btn_submit").on('click',function(e){
       e.preventDefault();
       error_sucursal_descripcion = false;
-      error_sucursal_telefono1 = false; 
-      error_sucursal_direccion = false;
-      error_sucursal_encargado = false;
+
 
       check_descripcion();
-      check_telefono1();
-      check_direccion();
-      check_encargado();
 
-      if(error_sucursal_descripcion==false && error_sucursal_telefono1==false && error_sucursal_direccion==false && error_sucursal_encargado==false){
+      if(error_sucursal_descripcion==false){
         swal({
           title: "Completado",
           text: "Se ha registrado la Sucursal",
