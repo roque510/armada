@@ -13,7 +13,7 @@ $database = new medoo([
 
  $usr = $_POST['usuario'];
         $queryA = "SELECT concat(`entidad_primer_nombre`,' ', `entidad_segundo_nombre`,' ',`entidad_primer_apellido`,' ',`entidad_segund_apellido`) FROM `entidades` where `entidad_id` = ".$usr;
-        $queryB = "SELECT TIMESTAMPDIFF(MONTH, `empleo_antiguedad`, CURDATE()) AS age from `empleos` where `entidad_id` = ".$usr;
+        $queryB = "SELECT `empleo_year`,`empleo_month` from `empleos` where `entidad_id` = ".$usr;
 
         $did = $database->select("entidades_direcciones", "*",["entidad_id" => $usr]);
         
@@ -56,7 +56,8 @@ if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
     $mensaje = $mensaje." 'INGRESO INSUFICIENTE'";
 
    }
-if ($edadEmpleo[0][0] < 3) {
+if ($edadEmpleo[0][0] < 1)
+ if($edadEmpleo[0][1] < 3 ) {
    	$Error = 3;
     if ($Error > 0)
       $mensaje = $mensaje.",";
