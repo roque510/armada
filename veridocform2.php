@@ -12,7 +12,8 @@ $database = new medoo([
         ]);
 
 
-
+$year = $_POST['year'];
+$month = $_POST['month'];
 $usr = $_POST['usr']; //done
 $estatus_trabajo = $_POST['estatus_trabajo']; //*
 $tipo_trabajo = $_POST['tipo_trabajo']; //*
@@ -20,7 +21,7 @@ $nempresa = $_POST['nempresa']; //*
 $cargo_cliente = $_POST['cargo_cliente']; //*
 $njefe = $_POST['njefe']; //*
 $cargo_jefe = $_POST['cargo_jefe']; //*
-$fechaempleo = $_POST['fechaempleo']; //*
+$fechaempleo = ''; //*
 $tipo_contrato = $_POST['tipo_contrato'];//*
 $frecuencia_pago = $_POST['frecuencia_pago'];//*
 $tipo_moneda = $_POST['tipo_moneda'];//*
@@ -49,6 +50,8 @@ $database->update("empleos", [
   "empleo_cargo_id" => $cargo_cliente,
   "empleo_tipo_id" => $tipo_trabajo,
   "empleo_antiguedad" => $fechaempleo,
+  "empleo_year" => $year,
+  "empleo_month" => $month,
   "empleo_jefe_nombre" => $njefe,
   "empleo_jefe_cargo_id" => $cargo_jefe,
   "contrato_tipo_id" => $tipo_contrato,

@@ -15,7 +15,9 @@ $database = new medoo([
 
 $usr = $_POST['usr']; //done
 $tiporelacionA = $_POST['tiporelacionA']; //done
-$antiguedadRelA = $_POST['antiguedadRelA']; //done
+$antiguedadRelA = ''; //done
+$yearA = $_POST['yeara'];
+$monthA = $_POST['montha'];
 $pnombreA = $_POST['pnombreA']; //
 $snombreA = $_POST['snombreA']; //done
 $papellidoA = $_POST['papellidoA'];//done
@@ -28,7 +30,9 @@ $extA = $_POST['extA'];//done
 $hcA = $_POST['hcA'];//done
 
 $tiporelacionB = $_POST['tiporelacionB']; //done
-$antiguedadRelB = $_POST['antiguedadRelB']; //done
+$antiguedadRelB = ''; //done
+$yearB = $_POST['yearb'];
+$monthB = $_POST['monthb'];
 $pnombreB = $_POST['pnombreB']; //
 $snombreB = $_POST['snombreB']; //done
 $papellidoB = $_POST['papellidoB'];//done
@@ -47,6 +51,8 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
 $database->update("referencias_personales", [  
   "referencia_relacion_id" => $tiporelacionA,  
   "referencias_personales_antiguedad" => $antiguedadRelA,
+  "ref_year" => $yearA,
+  "ref_month" => $monthA,
   "estatus_id" => 1,
   "referencia_pnombre" => $pnombreA,
   "referencia_snombre" => $snombreA,
@@ -66,6 +72,8 @@ $database->update("referencias_personales", [
 $database->update("referencias_personales", [  
   "referencia_relacion_id" => $tiporelacionB,  
   "referencias_personales_antiguedad" => $antiguedadRelB,
+  "ref_year" => $yearB,
+  "ref_month" => $monthB,
   "estatus_id" => 1,
   "referencia_pnombre" => $pnombreB,
   "referencia_snombre" => $snombreB,

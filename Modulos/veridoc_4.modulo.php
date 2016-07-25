@@ -69,9 +69,25 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               </select>
           </div >
             <div class="input-field col s12 m9">
+              <!--i class="material-icons prefix">date_range</i>
+              <input id="icon_prefix2" type="date" name="antiguedadRelA" class="datepicker" value='<?php /*echo $entidadA[0]['referencias_personales_antiguedad']; */ ?>'>
+              <label for="icon_prefix2">Antiguedad de Relación</label-->
+
+              <div class="input-field col s12 m6">
               <i class="material-icons prefix">date_range</i>
-              <input id="icon_prefix2" type="date" name="antiguedadRelA" class="datepicker" value='<?php echo $entidadA[0]['referencias_personales_antiguedad']; ?>'>
-              <label for="icon_prefix2">Antiguedad de Relación</label>
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="yeara" placeholder="Años" value="<?php if($entidadA[0]['ref_year'] == 0)echo ""; else echo $entidadA[0]['ref_year']; ?>">
+              
+              <label class="active" for="icon_prefix22">Antiguedad de la propiedad -Años</label>
+            </div>
+            <div class="input-field col s12 m6">
+              
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="montha" placeholder="Meses" value="<?php if($entidadA[0]['ref_month'] == 0)echo ""; else echo $entidadA[0]['ref_month']; ?>">
+              <label class="active" for="icon_prefix22">Meses</label>
+              
+              
+            </div>
             </div>
             
       </div>
@@ -79,22 +95,22 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
           <div class="input-field col s12 m6">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="pnombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_pnombre']; ?>'>
-              <label for="icon_prefix">Primer Nombre</label>
+              <label class="active" for="icon_prefix">Primer Nombre</label>
           </div>
           <div class="input-field col s12 m6">
               <input id="icon_prefix" name="snombreA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_snombre']; ?>'>
-              <label for="icon_prefix">Segundo Nombre</label>
+              <label class="active" for="icon_prefix">Segundo Nombre</label>
           </div>
       </div>
       <div class="row">
           <div class="input-field col s12 m6">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="papellidoA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_papellido']; ?>'>
-              <label for="icon_prefix">Primer Apellido</label>
+              <label class="active" for="icon_prefix">Primer Apellido</label>
           </div>
           <div class="input-field col s12 m6">
               <input id="icon_prefix" name="sapellidoA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_sapellido']; ?>'>
-              <label for="icon_prefix">Segundo Apellido</label>
+              <label class="active" for="icon_prefix">Segundo Apellido</label>
           </div>
       </div>
       
@@ -117,15 +133,15 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
             <div class="input-field col s12 m3">
               <i class="material-icons prefix">phone</i>
               <input id="icon_prefix" name="telA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_telefono']; ?>'>
-              <label for="icon_prefix">Telefono</label>
+              <label class="active" for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="extA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_extension']; ?>'>
-              <label for="icon_prefix">Extension</label>
+              <label class="active" for="icon_prefix">Extension</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="hcA" type="text" class="validate" value='<?php echo $entidadA[0]['referencia_hora_contacto']; ?>'>
-              <label for="icon_prefix">Hora Contactar</label>
+              <label class="active" for="icon_prefix">Hora Contactar</label>
             </div>
         </div>
 <br>
@@ -151,9 +167,25 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
               </select>
           </div >
             <div class="input-field col s12 m9">
+              <!--i class="material-icons prefix">date_range</i>
+              <input id="sdfsdf" type="date" name="antiguedadRelB" class="datepicker" value='<?php /*echo $entidadA[1]['referencias_personales_antiguedad']; */?>'>
+              <label for="sdfsdf">Antiguedad de Relación</label-->
+
+              <div class="input-field col s12 m6">
               <i class="material-icons prefix">date_range</i>
-              <input id="sdfsdf" type="date" name="antiguedadRelB" class="datepicker" value='<?php echo $entidadA[1]['referencias_personales_antiguedad']; ?>'>
-              <label for="sdfsdf">Antiguedad de Relación</label>
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="yearb" placeholder="Años" value="<?php if($entidadA[1]['ref_year'] == 0)echo ""; else echo $entidadA[1]['ref_year']; ?>">
+              
+              <label class="active" for="icon_prefix22">Antiguedad de la propiedad -Años</label>
+            </div>
+            <div class="input-field col s12 m6">
+              
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="monthb" placeholder="Meses" value="<?php if($entidadA[1]['ref_month'] == 0)echo ""; else echo $entidadA[1]['ref_month']; ?>">
+              <label class="active" for="icon_prefix22">Meses</label>
+              
+              
+            </div>
             </div>
             
       </div>
@@ -161,22 +193,22 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
           <div class="input-field col s12 m6">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="pnombreB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_pnombre']; ?>'>
-              <label for="icon_prefix">Primer Nombre</label>
+              <label class="active" for="icon_prefix">Primer Nombre</label>
           </div>
           <div class="input-field col s12 m6">
               <input id="icon_prefix" name="snombreB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_snombre']; ?>'>
-              <label for="icon_prefix">Segundo Nombre</label>
+              <label class="active"for="icon_prefix">Segundo Nombre</label>
           </div>
       </div>
       <div class="row">
           <div class="input-field col s12 m6">
               <i class="material-icons prefix">account_circle</i>
               <input id="icon_prefix" name="papellidoB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_papellido']; ?>'>
-              <label for="icon_prefix">Primer Apellido</label>
+              <label class="active" for="icon_prefix">Primer Apellido</label>
           </div>
           <div class="input-field col s12 m6">
               <input id="icon_prefix" name="sapellidoB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_sapellido']; ?>'>
-              <label for="icon_prefix">Segundo Apellido</label>
+              <label class="active" for="icon_prefix">Segundo Apellido</label>
           </div>
       </div>
       
@@ -199,15 +231,15 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
             <div class="input-field col s12 m3">
               <i class="material-icons prefix">phone</i>
               <input id="icon_prefix" name="telB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_telefono']; ?>'>
-              <label for="icon_prefix">Telefono</label>
+              <label class="active" for="icon_prefix">Telefono</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="extB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_extension']; ?>'>
-              <label for="icon_prefix">Extension</label>
+              <label class="active" for="icon_prefix">Extension</label>
             </div>
             <div class="input-field col s12 m3">
               <input id="icon_prefix" name="hcB" type="text" class="validate" value='<?php echo $entidadA[1]['referencia_hora_contacto']; ?>'>
-              <label for="icon_prefix">Hora Contactar</label>
+              <label class="active" for="icon_prefix">Hora Contactar</label>
             </div>
         </div>
 <br>

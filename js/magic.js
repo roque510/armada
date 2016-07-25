@@ -882,7 +882,7 @@ $('#rc').on('submit', function (e) {
             success: function (data) {
               if(data.response == "correcto"){ 
                 
-                swal({   title: "Exito",   text: data.comment,   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
+                swal({   title: "Exito",   text: '',   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
                         location.href = "?pg=estado&usr="+data.user;   
                  }, 1000);}
                     });
@@ -898,7 +898,7 @@ $('#rc').on('submit', function (e) {
 
          $('#fileToUpload').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 2011268) {
+          if (size > 20000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela. : "+size);
           }
           else 
@@ -909,7 +909,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docla').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 2011268) {
+          if (size > 20000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -920,7 +920,7 @@ $('#rc').on('submit', function (e) {
 
         $('#docpro').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 2011268) {
+          if (size > 20000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -931,7 +931,7 @@ $('#rc').on('submit', function (e) {
 
         $('#recicom').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 2011268) {
+          if (size > 20000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 
@@ -942,7 +942,7 @@ $('#rc').on('submit', function (e) {
 
         $('#solifi').bind('change', function() {
           var size = this.files[0].size;
-          if (size > 2011268) {
+          if (size > 20000000) {
             alert("la imagen colocada como Identificacion personal es muy grande... porfavor cambiela.");
           }
           else 

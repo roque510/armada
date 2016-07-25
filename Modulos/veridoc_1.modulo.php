@@ -126,10 +126,20 @@ if ($subsid == 1) {
         <div class="row">
             <div class="input-field col s12 m6">
               <i class="material-icons prefix">date_range</i>
-              <input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php echo $direcciones[0]['direccion_antiguedad']; ?>'>
-              <label class="active" for="icon_prefix2">Antiguedad de la propiedad</label>
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="year" placeholder="Años" value="<?php if($direcciones[0]['direccion_year'] == 0)echo ""; else echo $direcciones[0]['direccion_year']; ?>">
+              
+              <label class="active" for="icon_prefix22">Antiguedad de la propiedad -Años</label>
             </div>
-            <b id="Diasanti" class="col s12 m6">-</b>
+            <div class="input-field col s12 m6">
+              
+              <!--input id="icon_prefix2" type="date" name="fechaantiguedad" class="datepicker active" value='<?php /*echo $direcciones[0]['direccion_antiguedad']; */ ?>'-->
+              <input type="number" name="month" placeholder="Meses" value="<?php if($direcciones[0]['direccion_month'] == 0)echo ""; else echo $direcciones[0]['direccion_month']; ?>">
+              <label class="active" for="icon_prefix22">Meses</label>
+              
+              
+            </div>
+            <!--b id="Diasanti" class="col s12 m6">-</b-->
             <!--div class="input-field col s12 m3">
               <i class="material-icons prefix">history</i>
               <input id="icon_prefix" name="snombre" type="text" class="validate">

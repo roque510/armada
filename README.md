@@ -60,6 +60,9 @@ ALTER TABLE  `solicitudes` ADD  `solicitud_comentario_analista` TEXT NOT NULL AF
 
 INSERT INTO `db_credistar`.`estados_civiles` (`estado_civil_id`, `estado_civil_descripcion`, `estado_civil_abreviatura`) VALUES (NULL, 'Conyugue', NULL);
 
+ALTER TABLE `direcciones` ADD `direccion_year` INT NOT NULL AFTER `direccion_antiguedad`, ADD `direccion_month` INT NOT NULL AFTER `direccion_year`;
+
+ALTER TABLE `empleos` ADD `empleo_year` INT NOT NULL AFTER `empleo_antiguedad`, ADD `empleo_month` INT NOT NULL AFTER `empleo_year`;
 
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud

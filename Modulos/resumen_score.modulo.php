@@ -23,11 +23,11 @@ $database = new medoo([
         $usr = $_GET['usr'];
 
         $queryA = "SELECT concat(`entidad_primer_nombre`,' ', `entidad_segundo_nombre`,' ',`entidad_primer_apellido`,' ',`entidad_segund_apellido`) FROM `entidades` where `entidad_id` = ".$usr;
-        $queryB = "SELECT TIMESTAMPDIFF(YEAR, `empleo_antiguedad`, CURDATE()) AS age from `empleos` where `entidad_id` = ".$usr;
+        $queryB = "SELECT `empleo_year`,`empleo_month` from `empleos` where `entidad_id` = ".$usr;
 
         $did = $database->select("entidades_direcciones", "*",["entidad_id" => $usr]);
         
-        $queryC = "SELECT TIMESTAMPDIFF(YEAR, `direccion_antiguedad`, CURDATE()) AS age from `direcciones` where `direccion_id` = ".$did[0]["direccion_id"];
+        $queryC = "SELECT `direccion_year`,`direccion_month` from `direcciones` where `direccion_id` = ".$did[0]["direccion_id"];
         
         $cliente = $database->select("clientes", "*",["entidad_id" => $usr]); 
         $empleo  = $database->select("empleos", "*",["entidad_id" => $usr]);
@@ -99,13 +99,13 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
           <div class="input-field col s12 m6">
           <i class="material-icons prefix" style="color:#bf360c;">history</i>
             <label for="icon_prefix2" style="color:black;">Antiguedad Laboral</label>
-            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $edadEmpleo[0][0]; ?> Años" style="border-color:#bf360c; color:gray;">
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $edadEmpleo[0][0]. ' Años y ' . $edadEmpleo[0][1] ; ?> Meses" style="border-color:#bf360c; color:gray;">
           </div>
           
           <div class="input-field col s12 m6">
           <i class="material-icons prefix" style="color:#bf360c;">history</i>
             <label for="icon_prefix2" style="color:black;">Antiguedad Residencia</label>
-            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $edadDIR[0][0]; ?> Años" style="border-color:#bf360c; color:gray;">
+            <input readonly id="icon_prefix2" type="text" name="fechanac" class="validate" value="<?php echo $edadDIR[0][0]. ' Años y ' . $edadDIR[0][1] ; ?> Meses" style="border-color:#bf360c; color:gray;">
           </div>
         </div>
         <div class="row">

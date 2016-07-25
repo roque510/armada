@@ -23,10 +23,13 @@ $telefono3 = ""; //done
 $extension3 = ""; //done
 
 $usr = $_POST['usr']; //done
+$year = $_POST['year'];
+$month = $_POST['month'];
+
 $tipo_direccion = $_POST['tipo_direccion']; //done
 $estado_direccion = $_POST['estado_direccion']; //done
 $tipo_propiedad = $_POST['tipo_propiedad']; //
-$fechaantiguedad = $_POST['fechaantiguedad']; //done
+$fechaantiguedad = ""; //done
 
 if (isset($_POST['tipo_telefono'])) {
   $tipo_telefono = $_POST['tipo_telefono']; //done
@@ -75,6 +78,8 @@ $database->update("direcciones", [
   "direccion_descripcion" => $direccion,
   "direccion_tipo_id" => $tipo_direccion,
   "direccion_antiguedad" => $fechaantiguedad,
+  "direccion_year" => $year,
+  "direccion_month" => $month,
   "pais_id" => $pais,
   "depto_id" => $departamento,
   "municipio_id" => $municipio,
