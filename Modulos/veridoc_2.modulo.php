@@ -230,7 +230,7 @@ if ($subsid == 1) {
             <label for="icon_prefix">Impuestos y Deducciones</label>
         </div -->
         <div class="input-field right col s12 m6">
-        <i class="material-icons prefix">attach_money</i>
+        <i class="material-icons prefix">style</i>
         <label for="icon_prefix" class="right">Ingreso Neto</label>
             <input id="ingreso_neto" name="ingreso_neto" type="number" style="color: grey;" class="validate" value='<?php echo intval($empleo[0]['empleo_ingreso_neto']); ?>'>
             

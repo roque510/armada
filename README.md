@@ -64,6 +64,9 @@ ALTER TABLE `direcciones` ADD `direccion_year` INT NOT NULL AFTER `direccion_ant
 
 ALTER TABLE `empleos` ADD `empleo_year` INT NOT NULL AFTER `empleo_antiguedad`, ADD `empleo_month` INT NOT NULL AFTER `empleo_year`;
 
+ALTER TABLE  `referencias_personales` ADD  `ref_year` INT NOT NULL AFTER  `referencias_personales_antiguedad` ,
+ADD  `ref_month` INT NOT NULL AFTER  `ref_year`
+
 Nota: a la base de datos fue agregada la tabla usuarios_solicitudes.
 	el motivo de esta es porque, una ves que cierto analista tome la solicitud
 	esta no podra ser modificada por nadie mas que el analista que la tome.

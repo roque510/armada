@@ -198,8 +198,9 @@ $('#rechfrmbtn').click(function(){
 
 });
 
-$("#finmo").on('click', function(e){
-  if ($("#indeterminate-checkbox1").is(':checked')) {
+$("#finmi").on('click', function(e){
+
+          if ($("#indeterminate-checkbox1").is(':checked')) {
             
             $("#telspersonal1").val($('#verioptions1').val());
 
@@ -223,8 +224,13 @@ $("#finmo").on('click', function(e){
           if ($("#indeterminate-checkbox6").is(':checked')) {
             $("#telref2").val($('#verioptions6').val());
           }
-          
-  $("#reportin").submit();
+
+$('#reportin').submit();
+
+});
+
+$("#finmo").on('click', function(e){
+alert("hehe");
 
 });
     
@@ -245,14 +251,20 @@ $('#datosL').on('submit', function (e) {
               $('#modal1').openModal();
             }, 
             success: function (data) {
-                swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
-                   if (data.response === "success") {
-                    $('#moda').openModal();
-                   }else
-                   location.href = "?pg=estado";
-                    } 
-                    });
+              swal({   title: "Exito",   text: 'La solicitud fue completada Exitosamente' ,   type: 'success',   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                      location.href = "?pg=estado";
+                    }
+                  });
+                
 
+            },
+            error: function(obj){
+              var out = '';
+              for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+              }
+              alert(out.replace(/(<([^>]+)>)/ig,""));
+                
             }
           });
 
@@ -832,6 +844,7 @@ $('#rc').on('submit', function (e) {
         });
 
          $('#reporte').on('submit', function (e) {
+          
 
           e.preventDefault();
 
@@ -848,16 +861,33 @@ $('#rc').on('submit', function (e) {
               $('#modal1').openModal();
             },  
             success: function (data) {
-              if(data.response == "correcto"){ 
-                swal({   title: "Mostrar REPORTE FINAL",   text: "Presione ok para continuar",   type: "info",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
-                        location.href = "?pg=resumen_score&usr="+data.user;   
-                 }, 2000);}
+              
+                swal({   title: "Solicitud",   text: data.comment ,   type: data.response,   showCancelButton: false,   confirmButtonColor: "#4db6ac",   confirmButtonText: "Continuar",   cancelButtonText: "No, regresar al inicio",   closeOnConfirm: true,   closeOnCancel: true }, function(isConfirm){   if (isConfirm) {
+                   if (data.response === "success") {
+                    $('#moda').openModal();
+                    //location.href = "?pg=resumen_score&usr="+data.user;
+                    //$('#moda').openModal();
+                   }else
+                   location.href = "?pg=estado";
+                    } 
                     });
+
+                
                    
                     
-              }
+              
               
 
+            },
+            error: function(obj){
+              var out = '';
+    for (var i in obj) {
+        out += i + ": " + obj[i] + "\n";
+    }
+
+    alert(out.replace(/(<([^>]+)>)/ig,""));
+              alert("Error al procesar, porfavor comuniquese con un administrador");
+              $('#modal1').closeModal();
             }
           });
 
@@ -870,7 +900,7 @@ $('#rc').on('submit', function (e) {
 
           $.ajax({
             type: 'post',
-            url: 'reporte.php',
+            url: 'reportef.php',
             cache: false,
             contentType: false,
             processData: false,
@@ -883,7 +913,7 @@ $('#rc').on('submit', function (e) {
               if(data.response == "correcto"){ 
                 
                 swal({   title: "Exito",   text: '',   type: "success",   showCancelButton: true,   closeOnConfirm: false,   showLoaderOnConfirm: true, }, function(input){ if(input === false){$('#modal1').closeModal();}else{setTimeout(function(){
-                        location.href = "?pg=estado&usr="+data.user;   
+                        location.href = "?pg=resumen_score&usr="+data.user;   
                  }, 1000);}
                     });
                    
@@ -891,6 +921,14 @@ $('#rc').on('submit', function (e) {
               }
               
 
+            },
+            error: function(obj){
+              var out = '';
+              for (var i in obj) {
+                out += i + ": " + obj[i] + "\n";
+              }
+              alert(out.replace(/(<([^>]+)>)/ig,""));
+                
             }
           });
 
