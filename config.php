@@ -2,9 +2,9 @@
 require_once('medoo.php');
 GLOBAL $SVR,$USR,$PW,$DB;
 
-$DB= "db_credistar";
+$DB= "vimeyaso_db_credistart";
 $SVR = "localhost";
-$PW = "";
+$PW = "golden sun";
 $USR = "root";
 
 $database = new medoo([

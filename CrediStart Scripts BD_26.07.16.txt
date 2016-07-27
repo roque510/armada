@@ -1,0 +1,21 @@
+-------------------Scripts para aplicar CrediStart-------------------
+
+CREATE TABLE `vimeyaso_db_credistart`.`config_reglas` (
+  `cia_id` BIGINT NOT NULL,
+  `config_regla_descripcion` VARCHAR(200) NOT NULL,
+  `config_regla_valor` VARCHAR(45) NULL,
+  `config_reglas_abreviatura` VARCHAR(50) NULL,
+  PRIMARY KEY (`cia_id`, `config_regla_descripcion`))
+COMMENT = 'Tabla en donde se guardaran las reglas de validaciones para poder hacer una pantalla de mantenimiento de reglas generales.';
+
+ALTER TABLE `vimeyaso_db_credistart`.`config_reglas` 
+CHANGE COLUMN `cia_id` `cia_id` BIGINT(20) NULL AFTER `config_reglas_abreviatura`,
+CHANGE COLUMN `config_regla_valor` `config_regla_valor` VARCHAR(45) NULL DEFAULT 'N/D' ,
+CHANGE COLUMN `config_reglas_abreviatura` `config_reglas_abreviatura` VARCHAR(50) NULL DEFAULT 'N/D' ,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`config_regla_descripcion`);
+
+
+INSERT INTO `vimeyaso_db_credistart`.`config_reglas` (`config_regla_descripcion`, `config_regla_valor`) VALUES ('EDAD', '21');
+INSERT INTO `vimeyaso_db_credistart`.`config_reglas` (`config_regla_descripcion`, `config_regla_valor`) VALUES ('ANTIGUEDAD LABORAL', '3');
+INSERT INTO `vimeyaso_db_credistart`.`config_reglas` (`config_regla_descripcion`, `config_regla_valor`) VALUES ('INGRESO SALARIAL', '15000');

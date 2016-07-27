@@ -16,6 +16,11 @@
             echo '<li style="background-color:#d84315;"><a style="color:white;" href="?pg=mant_cias">Compañias</a></li>';        
           }
         ?>
+          <?php 
+          if (isset($_SESSION['anl'])) {
+            echo '<li style="background-color:#d84315;"><a style="color:white;" href="?pg=reglas">Reglas</a></li>';        
+          }
+        ?>
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="?pg=home">Inicio</a></li>
@@ -51,6 +56,13 @@
                 <?php 
                   if (isset($_SESSION['anl'])) {
                     echo '<a style="margin-left:10px;" href="?pg=mant_cias">Compañias</a>';        
+                  }
+                ?>
+            </div>
+            <div style="color:black; background-color:#eeeeee;" class="collapsible-body">
+                <?php 
+                  if (isset($_SESSION['anl'])) {
+                    echo '<a style="margin-left:10px;" href="?pg=reglas">Reglas</a>';        
                   }
                 ?>
             </div>

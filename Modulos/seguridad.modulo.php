@@ -231,13 +231,11 @@ $(document).ready(function() {
     $('#error_apellidos').hide();
     $('#error_alias').hide();
     $('#error_password').hide();
-    $('#error_cell').hide();
     
     var error_nombres = false;
     var error_apellidos = false;
     var error_alias = false;
     var error_password = false;
-    var error_cell = false;
     
     $("#usuario_nombres").focusout(function(){
       check_nombres();
@@ -255,10 +253,7 @@ $(document).ready(function() {
       check_password();
     });
 
-    $("#usuario_cell").focusout(function(){
-      check_cell();
-    });
-
+    
     function check_nombres(){
       var nombres_length = $("#usuario_nombres").val().length;
 
@@ -310,19 +305,6 @@ $(document).ready(function() {
 
     }
 
-      function check_cell(){
-      var cell_length = $("#usuario_cell").val().length;
-
-      if(cell_length < 6){
-        $("#error_cell").html("<i>* Favor ingrese un celular valido</i>");
-        $("#error_cell").show();
-        error_cell = true;
-      }else{
-        $("#error_cell").hide();
-      }
-
-    }
-
 // Pendiente de verificar primero que lea si el alias ya esta creado en la base de datos //
     $("#btn_submit").on('click',function(e){
       e.preventDefault();
@@ -330,15 +312,13 @@ $(document).ready(function() {
       error_apellidos = false; 
       error_alias = false;
       error_password = false;
-      error_cell = false;
 
       check_nombres();
       check_apellidos();
       check_alias();
       check_password();
-      check_cell();
 
-      if(error_nombres==false && error_apellidos==false && error_password==false && error_alias==false && error_cell==false){
+      if(error_nombres==false && error_apellidos==false && error_password==false && error_alias==false){
         swal({
           title: "Completado",
           text: "Se ha registrado el usuario correctamente",
@@ -365,16 +345,16 @@ $(document).ready(function() {
     });
 
     $("#btn_cancelar").click(function(){
-          alert("cancelar");   
+          //alert("cancelar");   
 
         });
 
     $("#add_user_cias").on('click',function(e){
-      alert("evento");
+      //alert("evento");
       var node = document.createElement("LI");
       node.setAttribute("class","collection-item avatar");
       node.setAttribute("style","min-height:63px");
-      alert("nuevo");      
+      //alert("nuevo");      
 
       var text = "<input type='hidden' name='usuario_cia_id_asignadas[]' value='CIA2'><i class='material-icons circle'>business</i><span class='title'>Empresa  #2</span><p>Empresa #2, Ubicada en la colonia X cerca de la tienda Y</p><a href='#!' class='secondary-content'><i class='material-icons'>delete</i></a>";
 

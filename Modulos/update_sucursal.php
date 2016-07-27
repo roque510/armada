@@ -21,12 +21,15 @@ global $database;
 
  	$database->delete("usuarios_sucursales", ["AND"=>["usuario_id" => $usuario_id,"cia_id" => $usuario_cia]]);	
 
-	foreach ($_POST["sucursal_id"] as $key => $value){
- 		//echo $value[0].'</br>';		
+	foreach ($_POST["sucursal_id"] as $value){
+		$id = (int)$value;
+		//echo $id.'</br>';
+ 		//echo $value[1].'</br>';		
+ 		//var_dump($value);
 
  		$last_user_id = $database->insert("usuarios_sucursales",["usuario_id" => $usuario_id,
-								  "cia_id" => $usuario_cia, "sucursal_id" => $value[0]]);		
-	}			
- 	
+								  "cia_id" => $usuario_cia, "sucursal_id" => $id]);		
+
+	}			 	
 @header('Location:../?pg=edit_seguridad&usr='.$alias.'&usrid='.$usuario_id);
 ?>

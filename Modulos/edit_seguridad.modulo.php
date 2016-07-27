@@ -296,7 +296,7 @@
                         //echo "CIA:".$data["cia_id"]."-".$data["cia_id"]."</br></br>";
             $datas1 = $database1->query("SELECT * FROM sucursales WHERE cia_id =".$data["cia_id"])->fetchAll();
             if ($datas1==NULL) {
-                echo'<div class="row"> No existen sucursales creadas para esta compañía! </div>';
+                echo'<div class="row"> No existen sucursales creadas para esta compañía!</div>';
               }
             foreach($datas1 as $data1){                                
                 //echo "SUCURSALES: ".$data1["sucursal_id"];
@@ -340,11 +340,21 @@
           echo '
               </ul>
           </div>
-          <div class="modal-footer">
-            <button id="btn_submit_'.$data["cia_id"].'" class="btn waves-effect waves-light col s12 m4 push-m2" type="submit">Aceptar
+          <div class="modal-footer">';
+
+            $datas1 = $database1->query("SELECT * FROM sucursales WHERE cia_id =".$data["cia_id"])->fetchAll();
+            if ($datas1==NULL) {
+                //echo '<a id="btn_cancel_modal" class="btn waves-effect waves-light col s12 m4 push-m2 btn_cancel_modal" >Cancelar
+                //          <i class="material-icons right">cancel</i>
+                //    </a>';
+              }
+              else{               
+
+            echo '<button id="btn_submit_'.$data["cia_id"].'" class="btn waves-effect waves-light col s12 m4 push-m2" type="submit">Aceptar
               <i class="material-icons right">send</i>
-            </button>
-            <!--<a href="Modulos/update_sucursal.php" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>-->
+            </button>';
+            }
+            echo '<!--<a href="Modulos/update_sucursal.php" class=" modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>-->
           </div>          
         </div>
       </form>
@@ -555,4 +565,11 @@ $(document).ready(function(){
     // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
     $('.modal-trigger').leanModal();
   });
-</script>
+     
+$('.btn_cancel_modal').click(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    //alert("Debug Msg");
+    //$('.modal').closeModal();
+  });
+
+</script> 
