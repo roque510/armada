@@ -39,7 +39,8 @@
 
 			<tbody>
 				<?php
-		            $datas = $database->select("usuarios",["usuarios.usuario_id","usuarios.usuario_alias","usuarios.usuario_nombre","usuarios.usuario_apellido","usuarios.usuario_cel","usuarios.usuario_isadmin","usuarios.estatus_id"]);
+		            $datas = $database->select("usuarios",["usuarios.usuario_id","usuarios.usuario_alias","usuarios.usuario_nombre","usuarios.usuario_apellido",
+		            							"usuarios.usuario_cel","usuarios.usuario_isadmin","usuarios.estatus_id"], ["usuarios.usuario_alias[!]" => "sistemas"]);
 		            $i=0;
 		            echo '<tr>';
 		            foreach($datas as $data){                
