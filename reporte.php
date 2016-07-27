@@ -36,6 +36,17 @@ $usr = $_POST['usr']; //done
         $entidadi = $database->select("entidades", "*",["entidad_id" => $usr]);
         $estadoCIV = $database->select("estados_civiles", ["estado_civil_descripcion"],["estado_civil_id" => $entidadi[0]["estado_civil_id"]]);
         $id = $database->select("identificaciones", "*",["entidad_id" => $usr]);
+        $edadRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "EDAD"
+]);
+        $antiguedadRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "ANTIGUEDAD LABORAL"
+]);
+        $ingresoRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "INGRESO SALARIAL"
+]);
+
+
 //SCORE BAJO: if score es menor a socre de correcto
 //1 EDAD INSUFICIENTE: if edad < a 18
 //2 INGRESO INSUFICIENTE: < 3000
@@ -46,11 +57,11 @@ $Error = 0;
      
 $mensaje = "La solicitud a sido DENEGADA por el siguiente motivo: ";
 
-if ($edad[0][0] < 18) {
+if ($edad[0][0] < $edadRegla) {
    	$Error = 1;
     $mensaje = $mensaje."'EDAD INSUFICIENTE'";
    }
-if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
+if ($empleo[0]['empleo_ingreso_neto'] < $ingresoRegla) {
    	$Error = 2;
     if ($Error > 0)
       $mensaje = $mensaje.",";
@@ -58,8 +69,11 @@ if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
     $mensaje = $mensaje." 'INGRESO INSUFICIENTE'";
 
    }
-if ($edadEmpleo[0][0] < 1)
- if($edadEmpleo[0][1] < 3 ) {
+
+   $edadEvalu = 12 * $edadEmpleo[0][0];
+   $edadEvalu = $edadEvalu + $edadEmpleo[0][1];
+
+ if($edadEvalu < $antiguedadRegla ) {
    	$Error = 3;
     if ($Error > 0)
       $mensaje = $mensaje.",";
