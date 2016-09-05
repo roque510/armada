@@ -10,7 +10,7 @@
   </div>  
 </div>
 
-<form id="add_user_form" action="modulos/update_reglas.php" method="POST">  
+<form id="add_user_form" action="Modulos/update_reglas.php" method="POST">  
   <div cl-ass="row user_info">
 
     <!-- Codigos de Colores TEAL

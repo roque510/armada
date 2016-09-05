@@ -34,76 +34,7 @@ $database = new medoo([
         $id = $database->select("identificaciones", "*",["entidad_id" => $usr]);
 
 
-//SCORE BAJO: if score es menor a socre de correcto
-//1 EDAD INSUFICIENTE: if edad < a 18
-//2 INGRESO INSUFICIENTE: < 3000
-//3 ANTIGUEDAD LABORAL MINIMA: < 3 meses
-//4 LISTA NEGRA: lista de vime.
 
-$Error = 0;
-     
-$mensaje = "La solicitud a sido DENEGADA por el siguiente motivo: ";
-
-if ($edad[0][0] < 18) {
-   	$Error = 1;
-    $mensaje = $mensaje."'EDAD INSUFICIENTE'";
-   }
-if ($empleo[0]['empleo_ingreso_neto'] < 3000) {
-   	$Error = 2;
-    if ($Error > 0)
-      $mensaje = $mensaje.",";
-
-    $mensaje = $mensaje." 'INGRESO INSUFICIENTE'";
-
-   }
-if ($edadEmpleo[0][0] < 1)
- if($edadEmpleo[0][1] < 3 ) {
-   	$Error = 3;
-    if ($Error > 0)
-      $mensaje = $mensaje.",";
-
-    $mensaje = $mensaje." 'ANTIGUEDAD LABORAL INSUFICIENTE'";
-
-   }
- if ($database->has("blacklist_identidad", [
-  "AND" => [
-    
-    "blacklist_identidad" => trim($id[0]['identificacion_numero']," ")
-  ]
-]))
-{
-  $Error = 4;
-  if ($Error > 0)
-      $mensaje = $mensaje.",";
-
-    $mensaje = $mensaje." 'Lista Negra de cedulas'";
-  
-}
-else
-{
-  
-  
-} 
-
-$mensaje = $mensaje.".";   
-
-$resp = 'error';
-$status = 3;
-$txt = "";
-
-if (isset($_POST['textarea1'])) {
-  $txt = $_POST['textarea1'];
-}
-
-
-
-	switch ($Error) {
-		case 0:{
-			$mensaje = "La solicitud en verificacion a terminado Exitosamente sin ningun problema.";
-			$resp = 'success';
-			$status = 2;
-			break;}
-	}
 
 //limite sugerido linea_sugerida
 // cuota sugerida cuota_sugerida
@@ -114,6 +45,11 @@ if (isset($_POST['textarea1'])) {
 $limite = $_POST['linea_sugerida'];
 $cuota = $_POST['cuota_sugerida'];
 $usu = $_POST['usuario'];
+$txt = "";
+
+if (isset($_POST['textarea1'])) {
+  $txt = $_POST['textarea1'];
+}
 
 $IDanalista = $database->get('usuarios_solicitudes','usuario_id',["entidad_id" => $usu]);
 $analista = $database->get("usuarios", "usuario_alias", ["usuario_id" => $IDanalista]);
@@ -122,11 +58,13 @@ $database->update("clientes", [
   //"nivel_edu_id" => $_POST['nivel_educativo'],
   "cliente_cuota_sugerida" => $cuota,
   "cliente_limite_sugerido" => $limite, 
+  "cliente_cuota" => $cuota,
+  "cliente_limite_credito" => $limite, 
   "cliente_usuario_modificacion" => $analista,
   "cliente_fecha_modificacion" => date("Y-m-d H:i:s")
 ],["entidad_id" => $usu]);
 
-$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje,"subestatus_id" => 1, "solicitud_comentario_analista" => $txt ],["entidad_id" => $usu]);
+$database->update("solicitudes", ["subestatus_id" => 1, "solicitud_comentario_analista" => $txt ],["entidad_id" => $usu]);
      
 
 
@@ -134,6 +72,6 @@ $database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario"
 
 
 
-$arr = array ('response'=> $resp,'user'=> $usu, 'comment'=> $mensaje);
+$arr = array ('response'=> 'success','user'=> $usu, 'comment'=> $txt);
 	echo json_encode($arr);
  ?>

@@ -239,7 +239,21 @@ session_destroy();*/
       <script type="text/javascript" src="js/magic.js"></script>
       <script type="text/javascript" src="js/jquery.validate.js"></script>
       <script type="text/javascript" src="js/messages_es.js"></script>
-    <script src="dist/sweetalert2.min.js"></script>
+      
+      <!--Agregados por DN:
+          Scripts para poder exportar a excel-->
+      <!--<script type="text/javascript" src="js/tableExport.js"></script>
+      <script type="text/javascript" src="js/jquery.base64.js"></script>-->
+
+      <!--Agregaods por DN:
+          Otros Scripts que exportan a version  mas nueva de excel-->
+      <script src="js/xlsx.core.min.js"></script>
+      <script src="js/filesaver.js"></script>      
+      <script src="js/tableexport_second.js"></script>
+
+
+      
+      <script src="dist/sweetalert2.min.js"></script>
 <script>
  
 

@@ -15,17 +15,117 @@ $database = new medoo([
 
 $usr = $_POST['usr']; //done
 
-$database->update("verificacion_telefonos",[
-	"telpersonal1" => $_POST['telspersonal1'],
-	"telpersonal2" => $_POST['telspersonal2'],
-	"telspersonales" => $_POST['telspersonal3'],
-	"teltrabajo" => $_POST['teltrabajo'],
-	"telref1" => $_POST['telref1'],
-	"telref2" => $_POST['telref2']
-	]);
+
+        $queryA = "SELECT concat(`entidad_primer_nombre`,' ', `entidad_segundo_nombre`,' ',`entidad_primer_apellido`,' ',`entidad_segund_apellido`) FROM `entidades` where `entidad_id` = ".$usr;
+        $queryB = "SELECT `empleo_year`,`empleo_month` from `empleos` where `entidad_id` = ".$usr;
+
+        $did = $database->select("entidades_direcciones", "*",["entidad_id" => $usr]);
+        
+        $queryC = "SELECT TIMESTAMPDIFF(YEAR, `direccion_antiguedad`, CURDATE()) AS age from `direcciones` where `direccion_id` = ".$did[0]["direccion_id"];
+        
+        $cliente = $database->select("clientes", "*",["entidad_id" => $usr]); 
+        $empleo  = $database->select("empleos", "*",["entidad_id" => $usr]);
+
+        $fpago = $database->select("frecuencias_pagos", ["frecuencia_pago_id","frecuencia_pago_descripcion"],["frecuencia_pago_id" => $empleo[0]["frecuencia_pago_id"]]);
+
+        $entidad = $database->query($queryA)->fetchAll();
+        $edadEmpleo = $database->query($queryB)->fetchAll();
+        $edadDIR = $database->query($queryC)->fetchAll();
+        //SELECT TIMESTAMPDIFF(YEAR, `entidad_fecha_nacimiento`, CURDATE()) AS age from `entidades` where `entidad_id` = 85
+        $edad = $database->query("SELECT TIMESTAMPDIFF(YEAR, `entidad_fecha_nacimiento`, CURDATE()) AS age from `entidades` where `entidad_id` = ".$usr)->fetchAll();
+        $entidadi = $database->select("entidades", "*",["entidad_id" => $usr]);
+        $estadoCIV = $database->select("estados_civiles", ["estado_civil_descripcion"],["estado_civil_id" => $entidadi[0]["estado_civil_id"]]);
+        $id = $database->select("identificaciones", "*",["entidad_id" => $usr]);
+        $edadRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "EDAD"
+]);
+        $antiguedadRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "ANTIGUEDAD LABORAL"
+]);
+        $ingresoRegla = $database->get("config_reglas", "config_regla_valor", [
+  "config_regla_descripcion" => "INGRESO SALARIAL"
+]);
 
 
-	$arr = array ('response'=>'correcto','user'=> $usr, 'comment'=> $usr.$_POST['telspersonal2']);
+//SCORE BAJO: if score es menor a socre de correcto
+//1 EDAD INSUFICIENTE: if edad < a 18
+//2 INGRESO INSUFICIENTE: < 3000
+//3 ANTIGUEDAD LABORAL MINIMA: < 3 meses
+//4 LISTA NEGRA: lista de vime.
+
+$Error = 0;
+     
+$mensaje = "La solicitud a sido DENEGADA por el siguiente motivo: ";
+
+if ($edad[0][0] < $edadRegla) {
+   	$Error = 1;
+    $mensaje = $mensaje."'EDAD INSUFICIENTE'";
+   }
+if ($empleo[0]['empleo_ingreso_neto'] < $ingresoRegla) {
+   	$Error = 2;
+    if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'INGRESO INSUFICIENTE'";
+
+   }
+
+   $edadEvalu = 12 * $edadEmpleo[0][0];
+   $edadEvalu = $edadEvalu + $edadEmpleo[0][1];
+
+ if($edadEvalu < $antiguedadRegla ) {
+   	$Error = 3;
+    if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'ANTIGUEDAD LABORAL INSUFICIENTE'";
+
+   }
+ if ($database->has("blacklist_identidad", [
+  "AND" => [
+    
+    "blacklist_identidad" => trim($id[0]['identificacion_numero']," ")
+  ]
+]))
+{
+  $Error = 4;
+  if ($Error > 0)
+      $mensaje = $mensaje.",";
+
+    $mensaje = $mensaje." 'Lista Negra de cedulas'";
+  
+}
+else
+{
+  
+  
+} 
+
+$mensaje = $mensaje.".";   
+
+$resp = 'error';
+$status = 3;
+$txt = "";
+
+if (isset($_POST['textarea1'])) {
+  $txt = $_POST['textarea1'];
+}
+
+
+
+	switch ($Error) {
+		case 0:{
+			$mensaje = "La solicitud en verificacion a terminado Exitosamente sin ningun problema.";
+			$resp = 'success';
+			$status = 2;
+			break;}
+	}
+
+
+
+$database->update("solicitudes", ["estatus_id" => $status,"soliciutd_comentario" => $mensaje, "solicitud_comentario_analista" => $txt ],["entidad_id" => $usr]);
+
+	$arr = array ('response'=> $resp,'user'=> $usr, 'comment'=> $mensaje);
 	echo json_encode($arr);
 //insert en telefonos primero
 // insert en entidades_telefonos

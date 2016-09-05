@@ -148,7 +148,7 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
         <label class="active" for="icon_prefix">Plazo en Meses</label>
       </div>
   </div>
-  <input type="hidden" name="usr" value="<?php echo $_GET['usr']; ?>"></input>
+  <input id="idusure" type="hidden" name="usr" value="<?php echo $_GET['usr']; ?>"></input>
 
   <div class="col m12">
       <p class="right-align">
@@ -159,15 +159,9 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
       </p>
     </div>
 
-    <input type="hidden" id="telspersonal1" name="telspersonal1" value="No Revisado">
-    <input type="hidden" id="telspersonal2" name="telspersonal2" value="No Revisado">
-    <input type="hidden" id="telspersonal3" name="telspersonal3" value="No Revisado">
-    <input type="hidden" id="teltrabajo" name="teltrabajo" value="No Revisado">
-    <input type="hidden" id="telref1" name="telref1" value="No Revisado">
-    <input type="hidden" id="telref2" name="telref2" value="No Revisado">
 
   </form>
-  <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+  <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Evaluar Politicas</button>
   <!--button id="modalopener" data-target="modal1" class="btn modal-trigger">Evaluar políticas </button-->
 
     <!-- Modal Trigger -->
@@ -383,11 +377,21 @@ $entidadA = $database->select("referencias_personales","*",["entidad_id" => $usr
     <!-- FOOTER DEL MODAL  -->
     <div style="height: 60px !important;" class="modal-footer">
     
-      <button id="mreport"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
+      <button id="finmi"  class="btn btn-small waves-effect waves-light" name="action">Mostrar Reporte</button>
       <a id="devolucionesmod" style="margin-right:10px;" class="waves-effect waves-light btn"><i class="material-icons right">call_missed</i>Devolver solicitud</a>
           <!--a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a-->
     </div>
 
   </div>
+
+  <form action="reportef.php" id="reportin" type="post">
+  <input type="hidden" id="telspersonal1" name="telspersonal1" value="No Revisado">
+    <input type="hidden" id="telspersonal2" name="telspersonal2" value="No Revisado">
+    <input type="hidden" id="telspersonal3" name="telspersonal3" value="No Revisado">
+    <input type="hidden" id="teltrabajo" name="teltrabajo" value="No Revisado">
+    <input type="hidden" id="telref1" name="telref1" value="No Revisado">
+    <input type="hidden" id="telref2" name="telref2" value="No Revisado">
+    <input type="hidden" id="usr" name="usr" value="<?php echo $_GET['usr'] ?>">
+</form>
 
    

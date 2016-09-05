@@ -4,6 +4,7 @@ GLOBAL $SVR,$USR,$PW,$DB;
 
 $DB= "vimeyaso_db_credistart";
 $SVR = "localhost";
+//$PW = "C%7Nzl9mBeVc";
 $PW = "golden sun";
 $USR = "root";
 

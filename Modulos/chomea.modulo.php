@@ -1,6 +1,27 @@
 
 <nav>
-    <div class="nav-wrapper <?php if (isset($_SESSION['anl']))echo "deep-orange";else echo "yellow" ?> darken-4">
+
+    <?php
+      if (isset($_GET['pg'])) {
+        $page = $_GET['pg'];
+      }else
+      {
+        $page="home";
+      }
+
+
+      if ($page == "rpt_solicitudes")       
+      {
+        echo '<div class="nav-wrapper '; if (isset($_SESSION['anl']))echo "deep-orange "; else echo "yellow "; echo'darken-4" style="width:166%;">'; 
+      }
+      else{
+        echo '<div class="nav-wrapper '; if (isset($_SESSION['anl']))echo "deep-orange "; else echo "yellow "; echo'darken-4">'; 
+      }
+
+    ?>      
+    <!--Comentado por: DN
+        Se agrego una condicion antes para extender el menu ya que el reporte a generar ocupa bastante espacio -->
+    <!--<div class="nav-wrapper <?php /*if (isset($_SESSION['anl']))echo "deep-orange";else echo "yellow"*/ ?> darken-4">-->
       <!--<img src="credistart.png" width="3%">-->
       <a href="?pg=home" class="brand-logo" style="margin-left:1%">Credistart</a>      
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>

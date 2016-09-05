@@ -11,8 +11,8 @@ if(isset($_POST['page'])){
 ?>
 <div class="row">
   
-  <h3 class="col m6">Estado de las ultimas solicitudes</h3>
-    <div class="input-field col m3 orderbyselect">
+  <h3 class="col m6 s12">Estado de las ultimas solicitudes</h3>
+    <div class="input-field col m3 s10 orderbyselect">
     <form name="myform" action="" method="post">
     <select name="page" onchange="this.form.submit()">
       <i class="material-icons circle green">done_all</i><option value="" disabled selected>Elija una opcion</option>
@@ -25,6 +25,18 @@ if(isset($_POST['page'])){
     </form>
   
   </div>
+      
+      <?php 
+          if (isset($_SESSION['anl'])) {
+            echo '<div class="col m3 s2" >
+                    <a href="?pg=rpt_solicitudes">
+                        <i class="material-icons small right" style="margin-top: 10px;">print</i>
+                        <p style="float:right;">Generar Reporte</p>
+                    </a>      
+                  </div>';        
+          }
+      ?>
+
 </div>
 <?php
 require_once('medoo.php');
