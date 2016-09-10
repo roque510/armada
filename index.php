@@ -261,5 +261,6 @@ session_destroy();*/
 
     <script src="dist/sweetalert.min.js"></script>
     <script src="js/dropzone.js"></script>
+    
     </body>
   </html>

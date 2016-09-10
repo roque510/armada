@@ -3,13 +3,23 @@
 ?>
 <?php 
           if (!isset($_SESSION['anl'])) {
-           header("Location: index.php?pg=home");
+
+           //header("Location: index.php?pg=home");          	
           }
+
+          $fi = $_GET["fi"];
+          $ff = $_GET["ff"];
+
+//          echo $fi . '<br>';
+//          echo $ff . '<br>';
         ?>
 <div class="row" style="margin-bottom: 0px;">
   <div class="col s12">    
     <i class="material-icons large left" style="color:#b2dfdb; text-shadow:0.01em 0.01em 0.1em #b2dfdb"> assignment</i>
     <h1 class="left" style="font-size:2.5rem; color:teal;">Reporte de Solicitudes por Compañia</h1>            
+    <br><br><br><br>
+    <h5 style="margin-left:2%"> Del: <?php echo $fi; ?> </h5>
+    <h5 style="margin-left:2%"> Hasta: <?php echo $ff; ?> </h5>
   </div>
 </div>
 
@@ -127,6 +137,7 @@
 										        LEFT OUTER JOIN nivel_educativo ON nivel_educativo.nivel_edu_id = clientes.nivel_edu_id
 										        LEFT OUTER JOIN propiedades_tipos ON propiedades_tipos.propiedad_tipo_id = propiedades.propiedad_tipo_id
 												LEFT OUTER JOIN empleos_tipos ON empleos_tipos.empleo_tipo_id = empleos.empleo_cargo_id
+										WHERE (solicitudes.solicitud_fecha_inicio >= '".$fi."' AND solicitudes.solicitud_fecha_inicio <= '".$ff."')
 ");
 		            $i=0;
 		            echo '<tr>';
